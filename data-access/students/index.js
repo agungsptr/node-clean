@@ -1,15 +1,15 @@
 const Students = require("../../db/models/students.model");
 const studentBuilder = require("../../models/students/");
 const serialize = require("./serializer");
+const CustomError = require("../../commons/customError");
+const { IsEmpty, IfEmptyThrowError } = require("../../commons/checks");
 
 const findAll = async () => {
   return Students.find().then(serialize);
 };
 
 const findOne = async (id) => {
-  return Students.find({ id }).then((result) => {
-    return serialize(result[0]);
-  });
+  return Students.findById(id).then(serialize);
 };
 
 const findBy = async (prop, val) => {
@@ -19,6 +19,15 @@ const findBy = async (prop, val) => {
 const create = async (bodyData) => {
   const data = studentBuilder(bodyData);
   return Students.create(data).then(serialize);
+};
+
+const update = async (id, bodyData) => {
+  const data = await Students.findById(id);
+  IfEmptyThrowError(data, `Data with id: ${id} in Students is not found`);
+
+  const dataToUpdate = studentBuilder(bodyData);
+  Object.assign(data, dataToUpdate);
+  return data.save().then(serialize);
 };
 
 const remove = async (id) => {
@@ -45,6 +54,7 @@ module.exports = {
   findOne,
   findBy,
   create,
+  update,
   remove,
   removeAll,
 };

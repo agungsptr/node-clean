@@ -1,11 +1,13 @@
 const create = require("./create");
 const findOne = require("./findOne");
 const findAll = require("./findAll");
-const remove = require("./remove")
+const update = require("./update");
+const remove = require("./remove");
 
 module.exports = {
   create,
   findOne,
   findAll,
+  update,
   remove,
 };
