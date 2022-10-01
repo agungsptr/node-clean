@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const _ = require("lodash");
 const config = require("../config");
-
 const logger = require("./logger");
 
 const appName = `${config.APP_NAME}`.toLowerCase();

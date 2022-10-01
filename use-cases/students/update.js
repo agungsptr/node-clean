@@ -1,14 +1,18 @@
 const studentsDa = require("../../data-access/students");
 const { ResponseWithError } = require("../../commons/errors");
+const { responseBuilder } = require("../../commons/utils");
+const { StatusCode } = require("../../commons/constants");
 
 const update = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = await studentsDa.update(id, req.body);
-    res.status(200).send(data);
+    res
+      .status(StatusCode.OK)
+      .send(responseBuilder({ statusCode: StatusCode.OK, data }));
     return next();
   } catch (e) {
-    return ResponseWithError(res, e, 400);
+    return ResponseWithError(res, e, StatusCode.BadRequest);
   }
 };
 

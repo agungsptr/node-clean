@@ -1,4 +1,5 @@
 const { IsEmpty } = require("./checks");
+const { StatusCode } = require("./constants");
 
 const CheckDigits = (v) => {
   const s = v.split("").reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
@@ -38,8 +39,20 @@ const Trim = (
   }
 };
 
+const responseBuilder = ({ statusCode, data = null, message = null }) => {
+  const status = statusCode === StatusCode.OK ? "Success" : "Failed";
+  const response = {
+    statusCode,
+    status,
+  };
+  if (data) response.data = data;
+  if (message) response.message = message;
+  return response;
+};
+
 module.exports = {
   CheckDigits,
   UniqueInt,
   Trim,
+  responseBuilder,
 };
