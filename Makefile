@@ -17,7 +17,7 @@ compose_dev:
 	@echo "Starting services..."
 	@node db/mongoConfigGen.js
 	@docker-compose --env-file .env -f build/dev/docker-compose.yml down -v  || true
-	@docker-compose --env-file .env -f build/dev/docker-compose.yml up -d --force-recreate db
+	@docker-compose --env-file .env -f build/dev/docker-compose.yml up -d --force-recreate
 	@rm build/dev/mongo-init.js
 
 .PHONY: all build test

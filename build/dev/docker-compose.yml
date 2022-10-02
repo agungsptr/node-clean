@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 networks:
   node_clean-network:
@@ -32,7 +32,8 @@ services:
       MONGO_PW: ${MONGO_PW}
       MONGO_PORT: ${MONGO_PORT}
       MONGO_DBNAME: ${MONGO_DBNAME}
-      MONGO_HOST: ${MONGO_HOST}
+      MONGO_HOST: node_clean-db
+    command: "npm run dev"
     ports:
       - 7000:7000
     networks:
