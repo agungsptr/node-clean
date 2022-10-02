@@ -1,0 +1,39 @@
+version: '3'
+
+networks:
+  node_clean-network:
+    driver: bridge
+
+services:
+  db:
+    container_name: node_clean-db
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PW}
+      MONGO_INITDB_DATABASE: node_clean-db
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - 27017:27017
+    networks:
+      - node_clean-network
+
+  app:
+    container_name: node_clean-app
+    image: agungsptr/node-clean-arch:main
+    restart: always
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      MONGO_USER: ${MONGO_USER}
+      MONGO_PW: ${MONGO_PW}
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_DBNAME: ${MONGO_DBNAME}
+      MONGO_HOST: ${MONGO_HOST}
+    ports:
+      - 7000:7000
+    networks:
+      - node_clean-network

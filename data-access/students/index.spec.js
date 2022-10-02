@@ -41,7 +41,7 @@ describe("data-access/students", () => {
     const students = await studentsDa.findAll();
     const id = students[0].id;
 
-    const student = await studentsDa.findOne("id", id);
+    const student = await studentsDa.findOne(id);
     const input = student.id;
     const actual = id;
     expect(input).to.eql(actual);
