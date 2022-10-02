@@ -23,6 +23,10 @@ describe("data-access/students", () => {
     await studentsDa.create(bill);
   });
 
+  afterEach(async () => {
+    await studentsDa.removeAll();
+  });
+
   it("drops database", async () => {
     await studentsDa.removeAll();
     const students = await studentsDa.findAll();
