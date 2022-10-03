@@ -1,6 +1,7 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const studentsDa = require("./index");
+
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
@@ -65,14 +66,14 @@ describe("data-access/students", () => {
       age: 6,
     };
     const newStudent = await studentsDa.create(felix);
-    const { id, ...input } = newStudent;
+    delete newStudent.id;
     const actual = {
       name: "felix",
       grade: 2,
       age: 6,
       prefect: false,
     };
-    expect(input).to.eql(actual);
+    expect(newStudent).to.eql(actual);
   });
 
   it("throws error if inserts a student with invalid payload", async () => {

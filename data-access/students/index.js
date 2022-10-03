@@ -1,8 +1,7 @@
 const Students = require("../../db/models/students.model");
 const studentBuilder = require("../../models/students/");
 const serialize = require("./serializer");
-const CustomError = require("../../commons/customError");
-const { IsEmpty, IfEmptyThrowError } = require("../../commons/checks");
+const { IfEmptyThrowError } = require("../../commons/checks");
 
 const findAll = async () => {
   return Students.find().then(serialize);
