@@ -39,15 +39,14 @@ const Trim = (
   }
 };
 
-const responseBuilder = ({ statusCode, data = null, message = null }) => {
+const responseBuilder = ({ statusCode, data, message }) => {
   const status = statusCode === StatusCode.OK ? "Success" : "Failed";
-  const response = {
+  return {
     statusCode,
     status,
+    message,
+    data,
   };
-  if (data) response.data = data;
-  if (message) response.message = message;
-  return response;
 };
 
 module.exports = {

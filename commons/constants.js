@@ -21,8 +21,20 @@ const StatusCode = {
   OK: 200,
 };
 
+const ResponseMessage = {
+  Loaded: "Data success loaded",
+  Added: "Data success added",
+  Updated: "Data success updated",
+  Removed: "Data success removed",
+  FailLoaded: "Data failed to loaded",
+  FailAdded: "Data failed to added",
+  FailUpdated: "Data failed to updated",
+  FailRemoved: "Data failed to removed",
+};
+
 module.exports = {
   Status,
   Error,
   StatusCode,
+  ResponseMessage,
 };

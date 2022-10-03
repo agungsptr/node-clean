@@ -1,6 +1,6 @@
 const studentsDa = require("../../data-access/students");
 const { ResponseWithError } = require("../../commons/errors");
-const { StatusCode } = require("../../commons/constants");
+const { StatusCode, ResponseMessage } = require("../../commons/constants");
 const { responseBuilder } = require("../../commons/utils");
 
 const remove = async (req, res, next) => {
@@ -9,7 +9,13 @@ const remove = async (req, res, next) => {
     const data = await studentsDa.remove(id);
     res
       .status(StatusCode.OK)
-      .send(responseBuilder({ statusCode: StatusCode.OK, data }));
+      .send(
+        responseBuilder({
+          statusCode: StatusCode.OK,
+          data,
+          message: ResponseMessage.Removed,
+        })
+      );
     return next();
   } catch (e) {
     return ResponseWithError(res, e, StatusCode.BadRequest);
