@@ -1,6 +1,5 @@
 app whislists
-- unit test controller
-- unit test use-case
+- unit test router
 - implement 4 or more tables
 
 infra whislists
