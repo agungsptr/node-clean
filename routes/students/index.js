@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const students = require("../controllers/students.controller");
+const students = require("../../controllers/students.controller");
 
 const router = Router();
 const baseUrl = "/student";

@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const studentRoute = require("./students.route");
+const studentRoute = require("./students");
 
 const router = Router();
 
