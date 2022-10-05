@@ -18,7 +18,7 @@ function ResponseWithError(res, err, customErrorCode = 400) {
     return res.status(customErrorCode).send({
       statusCode: customErrorCode,
       status: "Failed",
-      message: err.message.split(","),
+      message: err.arrayOfErrors,
     });
   } else {
     helper.logError(err.stack);
