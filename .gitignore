@@ -13,3 +13,4 @@ yarn-error.log*
 .env
 yarn.lock
 package-lock.json
+mongo-init.js
