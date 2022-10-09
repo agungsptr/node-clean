@@ -22,7 +22,7 @@ services:
 
   app:
     container_name: node_clean-app
-    image: agungsptr/node-clean-arch:main
+    image: agungsptr/node-clean:main
     restart: always
     depends_on:
       - db
