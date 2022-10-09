@@ -8,7 +8,7 @@ const config = require("../config");
 const app = express();
 
 /** Set logger request */
-app.use(logger("dev", { skip: () => process.env.NODE_ENV === "test" }));
+app.use(logger("dev"));
 
 /** Bodyparser */
 app.use(bodyParser.json());
