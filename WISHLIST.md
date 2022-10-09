@@ -1,5 +1,4 @@
 app whislists
-- unit test router
 - implement 4 or more tables
 
 infra whislists
