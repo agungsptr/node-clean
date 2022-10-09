@@ -1,15 +1,20 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const request = require("supertest");
-const app = require("../../drivers/server");
 const studentDa = require("../../data-access/students");
+const setup = require("../../test/setup");
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
+let app;
 const API_URL = "/api/student";
 
 describe("routes/students", () => {
+  before(async () => {
+    app = await setup.beforeAction();
+  });
+
   beforeEach(async () => {
     await studentDa.removeAll();
     const howie = {
