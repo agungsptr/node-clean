@@ -8,7 +8,7 @@ const config = require("../config");
 const app = express();
 
 /** Set logger request */
-app.use(logger("dev"));
+app.use(logger("dev", { skip: () => process.env.NODE_ENV === "test" }));
 
 /** Bodyparser */
 app.use(bodyParser.json());
@@ -24,3 +24,5 @@ app.use("/api", routes);
 app.listen(config.PORT, () => {
   console.log(`Listening on PORT: ${config.PORT}`);
 });
+
+module.exports = app;
