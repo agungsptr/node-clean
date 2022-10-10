@@ -7,7 +7,7 @@ build:
 
 compose:
 	@echo "Starting services..."
-	@node db/mongoConfigGen.js release
+	@node db/dbConfigGenerator.js release
 	@docker-compose --env-file .env -f build/release/docker-compose.yml down -v  || true
 	@docker-compose --env-file .env -f build/release/docker-compose.yml up -d --force-recreate
 
@@ -16,7 +16,7 @@ build_dev:
 
 compose_dev:
 	@echo "Starting services..."
-	@node db/mongoConfigGen.js dev
+	@node db/dbConfigGenerator.js dev
 	@docker-compose --env-file .env -f build/dev/docker-compose.yml down -v  || true
 	@docker-compose --env-file .env -f build/dev/docker-compose.yml up -d --force-recreate
 
