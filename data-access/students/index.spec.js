@@ -52,13 +52,6 @@ describe("data-access/students", () => {
     expect(input).to.eql(actual);
   });
 
-  it("finds all students by property", async () => {
-    const students = await studentsDa.findBy("grade", 3);
-    const input = students.map((el) => el.name);
-    const actual = ["howie", "bill"];
-    expect(input).to.eql(actual);
-  });
-
   it("inserts a student", async () => {
     const felix = {
       name: "felix",

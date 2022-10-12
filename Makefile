@@ -10,6 +10,6 @@ compose:
 	@echo "Starting services..."
 	@node db/dbConfigGenerator.js $(NODE_ENV)
 	@$(COMPOSE) down -v  || true
-	@$(COMPOSE) up -d --force-recreate
+	@$(COMPOSE) up -d --force-recreate db
 
 .PHONY: all build test

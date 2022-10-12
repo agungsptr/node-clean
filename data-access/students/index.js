@@ -2,17 +2,14 @@ const Students = require("../../db/models/students.model");
 const studentBuilder = require("../../models/students/");
 const serialize = require("./serializer");
 const { IfEmptyThrowError } = require("../../commons/checks");
+const { mongoWhereGen } = require("../../commons/utils");
 
-const findAll = async () => {
-  return Students.find().then(serialize);
+const findAll = async (queries) => {
+  return Students.find(mongoWhereGen(queries)).then(serialize);
 };
 
 const findOne = async (id) => {
   return Students.findById(id).then(serialize);
-};
-
-const findBy = async (prop, val) => {
-  return Students.find({ [prop]: val }).then(serialize);
 };
 
 const create = async (bodyData) => {
@@ -51,7 +48,6 @@ const removeAll = async () => {
 module.exports = {
   findAll,
   findOne,
-  findBy,
   create,
   update,
   remove,

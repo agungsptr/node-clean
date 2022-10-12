@@ -49,9 +49,18 @@ const responseBuilder = ({ statusCode, data, message }) => {
   };
 };
 
+const mongoWhereGen = (queries) => {
+  const obj = {};
+  for (const [key, val] of Object.entries(queries)) {
+    obj[key] = { $regex: val, $options: "i" };
+  }
+  return obj;
+};
+
 module.exports = {
   CheckDigits,
   UniqueInt,
   Trim,
   responseBuilder,
+  mongoWhereGen,
 };
