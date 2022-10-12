@@ -7,8 +7,16 @@ build:
 	docker build -f build/$(NODE_ENV)/Dockerfile -t agungsptr/node-clean:$(TAG) .
 
 compose:
-	@echo "Starting services..."
+	@echo "Generating DB config..."
 	@node db/dbConfigGenerator.js $(NODE_ENV)
+	@echo "Starting services..."
+	@$(COMPOSE) down -v  || true
+	@$(COMPOSE) up -d --force-recreate
+
+infra:
+	@echo "Generating DB config..."
+	@node db/dbConfigGenerator.js $(NODE_ENV)
+	@echo "Starting DB service..."
 	@$(COMPOSE) down -v  || true
 	@$(COMPOSE) up -d --force-recreate db
 
