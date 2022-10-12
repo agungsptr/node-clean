@@ -9,7 +9,7 @@ const findAll = async (queries = {}) => {
   try {
     return Students.find(conditionParser(queries)).then(serialize);
   } catch (e) {
-    throw RepackageError(e);
+    throw RepackageError(e.message);
   }
 };
 
@@ -17,7 +17,7 @@ const findOne = async (id) => {
   try {
     return Students.findById(id).then(serialize);
   } catch (e) {
-    throw RepackageError(e);
+    throw RepackageError(e.message);
   }
 };
 
@@ -26,7 +26,7 @@ const create = async (bodyData) => {
     const data = studentBuilder(bodyData);
     return Students.create(data).then(serialize);
   } catch (e) {
-    throw RepackageError(e);
+    throw RepackageError(e.message);
   }
 };
 
@@ -39,7 +39,7 @@ const update = async (id, bodyData) => {
     await Students.findByIdAndUpdate(id, dataToUpdate);
     return { id, ...dataToUpdate };
   } catch (e) {
-    throw RepackageError(e);
+    throw RepackageError(e.message);
   }
 };
 
@@ -60,7 +60,7 @@ const removeAll = async () => {
     await Students.deleteMany();
     return null;
   } catch (e) {
-    throw RepackageError(e);
+    throw RepackageError(e.message);
   }
 };
 
