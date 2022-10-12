@@ -49,7 +49,7 @@ const responseBuilder = ({ statusCode, data, message }) => {
   };
 };
 
-const mongoWhereGen = (queries) => {
+const conditionParser = (queries) => {
   const obj = {};
   for (const [key, val] of Object.entries(queries)) {
     obj[key] = { $regex: val, $options: "i" };
@@ -62,5 +62,5 @@ module.exports = {
   UniqueInt,
   Trim,
   responseBuilder,
-  mongoWhereGen,
+  conditionParser,
 };

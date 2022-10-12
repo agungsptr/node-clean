@@ -2,10 +2,10 @@ const Students = require("../../db/models/students.model");
 const studentBuilder = require("../../models/students/");
 const serialize = require("./serializer");
 const { IfEmptyThrowError } = require("../../commons/checks");
-const { mongoWhereGen } = require("../../commons/utils");
+const { conditionParser } = require("../../commons/utils");
 
 const findAll = async (queries = {}) => {
-  return Students.find(mongoWhereGen(queries)).then(serialize);
+  return Students.find(conditionParser(queries)).then(serialize);
 };
 
 const findOne = async (id) => {
@@ -18,31 +18,22 @@ const create = async (bodyData) => {
 };
 
 const update = async (id, bodyData) => {
-  const data = await Students.findById(id);
+  const data = await Students.findById(id).then(serialize);
   IfEmptyThrowError(data, `Data with id: ${id} in Students is not found`);
 
-  const dataToUpdate = studentBuilder(bodyData);
-  Object.assign(data, dataToUpdate);
-  return data.save().then(serialize);
+  const dataToUpdate = studentBuilder({ ...data, ...bodyData });
+  await Students.findByIdAndUpdate(id, dataToUpdate);
+  return { id, ...dataToUpdate };
 };
 
 const remove = async (id) => {
-  return Students.findByIdAndDelete(id)
-    .then((resp) => {
-      return {
-        id: resp._id.toString(),
-        status: "success",
-      };
-    })
-    .catch((err) => {
-      return {
-        status: "fail",
-      };
-    });
+  await Students.findByIdAndDelete(id);
+  return null;
 };
 
 const removeAll = async () => {
-  return Students.deleteMany();
+  await Students.deleteMany();
+  return null;
 };
 
 module.exports = {
