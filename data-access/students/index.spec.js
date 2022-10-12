@@ -83,21 +83,12 @@ describe("data-access/students", () => {
     const students = await studentsDa.findAll();
     const id = students[0].id.toString();
     const validInput = await studentsDa.remove(id);
-    const validActual = {
-      status: "success",
-      id,
-    };
-    expect(validInput).to.eql(validActual);
+    expect(validInput).to.eql(null);
 
     const newStudents = await studentsDa.findAll();
     const inputLength = newStudents.length;
     const actualLength = 1;
     expect(inputLength).to.equal(actualLength);
-
-    const invalidInput = await studentsDa.remove(42);
-    const invalidActual = {
-      status: "fail",
-    };
-    expect(invalidInput).to.eql(invalidActual);
+    expect(studentsDa.remove(42)).to.eventually.be.rejected;
   });
 });

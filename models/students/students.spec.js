@@ -4,13 +4,7 @@ const studentBuilder = require("./index");
 
 describe("models/student", () => {
   it("throws error if invalid payload", () => {
-    const errorMessage = [
-      "must have name as string",
-      "age must be a number",
-      "grade must be a number",
-      "prefect must be a boolean",
-    ].join(",");
-
+    const errorMessage = "\"name\" is required,\"age\" must be a number,\"grade\" must be a number,\"prefect\" must be a boolean";
     expect(() => {
       studentBuilder({
         grade: "twelve",
