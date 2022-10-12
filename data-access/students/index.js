@@ -4,7 +4,7 @@ const serialize = require("./serializer");
 const { IfEmptyThrowError } = require("../../commons/checks");
 const { mongoWhereGen } = require("../../commons/utils");
 
-const findAll = async (queries) => {
+const findAll = async (queries = {}) => {
   return Students.find(mongoWhereGen(queries)).then(serialize);
 };
 
