@@ -1,8 +1,8 @@
 class CustomError extends Error {
-  constructor(errors) {
-    super(errors);
+  constructor(error) {
+    super(error);
     this.name = this.constructor.name;
-    this.arrayOfErrors = errors;
+    this.list = error;
   }
 }
 

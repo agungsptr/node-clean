@@ -3,37 +3,65 @@ const studentBuilder = require("../../models/students/");
 const serialize = require("./serializer");
 const { IfEmptyThrowError } = require("../../commons/checks");
 const { conditionParser } = require("../../commons/utils");
+const { CustomError, RepackageError } = require("../../commons/errors");
 
 const findAll = async (queries = {}) => {
-  return Students.find(conditionParser(queries)).then(serialize);
+  try {
+    return Students.find(conditionParser(queries)).then(serialize);
+  } catch (e) {
+    throw new CustomError(e);
+  }
 };
 
 const findOne = async (id) => {
-  return Students.findById(id).then(serialize);
+  try {
+    return Students.findById(id).then(serialize);
+  } catch (e) {
+    throw new CustomError(e);
+  }
 };
 
 const create = async (bodyData) => {
-  const data = studentBuilder(bodyData);
-  return Students.create(data).then(serialize);
+  try {
+    const data = studentBuilder(bodyData);
+    return Students.create(data).then(serialize);
+  } catch (e) {
+    throw new CustomError(e);
+  }
 };
 
 const update = async (id, bodyData) => {
-  const data = await Students.findById(id).then(serialize);
-  IfEmptyThrowError(data, `Data with id: ${id} in Students is not found`);
+  try {
+    const data = await Students.findById(id).then(serialize);
+    IfEmptyThrowError(data, `Data with id: ${id} in Students is not found`);
 
-  const dataToUpdate = studentBuilder({ ...data, ...bodyData });
-  await Students.findByIdAndUpdate(id, dataToUpdate);
-  return { id, ...dataToUpdate };
+    const dataToUpdate = studentBuilder({ ...data, ...bodyData });
+    await Students.findByIdAndUpdate(id, dataToUpdate);
+    return { id, ...dataToUpdate };
+  } catch (e) {
+    throw new CustomError(e);
+  }
 };
 
 const remove = async (id) => {
-  await Students.findByIdAndDelete(id);
-  return null;
+  try {
+    const data = await Students.findById(id).then(serialize);
+    IfEmptyThrowError(data, `Data with id: ${id} in Students is not found`);
+
+    await Students.findByIdAndDelete(id);
+    return null;
+  } catch (e) {
+    throw RepackageError(e.message);
+  }
 };
 
 const removeAll = async () => {
-  await Students.deleteMany();
-  return null;
+  try {
+    await Students.deleteMany();
+    return null;
+  } catch (e) {
+    throw new CustomError(e);
+  }
 };
 
 module.exports = {

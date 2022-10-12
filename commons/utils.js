@@ -39,7 +39,7 @@ const Trim = (
   }
 };
 
-const responseBuilder = ({ statusCode, data, message }) => {
+const responseBuilder = ({ statusCode, message, data = null }) => {
   const status = statusCode === StatusCode.OK ? "Success" : "Failed";
   return {
     statusCode,
