@@ -9,6 +9,7 @@ build:
 compose:
 	@echo "Generating DB config..."
 	@node db/dbConfigGenerator.js $(NODE_ENV)
+	@echo "DB config generated"
 	@echo "Starting services..."
 	@$(COMPOSE) down -v  || true
 	@$(COMPOSE) up -d --force-recreate
@@ -16,6 +17,7 @@ compose:
 infra:
 	@echo "Generating DB config..."
 	@node db/dbConfigGenerator.js $(NODE_ENV)
+	@echo "DB config generated"
 	@echo "Starting DB service..."
 	@$(COMPOSE) down -v  || true
 	@$(COMPOSE) up -d --force-recreate db
