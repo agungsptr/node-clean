@@ -3,13 +3,13 @@ const studentBuilder = require("../../models/students/");
 const serialize = require("./serializer");
 const { IfEmptyThrowError } = require("../../commons/checks");
 const { conditionParser } = require("../../commons/utils");
-const { CustomError, RepackageError } = require("../../commons/errors");
+const { RepackageError } = require("../../commons/errors");
 
 const findAll = async (queries = {}) => {
   try {
     return Students.find(conditionParser(queries)).then(serialize);
   } catch (e) {
-    throw new CustomError(e);
+    throw RepackageError(e);
   }
 };
 
@@ -17,7 +17,7 @@ const findOne = async (id) => {
   try {
     return Students.findById(id).then(serialize);
   } catch (e) {
-    throw new CustomError(e);
+    throw RepackageError(e);
   }
 };
 
@@ -26,7 +26,7 @@ const create = async (bodyData) => {
     const data = studentBuilder(bodyData);
     return Students.create(data).then(serialize);
   } catch (e) {
-    throw new CustomError(e);
+    throw RepackageError(e);
   }
 };
 
@@ -39,7 +39,7 @@ const update = async (id, bodyData) => {
     await Students.findByIdAndUpdate(id, dataToUpdate);
     return { id, ...dataToUpdate };
   } catch (e) {
-    throw new CustomError(e);
+    throw RepackageError(e);
   }
 };
 
@@ -60,7 +60,7 @@ const removeAll = async () => {
     await Students.deleteMany();
     return null;
   } catch (e) {
-    throw new CustomError(e);
+    throw RepackageError(e);
   }
 };
 
