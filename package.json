@@ -4,8 +4,8 @@
   "description": "NodeJs project with clean architecture implementation",
   "main": "./drivers/server.js",
   "scripts": {
-    "start": "NODE_ENV=production node ./drivers/server.js",
-    "dev": "nodemon ./drivers/server.js",
+    "start": "NODE_ENV=production node main",
+    "dev": "nodemon main",
     "lint": "eslint .",
     "test": "NODE_ENV=test mocha --exclude ./node_modules/**/*.spec.js --exit ./**/*.spec.js",
     "coverage": "NODE_ENV=test nyc --reporter=text npm run test"
