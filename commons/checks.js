@@ -5,19 +5,20 @@ function IsArray(obj) {
 }
 
 function IsEmpty(obj) {
-  if (
-    obj === null ||
-    obj === undefined ||
-    typeof obj === "undefined" ||
-    obj === "" ||
-    obj === "undefined"
-  ) {
-    return true;
-  } else if (Array.isArray(obj) && obj.length === 0) {
+  if (Array.isArray(obj) && obj.length === 0) {
     return true;
   } else {
-    return false;
+    if (
+      obj === null ||
+      obj === undefined ||
+      typeof obj === "undefined" ||
+      obj === "" ||
+      obj === "undefined"
+    ) {
+      return true;
+    }
   }
+  return false;
 }
 
 function IsTrue(obj) {
