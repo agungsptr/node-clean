@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-clean-arch",
+  "name": "node-clean",
   "version": "1.0.0",
   "description": "NodeJs project with clean architecture implementation",
   "main": "./drivers/server.js",
