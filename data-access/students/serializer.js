@@ -1,3 +1,5 @@
+const { serializer } = require("../../commons/utils");
+
 const _serializeSingle = (student) => {
   return {
     id: student._id,
@@ -8,14 +10,4 @@ const _serializeSingle = (student) => {
   };
 };
 
-const serializer = (data) => {
-  if (!data) {
-    return null;
-  }
-  if (Array.isArray(data)) {
-    return data.map(_serializeSingle);
-  }
-  return _serializeSingle(data);
-};
-
-module.exports = serializer;
+module.exports = serializer(_serializeSingle);
