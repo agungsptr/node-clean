@@ -7,7 +7,8 @@
     "start": "NODE_ENV=production node ./drivers/server.js",
     "dev": "nodemon ./drivers/server.js",
     "lint": "eslint .",
-    "test": "NODE_ENV=test mocha './**/*.spec.js' --exclude ./node_modules/**/*.spec.js --exit"
+    "test": "NODE_ENV=test mocha './**/*.spec.js' --exclude ./node_modules/**/*.spec.js --exit",
+    "coverage": "NODE_ENV=test nyc --reporter=text npm run test"
   },
   "keywords": [
     "nodejs",
@@ -36,6 +37,7 @@
     "eslint": "^8.24.0",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
     "supertest": "^6.3.0",
     "yarn-upgrade-all": "^0.7.1"
   }
