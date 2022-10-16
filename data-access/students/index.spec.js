@@ -59,14 +59,17 @@ describe("data-access/students", () => {
       age: 6,
     };
     const newStudent = await studentsDa.create(felix);
-    delete newStudent.id;
+    const obj = newStudent;
+    delete obj.id;
+    delete obj.createdAt;
+    delete obj.updatedAt;
     const actual = {
       name: "felix",
       grade: 2,
       age: 6,
       prefect: false,
     };
-    expect(newStudent).to.eql(actual);
+    expect(obj).to.eql(actual);
   });
 
   it("throws error if inserts a student with invalid payload", async () => {
