@@ -1,8 +1,10 @@
 const { Router } = require("express");
-const studentRoute = require("./students");
+const students = require("./students");
+const users = require("./users");
 
 const router = Router();
 
-router.use(studentRoute);
+router.use(students);
+router.use(users);
 
 module.exports = router;

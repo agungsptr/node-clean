@@ -47,9 +47,14 @@ describe("routes/students", () => {
   it(`GET ${API_URL}/:id`, async () => {
     const list = await studentDa.findAll();
     const req = await request(app).get(`${API_URL}/${list[0].id}`).send();
+    const expectVal = {
+      ...req.body.data,
+      createdAt: new Date(req.body.data.createdAt),
+      updatedAt: new Date(req.body.data.updatedAt),
+    };
 
     expect(req.statusCode).to.eql(200);
-    expect(req.body.data).to.eql({ ...list[0], id: list[0].id.valueOf() });
+    expect(expectVal).to.eql({ ...list[0], id: list[0].id.valueOf() });
   });
 
   it(`POST ${API_URL}`, async () => {
@@ -62,6 +67,8 @@ describe("routes/students", () => {
     const req = await request(app).post(`${API_URL}`).send(data);
     const result = req.body.data;
     delete result.id;
+    delete result.createdAt;
+    delete result.updatedAt;
 
     expect(req.statusCode).to.eql(200);
     expect(result).to.eql(data);
