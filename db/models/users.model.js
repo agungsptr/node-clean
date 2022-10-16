@@ -11,7 +11,7 @@ const UsersSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-UsersSchema.pre("save", (next) => {
+UsersSchema.pre("save", function (next) {
   this.password = hashPassword(this.password);
   return next();
 });
