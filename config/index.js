@@ -14,4 +14,8 @@ module.exports = {
   bcrypt: {
     salt: parseInt(process.env.BYCRYPT_SALT) || 10,
   },
+  jwt: {
+    secretKey: process.env.JWT_SECRET_KEY,
+    expired: process.env.JWT_EXPIRED,
+  },
 };

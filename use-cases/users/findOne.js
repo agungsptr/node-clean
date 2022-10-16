@@ -7,15 +7,13 @@ const findOne = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = await usersDa.findOne(id);
-    res
-      .status(StatusCode.OK)
-      .send(
-        responseBuilder({
-          statusCode: StatusCode.OK,
-          data,
-          message: ResponseMessage.Loaded,
-        })
-      );
+    res.status(StatusCode.OK).send(
+      responseBuilder({
+        statusCode: StatusCode.OK,
+        data,
+        message: ResponseMessage.Loaded,
+      })
+    );
     return next();
   } catch (e) {
     return ResponseWithError(res, e, StatusCode.BadRequest);

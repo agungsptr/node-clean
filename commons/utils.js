@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const config = require("../config");
 const { StatusCode } = require("./constants");
 
@@ -41,10 +42,22 @@ const comparePassword = (password, hash) => {
   return bcrypt.compareSync(password, hash);
 };
 
+const issueJwt = (payload) => {
+  return jwt.sign(payload, config.jwt.secretKey, {
+    expiresIn: config.jwt.expired,
+  });
+};
+
+const decodeJwt = (token) => {
+  return token;
+};
+
 module.exports = {
   responseBuilder,
   conditionParser,
   serializer,
   hashPassword,
   comparePassword,
+  issueJwt,
+  decodeJwt,
 };

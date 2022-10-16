@@ -7,15 +7,13 @@ const remove = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = await usersDa.remove(id);
-    res
-      .status(StatusCode.OK)
-      .send(
-        responseBuilder({
-          statusCode: StatusCode.OK,
-          data,
-          message: ResponseMessage.Removed,
-        })
-      );
+    res.status(StatusCode.OK).send(
+      responseBuilder({
+        statusCode: StatusCode.OK,
+        data,
+        message: ResponseMessage.Removed,
+      })
+    );
     return next();
   } catch (e) {
     return ResponseWithError(res, e, StatusCode.BadRequest);

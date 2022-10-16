@@ -26,10 +26,12 @@ const ResponseMessage = {
   Added: "Data success added",
   Updated: "Data success updated",
   Removed: "Data success removed",
+  AuthSuccess: "Successfully authenticated",
   FailLoaded: "Data failed to loaded",
   FailAdded: "Data failed to added",
   FailUpdated: "Data failed to updated",
   FailRemoved: "Data failed to removed",
+  FailAuth: "Failed to authenticate",
 };
 
 module.exports = {
