@@ -1,5 +1,4 @@
 const { serializer } = require("../../commons/utils");
-const moment = require("moment");
 
 const _serializeSingle = (student) => {
   return {
@@ -8,8 +7,8 @@ const _serializeSingle = (student) => {
     name: student.name,
     age: student.age,
     prefect: student.prefect,
-    createdAt: moment(student.createdAt).format("YYYY-MM-DD HH:mm:ss"),
-    updatedAt: moment(student.updatedAt).format("YYYY-MM-DD HH:mm:ss"),
+    createdAt: student.createdAt,
+    updatedAt: student.updatedAt,
   };
 };
 
