@@ -11,7 +11,7 @@ const baseDataAccess = require("../base")({
 
 const findUserCredential = async (username) => {
   try {
-    return Users.findOne({ username }).then((data) => {
+    return Users.findOne({ username: { $eq: username } }).then((data) => {
       const serializedData = serialize(data);
       serializedData.password = data.password;
       return serializedData;
