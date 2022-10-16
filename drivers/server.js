@@ -7,6 +7,7 @@ const config = require("../config");
 const cors = require("cors");
 const sanitize = require("sanitize");
 const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 
@@ -34,6 +35,16 @@ app.use(sanitize.middleware);
 
 /** Compression middleware */
 app.use(compression());
+
+/** Set rate limit */
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
+  })
+);
 
 /** Set all routes */
 app.use("/api", routes);
