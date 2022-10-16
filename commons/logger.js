@@ -1,7 +1,7 @@
 const winston = require("winston");
 const moment = require("moment");
 
-function createLogger() {
+const createLogger = () => {
   return winston.createLogger({
     format: winston.format.combine(
       winston.format.splat(),
@@ -21,7 +21,7 @@ function createLogger() {
       }),
     ],
   });
-}
+};
 
 module.exports = {
   createLogger,

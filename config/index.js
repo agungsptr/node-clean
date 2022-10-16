@@ -12,6 +12,6 @@ module.exports = {
     MONGO_HOST: process.env.MONGO_HOST,
   },
   bcrypt: {
-    salt: 10,
+    salt: parseInt(process.env.BYCRYPT_SALT) || 10,
   },
 };

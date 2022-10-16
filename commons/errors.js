@@ -4,7 +4,7 @@ const CustomError = require("./customError");
 const helper = require("./helper");
 const { responseBuilder } = require("./utils");
 
-function RepackageError(err) {
+const RepackageError = (err) => {
   if (err instanceof CustomError) {
     return err;
   } else {
@@ -16,9 +16,13 @@ function RepackageError(err) {
     error.stack += `\nCaused by:\n- ${stack}`;
     return error;
   }
-}
+};
 
-function ResponseWithError(res, err, customErrorCode = StatusCode.BadRequest) {
+const ResponseWithError = (
+  res,
+  err,
+  customErrorCode = StatusCode.BadRequest
+) => {
   if (err instanceof CustomError) {
     return res.status(customErrorCode).send(
       responseBuilder({
@@ -30,7 +34,7 @@ function ResponseWithError(res, err, customErrorCode = StatusCode.BadRequest) {
     helper.logError(err.stack);
     return res.status(500).send(Error.SomethingWentWrong);
   }
-}
+};
 
 module.exports = {
   CustomError,

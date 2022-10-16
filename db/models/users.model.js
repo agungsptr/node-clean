@@ -1,3 +1,4 @@
+const { hashPassword } = require("../../commons/utils");
 const mongoose = require("../connection");
 
 const Schema = mongoose.Schema;
@@ -8,6 +9,11 @@ const UsersSchema = new Schema({
   password: String,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
+});
+
+UsersSchema.pre("save", (next) => {
+  this.password = hashPassword(this.password);
+  return next();
 });
 
 const Users = mongoose.model("Users", UsersSchema);
