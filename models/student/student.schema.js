@@ -5,4 +5,6 @@ module.exports = Joi.object().keys({
   age: Joi.number(),
   grade: Joi.number(),
   prefect: Joi.boolean(),
+  createdAt: Joi.date().timestamp(),
+  updatedAt: Joi.date().timestamp(),
 });
