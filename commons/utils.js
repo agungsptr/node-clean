@@ -52,6 +52,16 @@ const decodeJwt = (token) => {
   return token;
 };
 
+const objHierarchyMapper = (obj, childs, value, i = 0) => {
+  if (i === childs.length - 1) {
+    obj[childs[i]] = value;
+  } else {
+    obj[childs[i]] = {};
+    obj = objHierarchyMapper(obj[childs[i]], childs, value, i + 1);
+  }
+  return obj;
+};
+
 module.exports = {
   responseBuilder,
   conditionParser,
@@ -60,4 +70,5 @@ module.exports = {
   comparePassword,
   issueJwt,
   decodeJwt,
+  objHierarchyMapper,
 };
