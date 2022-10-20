@@ -50,7 +50,7 @@ app.use(
 app.use("/api", routes);
 
 /** Runing app */
-app.listen(config.PORT, () => {
+app.listen(config.APP_PORT, () => {
   console.log(`Listening on PORT: ${config.PORT}`);
 });
 
