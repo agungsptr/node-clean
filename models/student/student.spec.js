@@ -13,6 +13,7 @@ describe("models/student", () => {
       });
     }).to.throw(errorMessage);
   });
+
   it("must have name", () => {
     const student = studentBuilder({
       name: "howie",
@@ -21,18 +22,21 @@ describe("models/student", () => {
     const actual = "howie";
     expect(input).to.equal(actual);
   });
+
   it("can have grade", () => {
     const student = studentBuilder({ name: "howie", grade: 2 });
     const input = student.grade;
     const actual = 2;
     expect(input).to.equal(actual);
   });
+
   it("can have age", () => {
     const student = studentBuilder({ name: "howie", age: 12 });
     const input = student.age;
     const actual = 12;
     expect(input).to.equal(actual);
   });
+  
   it("sets prefect to false by default", () => {
     const student = studentBuilder({ name: "howie" });
     const input = student.prefect;

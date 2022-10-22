@@ -1,42 +1,54 @@
-// const chai = require("chai");
-// const expect = chai.expect;
-// const studentBuilder = require("./index");
+const chai = require("chai");
+const expect = chai.expect;
+const userBuilder = require("./index");
 
-// describe("models/user", () => {
-//   it("throws error if invalid payload", () => {
-//     const errorMessage = "\"name\" is required,\"age\" must be a number,\"grade\" must be a number,\"prefect\" must be a boolean";
-//     expect(() => {
-//       studentBuilder({
-//         grade: "twelve",
-//         age: "twleve",
-//         prefect: 12,
-//       });
-//     }).to.throw(errorMessage);
-//   });
-//   it("must have name", () => {
-//     const student = studentBuilder({
-//       name: "howie",
-//     });
-//     const input = student.name;
-//     const actual = "howie";
-//     expect(input).to.equal(actual);
-//   });
-//   it("can have grade", () => {
-//     const student = studentBuilder({ name: "howie", grade: 2 });
-//     const input = student.grade;
-//     const actual = 2;
-//     expect(input).to.equal(actual);
-//   });
-//   it("can have age", () => {
-//     const student = studentBuilder({ name: "howie", age: 12 });
-//     const input = student.age;
-//     const actual = 12;
-//     expect(input).to.equal(actual);
-//   });
-//   it("sets prefect to false by default", () => {
-//     const student = studentBuilder({ name: "howie" });
-//     const input = student.prefect;
-//     const actual = false;
-//     expect(input).to.equal(actual);
-//   });
-// });
+describe("models/user", () => {
+  it("throws error if invalid payload", () => {
+    expect(() => {
+      userBuilder({
+        firstName: "abd",
+        lastName: "rahman",
+      });
+    }).to.throw("\"username\" is required,\"password\" is required");
+  });
+
+  it("must have firstName", () => {
+    expect(() => {
+      userBuilder({
+        lastName: "rahman",
+        username: "abdr",
+        password: "24434",
+      });
+    }).to.throw("\"firstName\" is required");
+  });
+
+  it("must have lastName", () => {
+    expect(() => {
+      userBuilder({
+        firstName: "abd",
+        username: "abdr",
+        password: "24434",
+      });
+    }).to.throw("\"lastName\" is required");
+  });
+
+  it("must have username", () => {
+    expect(() => {
+      userBuilder({
+        firstName: "abd",
+        lastName: "rahman",
+        password: "24434",
+      });
+    }).to.throw("\"username\" is required");
+  });
+
+  it("must have password", () => {
+    expect(() => {
+      userBuilder({
+        firstName: "abd",
+        lastName: "rahman",
+        username: "abdr",
+      });
+    }).to.throw("\"password\" is required");
+  });
+});
