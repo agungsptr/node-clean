@@ -16,8 +16,10 @@ COPY controllers /app/controllers
 COPY data-access /app/data-access
 COPY db /app/db
 COPY drivers /app/drivers
+COPY middlewares /app/middlewares
 COPY models /app/models
 COPY routes /app/routes
+COPY test /app/test
 COPY use-cases /app/use-cases
 COPY package.json /app
 
