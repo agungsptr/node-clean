@@ -28,11 +28,16 @@ services:
       - db
     environment:
       NODE_ENV: ${NODE_ENV}
+      APP_PORT: ${APP_PORT}
+      APP_NAME: ${APP_NAME}
       MONGO_USER: ${MONGO_USER}
       MONGO_PW: ${MONGO_PW}
       MONGO_PORT: ${MONGO_PORT}
       MONGO_DBNAME: ${MONGO_DBNAME}
       MONGO_HOST: node_clean-db
+      BYCRYPT_SALT: ${BYCRYPT_SALT}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_EXPIRED: ${JWT_EXPIRED}
     command: "npm run dev"
     ports:
       - ${APP_PORT}:7000
