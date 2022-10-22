@@ -52,8 +52,26 @@ const issueJwt = (payload) => {
   });
 };
 
-const verifyJwt = (token) => {
-  return token;
+const verifyJwt = (token, cb) => {
+  const tokenSplitted = token.split(" ");
+  if (!token || (tokenSplitted && tokenSplitted.length !== 2)) {
+    return cb(null, "invalid-token");
+  }
+
+  return jwt.verify(
+    tokenSplitted[1],
+    config.jwt.secretKey,
+    {},
+    (err, decoded) => {
+      if (err) {
+        if (err.message.includes("invalid signature")) {
+          return cb(null, err.message.replace(" ", "-"));
+        }
+        return cb(null, "invalid-token");
+      }
+      return cb(decoded);
+    }
+  );
 };
 
 const objHierarchyMapper = (obj, childs, value, i = 0) => {

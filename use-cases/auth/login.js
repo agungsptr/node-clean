@@ -1,5 +1,5 @@
 const usersDa = require("../../data-access/users");
-const { ResponseWithError } = require("../../commons/errors");
+const { responseWithError } = require("../../commons/errors");
 const { StatusCode, ResponseMessage } = require("../../commons/constants");
 const { isEmpty } = require("../../commons/checks");
 const {
@@ -58,7 +58,7 @@ const create = async (req, res, next) => {
     );
     return next();
   } catch (e) {
-    return ResponseWithError(res, e, StatusCode.BadRequest);
+    return responseWithError(res, e, StatusCode.BadRequest);
   }
 };
 

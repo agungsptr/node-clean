@@ -15,7 +15,7 @@ const repackageError = (err) => {
   }
 };
 
-const ResponseWithError = (
+const responseWithError = (
   res,
   err,
   customErrorCode = StatusCode.BadRequest
@@ -36,5 +36,5 @@ const ResponseWithError = (
 module.exports = {
   CustomError,
   repackageError,
-  ResponseWithError,
+  responseWithError,
 };

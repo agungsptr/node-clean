@@ -1,5 +1,5 @@
 const usersDa = require("../../data-access/users");
-const { ResponseWithError } = require("../../commons/errors");
+const { responseWithError } = require("../../commons/errors");
 const { responseBuilder } = require("../../commons/utils");
 const { StatusCode, ResponseMessage } = require("../../commons/constants");
 
@@ -16,7 +16,7 @@ const findAll = async (req, res, next) => {
     );
     return next();
   } catch (e) {
-    return ResponseWithError(res, e, StatusCode.BadRequest);
+    return responseWithError(res, e, StatusCode.BadRequest);
   }
 };
 

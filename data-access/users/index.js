@@ -36,10 +36,12 @@ baseDataAccess.update = async (id, payload) => {
 
 const findUserCredential = async (username) => {
   try {
-    return Users.findOne(queriesBuilder({ username })).then((data) => {
-      const serializedData = serialize(data);
-      serializedData.password = data.password;
-      return serializedData;
+    return Users.findOne(queriesBuilder({ username })).then((user) => {
+      if (user) {
+        const serializedData = serialize(user);
+        serializedData.password = user.password;
+        return serializedData;
+      }
     });
   } catch (e) {
     throw repackageError(e);
