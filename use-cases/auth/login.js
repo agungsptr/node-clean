@@ -7,6 +7,8 @@ const {
   comparePassword,
   issueJwt,
 } = require("../../commons/utils");
+const jwt = require("jsonwebtoken");
+const moment = require("moment");
 
 const create = async (req, res, next) => {
   try {
@@ -36,8 +38,11 @@ const create = async (req, res, next) => {
         res.status(StatusCode.OK).send(
           responseBuilder({
             statusCode: StatusCode.OK,
-            data: `Bearer ${token}`,
             message: ResponseMessage.AuthSuccess,
+            data: {
+              expired: moment.unix(jwt.decode(token).exp),
+              token: `Bearer ${token}`,
+            },
           })
         );
         return next();

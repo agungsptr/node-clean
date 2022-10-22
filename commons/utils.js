@@ -52,7 +52,7 @@ const issueJwt = (payload) => {
   });
 };
 
-const decodeJwt = (token) => {
+const verifyJwt = (token) => {
   return token;
 };
 
@@ -73,6 +73,6 @@ module.exports = {
   hashPassword,
   comparePassword,
   issueJwt,
-  decodeJwt,
+  verifyJwt,
   objHierarchyMapper,
 };
