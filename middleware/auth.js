@@ -8,7 +8,7 @@ const auth = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     ifEmptyThrowError(token, "Authorization token is required");
-    verifyJwt(token, async (decodedToken, errorToken) => {
+    return verifyJwt(token, async (decodedToken, errorToken) => {
       const unAuthRes = res.status(StatusCode.Unauthorized).send(
         responseBuilder({
           statusCode: StatusCode.Unauthorized,
