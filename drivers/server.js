@@ -51,7 +51,7 @@ app.use("/api", routes);
 
 /** Runing app */
 app.listen(config.APP_PORT, () => {
-  console.log(`Listening on PORT: ${config.PORT}`);
+  console.log(`Listening on PORT: ${config.APP_PORT}`);
 });
 
 module.exports = app;
