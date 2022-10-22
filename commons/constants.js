@@ -6,7 +6,7 @@ const Status = {
   Rejected: "Rejected",
 };
 
-const Error = {
+const ErrorMessage = {
   AccessDenied: "Access Denied",
   SomethingWentWrong: "Something went wrong",
 };
@@ -36,7 +36,7 @@ const ResponseMessage = {
 
 module.exports = {
   Status,
-  Error,
+  ErrorMessage,
   StatusCode,
   ResponseMessage,
 };

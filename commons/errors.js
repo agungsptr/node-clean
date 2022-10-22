@@ -1,5 +1,4 @@
-const { IsArray } = require("./checks");
-const { StatusCode, Error } = require("./constants");
+const { StatusCode, ErrorMessage } = require("./constants");
 const CustomError = require("./customError");
 const helper = require("./helper");
 const { responseBuilder } = require("./utils");
@@ -8,12 +7,8 @@ const RepackageError = (err) => {
   if (err instanceof CustomError) {
     return err;
   } else {
-    const error = new CustomError(err);
-    let stack = err;
-    if (IsArray(err)) {
-      stack = err.join("\n- ");
-    }
-    error.stack += `\nCaused by:\n- ${stack}`;
+    const error = new Error();
+    error.stack += `\nCaused by:\n${err.stack}`;
     return error;
   }
 };
@@ -32,7 +27,7 @@ const ResponseWithError = (
     );
   } else {
     helper.logError(err.stack);
-    return res.status(500).send(Error.SomethingWentWrong);
+    return res.status(500).send(ErrorMessage.SomethingWentWrong);
   }
 };
 
