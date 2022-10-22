@@ -2,10 +2,12 @@ const usersDa = require("../../data-access/users");
 const { ResponseWithError } = require("../../commons/errors");
 const { StatusCode, ResponseMessage } = require("../../commons/constants");
 const { responseBuilder } = require("../../commons/utils");
+const { ifEmptyThrowError } = require("../../commons/checks");
 
 const remove = async (req, res, next) => {
   try {
     const { id } = req.params;
+    ifEmptyThrowError(id, "id is required");
     const data = await usersDa.remove(id);
     res.status(StatusCode.OK).send(
       responseBuilder({
