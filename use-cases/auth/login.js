@@ -1,7 +1,7 @@
 const usersDa = require("../../data-access/users");
 const { ResponseWithError } = require("../../commons/errors");
 const { StatusCode, ResponseMessage } = require("../../commons/constants");
-const { IsEmpty } = require("../../commons/checks");
+const { isEmpty } = require("../../commons/checks");
 const {
   responseBuilder,
   comparePassword,
@@ -13,8 +13,8 @@ const create = async (req, res, next) => {
     const { username, password } = req.body;
 
     const errors = [];
-    if (IsEmpty(username)) errors.push("\"username\" is required");
-    if (IsEmpty(password)) errors.push("\"password\" is required");
+    if (isEmpty(username)) errors.push("\"username\" is required");
+    if (isEmpty(password)) errors.push("\"password\" is required");
     if (errors.length > 0) {
       res.status(StatusCode.BadRequest).send(
         responseBuilder({
@@ -27,7 +27,7 @@ const create = async (req, res, next) => {
     }
 
     const user = await usersDa.findUserCredential(username);
-    if (!IsEmpty(user)) {
+    if (!isEmpty(user)) {
       if (comparePassword(password, user.password)) {
         const payload = { ...user };
         delete payload.password;

@@ -1,4 +1,4 @@
-const { RepackageError } = require("../../commons/errors");
+const { CustomError } = require("../../commons/errors");
 
 const userBuilder = (validator) => {
   return ({
@@ -17,7 +17,7 @@ const userBuilder = (validator) => {
       createdAt,
       updatedAt,
     });
-    if (error.length > 0) throw RepackageError(error);
+    if (error.length > 0) throw new CustomError(error);
     return value;
   };
 };

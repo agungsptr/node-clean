@@ -1,94 +1,66 @@
-// const chai = require("chai");
-// const chaiAsPromised = require("chai-as-promised");
-// const studentsDa = require("./index");
+const chai = require("chai");
+const chaiAsPromised = require("chai-as-promised");
+const usersDa = require("./index");
+chai.use(chaiAsPromised);
 
-// chai.use(chaiAsPromised);
-// const expect = chai.expect;
+const expect = chai.expect;
+let user;
 
-// describe("data-access/users", () => {
-//   beforeEach(async () => {
-//     await studentsDa.removeAll();
-//     const howie = {
-//       name: "howie",
-//       age: 12,
-//       grade: 3,
-//       prefect: true,
-//     };
-//     const bill = {
-//       name: "bill",
-//       age: 13,
-//       grade: 3,
-//       prefect: false,
-//     };
-//     await studentsDa.create(howie);
-//     await studentsDa.create(bill);
-//   });
+describe.only("data-access/users", () => {
+  beforeEach(async () => {
+    await usersDa.removeAll();
+    user = await usersDa.create({
+      firstName: "abd",
+      lastName: "rahman",
+      username: "abdr",
+      password: "24434",
+    });
+  });
 
-//   afterEach(async () => {
-//     await studentsDa.removeAll();
-//   });
+  afterEach(async () => {
+    await usersDa.removeAll();
+  });
 
-//   it("drops database", async () => {
-//     await studentsDa.removeAll();
-//     const students = await studentsDa.findAll();
-//     const input = students.length;
-//     const actual = 0;
-//     expect(input).to.equal(actual);
-//   });
+  it("drops database", async () => {
+    await usersDa.removeAll();
+    const result = await usersDa.findAll();
+    expect(result.length).to.equal(0);
+  });
 
-//   it("lists students", async () => {
-//     const input = await studentsDa.findAll();
-//     const actual = 2;
-//     expect(input.length).to.equal(actual);
-//   });
+  it("lists users", async () => {
+    const result = await usersDa.findAll();
+    expect(result.length).to.equal(1);
+  });
 
-//   it("find single student by id", async () => {
-//     const students = await studentsDa.findAll();
-//     const id = students[0].id;
+  it("find single user by id", async () => {
+    const result = await usersDa.findOne(user.id);
+    expect(result.id).to.eql(user.id);
+  });
 
-//     const student = await studentsDa.findOne(id);
-//     const input = student.id;
-//     const actual = id;
-//     expect(input).to.eql(actual);
-//   });
+  it("insert a user", async () => {
+    const userData = {
+      firstName: "first",
+      lastName: "last",
+      username: "usrnm",
+    };
+    const newUser = await usersDa.create({ ...userData, password: "24434" });
+    expect({
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      username: newUser.username,
+    }).to.eql(userData);
+  });
 
-//   it("inserts a student", async () => {
-//     const felix = {
-//       name: "felix",
-//       grade: 2,
-//       age: 6,
-//     };
-//     const newStudent = await studentsDa.create(felix);
-//     delete newStudent.id;
-//     const actual = {
-//       name: "felix",
-//       grade: 2,
-//       age: 6,
-//       prefect: false,
-//     };
-//     expect(newStudent).to.eql(actual);
-//   });
+  it("update user", async () => {
+    await usersDa.update(user.id, { firstName: "edited-fistname" });
+    const result = await usersDa.findOne(user.id);
+    expect(result.firstName).to.eql("edited-fistname");
+  });
 
-//   it("throws error if inserts a student with invalid payload", async () => {
-//     const invalid = {
-//       name: "bill",
-//       grade: "INSERT POISON INTO THIS",
-//     };
-//     expect(studentsDa.create(invalid)).to.eventually.be.rejectedWith(
-//       "grade must be a number"
-//     );
-//   });
-
-//   it("deletes a student", async () => {
-//     const students = await studentsDa.findAll();
-//     const id = students[0].id.toString();
-//     const validInput = await studentsDa.remove(id);
-//     expect(validInput).to.eql(null);
-
-//     const newStudents = await studentsDa.findAll();
-//     const inputLength = newStudents.length;
-//     const actualLength = 1;
-//     expect(inputLength).to.equal(actualLength);
-//     expect(studentsDa.remove(42)).to.eventually.be.rejected;
-//   });
-// });
+  it("deletes a student", async () => {
+    await usersDa.remove(user.id);
+    const users = await usersDa.findAll();
+    expect(users.length).to.equal(0);
+    expect(usersDa.remove(user.id)).to.eventually.be.rejected;
+  });
+});

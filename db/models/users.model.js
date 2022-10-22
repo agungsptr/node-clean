@@ -11,9 +11,8 @@ const UsersSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-UsersSchema.pre("save", function (next) {
+UsersSchema.pre("save", async function () {
   this.password = hashPassword(this.password);
-  return next();
 });
 
 const Users = mongoose.model("Users", UsersSchema);

@@ -12,7 +12,7 @@ mongoose.connect(uri);
 /** Signal connection */
 mongoose.connection
   .once("open", () => {
-    if (config.NODE_ENV !== "test") {
+    if (!config.isTest) {
       console.log("Database connection has been established");
     }
   })
