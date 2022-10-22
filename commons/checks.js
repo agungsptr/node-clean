@@ -61,6 +61,7 @@ const imageFileTypeIsValid = (file) => {
 };
 
 const isValidObjId = (id) => {
+  if (id instanceof ObjectId) return true;
   if (ObjectId.isValid(id)) {
     if (String(new ObjectId(id)) === id) {
       return true;

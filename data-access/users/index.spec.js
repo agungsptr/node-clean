@@ -6,7 +6,7 @@ chai.use(chaiAsPromised);
 const expect = chai.expect;
 let user;
 
-describe.only("data-access/users", () => {
+describe("data-access/users", () => {
   beforeEach(async () => {
     await usersDa.removeAll();
     user = await usersDa.create({
