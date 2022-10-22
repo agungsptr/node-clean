@@ -1,14 +1,16 @@
+const config = require("../config");
 const { StatusCode, ErrorMessage } = require("./constants");
 const CustomError = require("./customError");
 const helper = require("./helper");
 const { responseBuilder } = require("./utils");
 
-const RepackageError = (err) => {
+const repackageError = (err) => {
   if (err instanceof CustomError) {
     return err;
   } else {
     const error = new Error();
     error.stack += `\nCaused by:\n${err.stack}`;
+    if (config.isDevelopment) console.log(error);
     return error;
   }
 };
@@ -33,6 +35,6 @@ const ResponseWithError = (
 
 module.exports = {
   CustomError,
-  RepackageError,
+  repackageError,
   ResponseWithError,
 };

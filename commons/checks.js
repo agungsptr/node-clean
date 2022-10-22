@@ -1,10 +1,11 @@
 const CustomError = require("./customError");
+const ObjectId = require("mongoose").Types.ObjectId;
 
-const IsArray = (obj) => {
+const isArray = (obj) => {
   return Array.isArray(obj);
 };
 
-const IsEmpty = (obj) => {
+const isEmpty = (obj) => {
   if (Array.isArray(obj) && obj.length === 0) {
     return true;
   } else {
@@ -21,40 +22,36 @@ const IsEmpty = (obj) => {
   return false;
 };
 
-const IsTrue = (obj) => {
-  return obj === true || obj === "true";
-};
-
-const IsEmail = (email) => {
+const isEmail = (email) => {
   const re = /\S+@\S+\.\S+/;
   return re.test(Trim(email.toLowerCase(), true));
 };
 
-const IfEmptyThrowError = (obj, errorMsg) => {
-  if (IsEmpty(obj)) {
+const ifEmptyThrowError = (obj, errorMsg) => {
+  if (isEmpty(obj)) {
     throw new CustomError(errorMsg);
   }
 };
 
-const IfFalseThrowError = (flag, errorMsg) => {
+const ifFalseThrowError = (flag, errorMsg) => {
   if (flag === false) {
     throw new CustomError(errorMsg);
   }
 };
 
-const IfNotEmptyThrowError = (responseError, errorMsg) => {
-  if (!IsEmpty(responseError)) {
+const ifNotEmptyThrowError = (responseError, errorMsg) => {
+  if (!isEmpty(responseError)) {
     throw new CustomError(errorMsg);
   }
 };
 
-const IfTrueThrowError = (flag, errorMsg) => {
+const ifTrueThrowError = (flag, errorMsg) => {
   if (flag === true) {
     throw new CustomError(errorMsg);
   }
 };
 
-const ImageFileTypeIsValid = (file) => {
+const imageFileTypeIsValid = (file) => {
   return (
     file &&
     file.mimetype !== "image/png" &&
@@ -63,14 +60,23 @@ const ImageFileTypeIsValid = (file) => {
   );
 };
 
+const isValidObjId = (id) => {
+  if (ObjectId.isValid(id)) {
+    if (String(new ObjectId(id)) === id) {
+      return true;
+    }
+  }
+  return false;
+};
+
 module.exports = {
-  IsArray,
-  IsEmpty,
-  IsTrue,
-  IsEmail,
-  IfEmptyThrowError,
-  IfNotEmptyThrowError,
-  IfTrueThrowError,
-  IfFalseThrowError,
-  ImageFileTypeIsValid,
+  isArray,
+  isEmpty,
+  isEmail,
+  ifEmptyThrowError,
+  ifNotEmptyThrowError,
+  ifTrueThrowError,
+  ifFalseThrowError,
+  imageFileTypeIsValid,
+  isValidObjId,
 };

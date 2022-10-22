@@ -13,10 +13,14 @@ const responseBuilder = ({ statusCode, message, data = null }) => {
   };
 };
 
-const conditionParser = (queries) => {
+const queriesBuilder = (queries, eqlType = "EQ") => {
   const obj = {};
   for (const [key, val] of Object.entries(queries)) {
-    obj[key] = { $regex: val, $options: "i" };
+    if (eqlType === "EQ") {
+      obj[key] = { $eq: val };
+    } else {
+      obj[key] = { $regex: val, $options: "i" };
+    }
   }
   return obj;
 };
@@ -64,7 +68,7 @@ const objHierarchyMapper = (obj, childs, value, i = 0) => {
 
 module.exports = {
   responseBuilder,
-  conditionParser,
+  queriesBuilder,
   serializer,
   hashPassword,
   comparePassword,
