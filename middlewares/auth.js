@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
       };
       if (errorToken) return unAuthRes();
       if (decodedToken) {
-        const user = await userDa.findUserCredential(decodedToken.username);
+        const user = await userDa.findOne(decodedToken.id);
         if (isEmpty(user)) return unAuthRes();
         return next();
       }
