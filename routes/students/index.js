@@ -1,13 +1,14 @@
 const { Router } = require("express");
 const students = require("../../controllers/students.controller");
+const middleware = require("../../middlewares");
 
 const router = Router();
 const baseUrl = "/student";
 
-router.get(`${baseUrl}s`, students.findAll);
-router.get(`${baseUrl}/:id`, students.findOne);
-router.post(`${baseUrl}`, students.create);
-router.patch(`${baseUrl}/:id`, students.update);
-router.delete(`${baseUrl}/:id`, students.remove);
+router.get(`${baseUrl}s`, middleware.auth, students.findAll);
+router.get(`${baseUrl}/:id`, middleware.auth, students.findOne);
+router.post(`${baseUrl}`, middleware.auth, students.create);
+router.patch(`${baseUrl}/:id`, middleware.auth, students.update);
+router.delete(`${baseUrl}/:id`, middleware.auth, students.remove);
 
 module.exports = router;

@@ -8,20 +8,22 @@ const auth = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     ifEmptyThrowError(token, "Authorization token is required");
-    return verifyJwt(token, async (decodedToken, errorToken) => {
-      const unAuthRes = res.status(StatusCode.Unauthorized).send(
-        responseBuilder({
-          statusCode: StatusCode.Unauthorized,
-          message: ResponseMessage.FailAuth,
-        })
-      );
-      if (errorToken) return unAuthRes;
+    verifyJwt(token, async (decodedToken, errorToken) => {
+      const unAuthRes = () => {
+        return res.status(StatusCode.Unauthorized).send(
+          responseBuilder({
+            statusCode: StatusCode.Unauthorized,
+            message: ResponseMessage.FailAuth,
+          })
+        );
+      };
+      if (errorToken) return unAuthRes();
       if (decodedToken) {
         const user = await userDa.findUserCredential(decodedToken.username);
-        if (isEmpty(user)) return unAuthRes;
+        if (isEmpty(user)) return unAuthRes();
         return next();
       }
-      return unAuthRes;
+      return unAuthRes();
     });
   } catch (e) {
     responseWithError(res, e, StatusCode.BadRequest);

@@ -1,5 +1,5 @@
-const users = require("../../controllers/users.controller");
 const { Router } = require("express");
+const users = require("../../controllers/users.controller");
 const middleware = require("../../middlewares");
 
 const router = Router();
