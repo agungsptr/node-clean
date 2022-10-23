@@ -1,6 +1,5 @@
 app wishlist
 - implement 4 or more tables
-- add seeder
 - api documentation, swagger
 
 infra wishlist
