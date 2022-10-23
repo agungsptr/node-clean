@@ -22,4 +22,9 @@ infra:
 	@$(COMPOSE) down -v  || true
 	@$(COMPOSE) up -d --force-recreate db
 
+seed:
+	@echo "Seeding database..."
+	@NODE_ENV=test node ./db/seeds/index.js
+	@echo "Seed done."
+
 .PHONY: all build test

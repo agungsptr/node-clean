@@ -1,5 +1,5 @@
-const { hashPassword } = require("../../commons/utils");
 const mongoose = require("../connection");
+const { hashPassword } = require("../../commons/utils");
 
 const Schema = mongoose.Schema;
 const UsersSchema = new Schema({

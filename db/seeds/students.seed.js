@@ -1,35 +1,31 @@
-const mongoose = require("mongoose");
 const Students = require("../models/students.model");
-const StudentsDb = mongoose.connection.collections.students;
 
 /** Seeder data */
 const seedDatabase = async () => {
   const data = [
     {
-      name: "howie",
-      age: 12,
+      name: "agung1",
+      age: 17,
       grade: 3,
       prefect: true,
     },
     {
-      name: "felix",
+      name: "agung2",
       age: 9,
       grade: 4,
     },
     {
-      name: "hela",
+      name: "agung3",
       age: 16,
       grade: 5,
     },
   ];
 
-  for (const element of data) {
-    await Students.create(element);
-  }
+  await Students.insertMany(data);
+  console.log("Student has beed seeded");
 };
 
 /** Drop DB then seed */
-StudentsDb.drop(async () => {
-  await seedDatabase();
-  mongoose.connection.close();
-});
+module.exports = {
+  seed: seedDatabase,
+};

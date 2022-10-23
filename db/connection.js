@@ -12,15 +12,13 @@ mongoose.connect(uri);
 /** Signal connection */
 mongoose.connection
   .once("open", () => {
-    if (!config.isTest) {
-      console.log("Database connection has been established");
-    }
+    if (!config.isTest) console.log("Database connection has been established");
   })
   .on("error", (error) => {
-    console.log("Unable to connect to the database: ", error);
+    if (!config.isTest) console.log("Unable connect to database: ", error);
   })
   .on("disconnected", () => {
-    console.log("Database connection disconnected");
+    if (!config.isTest) console.log("Database connection disconnected");
   });
 
 module.exports = mongoose;
