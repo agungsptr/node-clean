@@ -9,15 +9,13 @@ const findOne = async (req, res, next) => {
     const { id } = req.params;
     ifEmptyThrowError(id, "id is required");
     const data = await studentsDa.findOne(id);
-    res
-      .status(StatusCode.OK)
-      .send(
-        responseBuilder({
-          statusCode: StatusCode.OK,
-          data,
-          message: ResponseMessage.Loaded,
-        })
-      );
+    res.status(StatusCode.OK).send(
+      responseBuilder({
+        statusCode: StatusCode.OK,
+        data,
+        message: ResponseMessage.Loaded,
+      })
+    );
     return next();
   } catch (e) {
     return responseWithError(res, e, StatusCode.BadRequest);

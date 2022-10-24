@@ -9,15 +9,13 @@ const update = async (req, res, next) => {
     const { id } = req.params;
     ifEmptyThrowError(id, "id is required");
     const data = await studentsDa.update(id, req.body);
-    res
-      .status(StatusCode.OK)
-      .send(
-        responseBuilder({
-          statusCode: StatusCode.OK,
-          data,
-          message: ResponseMessage.Updated,
-        })
-      );
+    res.status(StatusCode.OK).send(
+      responseBuilder({
+        statusCode: StatusCode.OK,
+        data,
+        message: ResponseMessage.Updated,
+      })
+    );
     return next();
   } catch (e) {
     return responseWithError(res, e, StatusCode.BadRequest);

@@ -9,15 +9,13 @@ const remove = async (req, res, next) => {
     const { id } = req.params;
     ifEmptyThrowError(id, "id is required");
     const data = await studentsDa.remove(id);
-    res
-      .status(StatusCode.OK)
-      .send(
-        responseBuilder({
-          statusCode: StatusCode.OK,
-          data,
-          message: ResponseMessage.Removed,
-        })
-      );
+    res.status(StatusCode.OK).send(
+      responseBuilder({
+        statusCode: StatusCode.OK,
+        data,
+        message: ResponseMessage.Removed,
+      })
+    );
     return next();
   } catch (e) {
     return responseWithError(res, e, StatusCode.BadRequest);
