@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h2 align="center" style="font-size:5vw;">Node Clean</h2>
+  <h2 align="center" style="font-size:10vw;">Node Clean</h2>
 
   <p align="center">
     A Node.js project template with clean architecture implementation
@@ -41,7 +41,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
