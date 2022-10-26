@@ -38,7 +38,9 @@ services:
       BYCRYPT_SALT: ${BYCRYPT_SALT}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       JWT_EXPIRED: ${JWT_EXPIRED}
-    command: "npm run dev"
+    command: >
+      sh -c "npm run seed &&
+             npm run dev"
     ports:
       - ${APP_PORT}:7000
     networks:

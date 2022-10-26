@@ -34,4 +34,3 @@ RUN apk add --no-cache \
     curl \
     bash \
     ca-certificates
-

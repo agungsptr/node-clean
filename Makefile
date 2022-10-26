@@ -6,18 +6,20 @@ COMPOSE := docker-compose --env-file .env -f build/$(NODE_ENV)/docker-compose.ym
 build:
 	docker build -f build/$(NODE_ENV)/Dockerfile -t agungsptr/node-clean:$(TAG) .
 
-compose:
-	@echo "Generating DB config..."
+compose-up: 
+	@echo "RUNNING ON [$(NODE_ENV)] MODE"
 	@node db/dbConfigGenerator.js $(NODE_ENV)
-	@echo "DB config generated"
 	@echo "Starting services..."
 	@$(COMPOSE) down -v  || true
 	@$(COMPOSE) up -d --force-recreate
 
+compose-down: 
+	@echo "RUNNING ON [$(NODE_ENV)] MODE"
+	@$(COMPOSE) down -v  || true
+
 infra:
-	@echo "Generating DB config..."
+	@echo "RUNNING ON [$(NODE_ENV)] MODE"
 	@node db/dbConfigGenerator.js $(NODE_ENV)
-	@echo "DB config generated"
 	@echo "Starting DB service..."
 	@$(COMPOSE) down -v  || true
 	@$(COMPOSE) up -d --force-recreate db
