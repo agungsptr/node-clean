@@ -1,13 +1,16 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const request = require("supertest");
-const studentDa = require("../../data-access/students");
+const studentsDa = require("../../data-access/students");
+const usersDa = require("../../data-access/users");
 const setup = require("../../test/setup");
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 let app;
+let user;
+let auth;
 const API_URL = "/api/student";
 
 describe("routes/students", () => {
@@ -16,37 +19,64 @@ describe("routes/students", () => {
   });
 
   beforeEach(async () => {
-    await studentDa.removeAll();
-    const howie = {
+    await usersDa.removeAll();
+    await studentsDa.removeAll();
+    user = await usersDa.create({
+      firstName: "agung",
+      lastName: "saputra",
+      username: "agungsptr",
+      password: "24434",
+    });
+    await studentsDa.create({
       name: "howie",
       age: 12,
       grade: 3,
       prefect: true,
-    };
-    const bill = {
+      createdBy: {
+        userId: `${user.id}`,
+        username: user.username,
+      },
+    });
+    await studentsDa.create({
       name: "bill",
       age: 13,
       grade: 3,
       prefect: false,
-    };
-    await studentDa.create(howie);
-    await studentDa.create(bill);
+      createdBy: {
+        userId: `${user.id}`,
+        username: user.username,
+      },
+    });
+
+    auth = await request(app)
+      .post("/api/auth/login")
+      .send({
+        username: user.username,
+        password: "24434",
+      })
+      .then((res) => res.body.data);
   });
 
   afterEach(async () => {
-    await studentDa.removeAll();
+    await studentsDa.removeAll();
   });
 
   it(`GET ${API_URL}s`, async () => {
-    const req = await request(app).get(`${API_URL}s`).send();
+    const req = await request(app)
+      .get(`${API_URL}s`)
+      .set("Authorization", auth.token)
+      .send();
 
     expect(req.statusCode).to.eql(200);
     expect(req.body.data.length).to.eql(2);
   });
 
   it(`GET ${API_URL}/:id`, async () => {
-    const list = await studentDa.findAll();
-    const req = await request(app).get(`${API_URL}/${list[0].id}`).send();
+    const list = await studentsDa.findAll();
+    const req = await request(app)
+      .get(`${API_URL}/${list[0].id}`)
+      .set("Authorization", auth.token)
+      .send();
     const expectVal = {
       ...req.body.data,
       createdAt: new Date(req.body.data.createdAt),
@@ -63,8 +93,15 @@ describe("routes/students", () => {
       name: "agungsptr",
       age: 17,
       prefect: true,
+      createdBy: {
+        userId: `${user.id}`,
+        username: user.username,
+      },
     };
-    const req = await request(app).post(`${API_URL}`).send(data);
+    const req = await request(app)
+      .post(`${API_URL}`)
+      .set("Authorization", auth.token)
+      .send(data);
     const result = req.body.data;
     delete result.id;
     delete result.createdAt;
@@ -75,7 +112,7 @@ describe("routes/students", () => {
   });
 
   it(`PATCH ${API_URL}/:id`, async () => {
-    const list = await studentDa.findAll();
+    const list = await studentsDa.findAll();
     const dataToUpdate = {
       grade: 2,
       name: "agungsptr-edit",
@@ -84,18 +121,21 @@ describe("routes/students", () => {
     };
     const req = await request(app)
       .patch(`${API_URL}/${list[0].id}`)
+      .set("Authorization", auth.token)
       .send(dataToUpdate);
     const result = req.body.data;
-    delete result.id;
 
     expect(req.statusCode).to.eql(200);
-    expect(result).to.eql(dataToUpdate);
+    expect(result.name).to.eql(dataToUpdate.name);
   });
 
   it(`DELETE ${API_URL}/:id`, async () => {
-    const list = await studentDa.findAll();
-    const req = await request(app).delete(`${API_URL}/${list[0].id}`).send();
-    const updatedList = await studentDa.findAll();
+    const list = await studentsDa.findAll();
+    const req = await request(app)
+      .delete(`${API_URL}/${list[0].id}`)
+      .set("Authorization", auth.token)
+      .send();
+    const updatedList = await studentsDa.findAll();
 
     expect(req.statusCode).to.eql(200);
     expect(updatedList.length).to.eql(1);

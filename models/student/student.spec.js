@@ -4,12 +4,16 @@ const studentBuilder = require("./index");
 
 describe("models/student", () => {
   it("throws error if invalid payload", () => {
-    const errorMessage = "\"name\" is required,\"age\" must be a number,\"grade\" must be a number,\"prefect\" must be a boolean";
+    const errorMessage = "\"name\" is required,\"age\" must be a number,";
     expect(() => {
       studentBuilder({
         grade: "twelve",
         age: "twleve",
         prefect: 12,
+        createdBy: {
+          userId: "63587db7dc752a40e09721d7",
+          username: "user-editor",
+        },
       });
     }).to.throw(errorMessage);
   });
@@ -17,6 +21,10 @@ describe("models/student", () => {
   it("must have name", () => {
     const student = studentBuilder({
       name: "howie",
+      createdBy: {
+        userId: "63587db7dc752a40e09721d7",
+        username: "user-editor",
+      },
     });
     const input = student.name;
     const actual = "howie";
@@ -24,21 +32,41 @@ describe("models/student", () => {
   });
 
   it("can have grade", () => {
-    const student = studentBuilder({ name: "howie", grade: 2 });
+    const student = studentBuilder({
+      name: "howie",
+      grade: 2,
+      createdBy: {
+        userId: "63587db7dc752a40e09721d7",
+        username: "user-editor",
+      },
+    });
     const input = student.grade;
     const actual = 2;
     expect(input).to.equal(actual);
   });
 
   it("can have age", () => {
-    const student = studentBuilder({ name: "howie", age: 12 });
+    const student = studentBuilder({
+      name: "howie",
+      age: 12,
+      createdBy: {
+        userId: "63587db7dc752a40e09721d7",
+        username: "user-editor",
+      },
+    });
     const input = student.age;
     const actual = 12;
     expect(input).to.equal(actual);
   });
-  
+
   it("sets prefect to false by default", () => {
-    const student = studentBuilder({ name: "howie" });
+    const student = studentBuilder({
+      name: "howie",
+      createdBy: {
+        userId: "63587db7dc752a40e09721d7",
+        username: "user-editor",
+      },
+    });
     const input = student.prefect;
     const actual = false;
     expect(input).to.equal(actual);

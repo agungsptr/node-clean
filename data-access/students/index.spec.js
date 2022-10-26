@@ -1,27 +1,42 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const studentsDa = require("./index");
+const usersDa = require("../users");
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
+let user;
 
 describe("data-access/students", () => {
   beforeEach(async () => {
+    await usersDa.removeAll();
     await studentsDa.removeAll();
-    const howie = {
+    user = await usersDa.create({
+      firstName: "agung",
+      lastName: "saputra",
+      username: "agungsptr",
+      password: "24434",
+    });
+    await studentsDa.create({
       name: "howie",
       age: 12,
       grade: 3,
       prefect: true,
-    };
-    const bill = {
+      createdBy: {
+        userId: `${user.id}`,
+        username: user.username,
+      },
+    });
+    await studentsDa.create({
       name: "bill",
       age: 13,
       grade: 3,
       prefect: false,
-    };
-    await studentsDa.create(howie);
-    await studentsDa.create(bill);
+      createdBy: {
+        userId: `${user.id}`,
+        username: user.username,
+      },
+    });
   });
 
   afterEach(async () => {
@@ -57,6 +72,10 @@ describe("data-access/students", () => {
       name: "felix",
       grade: 2,
       age: 6,
+      createdBy: {
+        userId: `${user.id}`,
+        username: user.username,
+      },
     };
     const newStudent = await studentsDa.create(felix);
     const obj = newStudent;
@@ -68,6 +87,10 @@ describe("data-access/students", () => {
       grade: 2,
       age: 6,
       prefect: false,
+      createdBy: {
+        userId: `${user.id}`,
+        username: user.username,
+      },
     };
     expect(obj).to.eql(actual);
   });
@@ -77,9 +100,7 @@ describe("data-access/students", () => {
       name: "bill",
       grade: "INSERT POISON INTO THIS",
     };
-    expect(studentsDa.create(invalid)).to.eventually.be.rejectedWith(
-      "grade must be a number"
-    );
+    expect(studentsDa.create(invalid)).to.eventually.be.rejected;
   });
 
   it("deletes a student", async () => {
