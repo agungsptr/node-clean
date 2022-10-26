@@ -7,6 +7,7 @@ const _serializeSingle = (student) => {
     name: student.name,
     age: student.age,
     prefect: student.prefect,
+    createdBy: student.createdBy,
     createdAt: student.createdAt,
     updatedAt: student.updatedAt,
   };
