@@ -14,11 +14,7 @@ const baseDataAccess = require("../base")({
 baseDataAccess.update = async (id, payload) => {
   try {
     const data = await Users.findById(id).then((user) => {
-      if (user) {
-        const serializedData = serialize(user);
-        serializedData.password = user.password;
-        return serializedData;
-      }
+      if (user) return { ...serialize(user), password: user.password };
     });
     ifEmptyThrowError(data, `Data with id: ${id} in Users is not found`);
     if (!isEmpty(payload.password)) {
@@ -37,11 +33,7 @@ baseDataAccess.update = async (id, payload) => {
 const findUserCredential = async (username) => {
   try {
     return Users.findOne(queriesBuilder({ username })).then((user) => {
-      if (user) {
-        const serializedData = serialize(user);
-        serializedData.password = user.password;
-        return serializedData;
-      }
+      if (user) return { ...serialize(user), password: user.password };
     });
   } catch (e) {
     throw repackageError(e);
