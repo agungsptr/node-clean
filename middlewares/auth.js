@@ -21,6 +21,10 @@ const auth = async (req, res, next) => {
       if (decodedToken) {
         const user = await userDa.findOne(decodedToken.id);
         if (isEmpty(user)) return unAuthRes();
+        req.user = {
+          userId: `${user.id}`,
+          username: user.username,
+        };
         return next();
       }
       return unAuthRes();
