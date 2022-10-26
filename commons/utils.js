@@ -84,6 +84,13 @@ const objHierarchyMapper = (obj, childs, value, i = 0) => {
   return obj;
 };
 
+const payloadSanitizer = (payload) => {
+  delete payload.createdBy;
+  delete payload.createdAt;
+  delete payload.updatedAt;
+  return payload;
+};
+
 module.exports = {
   responseBuilder,
   queriesBuilder,
@@ -93,4 +100,5 @@ module.exports = {
   issueJwt,
   verifyJwt,
   objHierarchyMapper,
+  payloadSanitizer,
 };
