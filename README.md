@@ -96,7 +96,11 @@ Before you dig in to this project it very nice if you understand clean architect
    ```sh
    make infra
    ```
-5. Now you can run this project
+5. Seed database
+   ```sh
+   make seed
+   ```
+6. Now you can run this project
    ```sh
    yarn dev
    ```
