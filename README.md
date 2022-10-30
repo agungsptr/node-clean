@@ -57,16 +57,12 @@ I create this project to help me build backend application more faster as a temp
 Fell free to use this project as your base appliaction.
 I am very happy if you are helped by using this template.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ### Built With
 
 * [![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express)](https://expressjs.com)
 * [![Mongodb](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -105,8 +101,6 @@ Before you dig in to this project it very nice if you understand clean architect
    yarn dev
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- USAGE EXAMPLES -->
@@ -115,8 +109,6 @@ Before you dig in to this project it very nice if you understand clean architect
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -134,16 +126,12 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -153,8 +141,6 @@ Distributed under the MIT License. See [LICENSE](./LICENSE) for more information
 Agung Saputra - agung.e.sptr@gmail.com
 
 Project Link: [here](https://github.com/agungsptr/node-clean)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -170,5 +156,3 @@ Resources that help me to build this project.
 * [Express.js](https://expressjs.com)
 * [MongoDB Documentation](https://www.mongodb.com/docs)
 * [Mongoose Documentation](https://mongoosejs.com/docs)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
