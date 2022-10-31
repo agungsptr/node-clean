@@ -21,4 +21,5 @@ module.exports = {
   isDevelopment: process.env.NODE_ENV === "development",
   isProduction: process.env.NODE_ENV === "production",
   isTest: process.env.NODE_ENV === "test",
+  rateLimit: parseInt(process.env.RATE_LIMIT) || 15,
 };

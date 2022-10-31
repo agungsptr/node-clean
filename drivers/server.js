@@ -39,7 +39,7 @@ app.use(compression());
 /** Set rate limit */
 app.use(
   rateLimit({
-    windowMs: 15 * 60 * 1000,
+    windowMs: config.rateLimit * 60 * 1000,
     max: 100,
     standardHeaders: true,
     legacyHeaders: false,
