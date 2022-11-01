@@ -120,7 +120,7 @@ Try login using this curl
   }'
 
 ```
-For more request example please use this postman collection [Postman](.NodeClean.postman_collection.json).
+For more request example please use this postman collection [Postman](./NodeClean.postman_collection.json).
 
 
 
