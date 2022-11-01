@@ -100,7 +100,7 @@ Before you dig in to this project it very nice if you understand clean architect
    ```sh
    make seed
    ```
-6. Now you can run this project
+6. Now you can run this project, this project running on port 7000 in your local
    ```sh
    yarn dev
    ```
