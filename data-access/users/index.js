@@ -23,7 +23,9 @@ baseDataAccess.update = async (id, payload) => {
     }
 
     const dataToUpdate = userBuilder({ ...data, ...payload });
-    await Users.updateOne({ id }, dataToUpdate);
+    await Users.updateOne({ id }, dataToUpdate).then(
+      delete dataToUpdate.password
+    );
     return { id, ...dataToUpdate };
   } catch (e) {
     throw repackageError(e);
