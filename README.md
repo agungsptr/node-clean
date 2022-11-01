@@ -40,6 +40,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -103,6 +104,23 @@ Before you dig in to this project it very nice if you understand clean architect
    ```sh
    yarn dev
    ```
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Try login using this curl
+```sh
+  curl --location --request POST 'localhost:7000/api/auth/login' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+      "username": "agungsptr",
+      "password": "24434"
+  }'
+
+```
+For more request example please use this postman collection [Posman](.NodeClean.postman_collection.json).
 
 
 
