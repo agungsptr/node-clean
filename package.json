@@ -35,6 +35,7 @@
     "mongoose": "^6.6.2",
     "morgan": "^1.10.0",
     "sanitize": "^2.1.2",
+    "uuid": "^9.0.0",
     "winston": "^3.8.2"
   },
   "devDependencies": {

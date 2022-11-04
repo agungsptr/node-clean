@@ -5,6 +5,7 @@ module.exports = Joi.object().keys({
   lastName: Joi.string().required(),
   username: Joi.string().required(),
   password: Joi.string().required(),
+  secretUid: Joi.string().uuid(),
   createdAt: Joi.date().timestamp(),
   updatedAt: Joi.date().timestamp(),
 });

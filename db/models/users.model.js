@@ -1,5 +1,6 @@
 const mongoose = require("../connection");
 const { hashPassword } = require("../../commons/utils");
+const uuid = require("uuid");
 
 const Schema = mongoose.Schema;
 const UsersSchema = new Schema({
@@ -7,6 +8,7 @@ const UsersSchema = new Schema({
   lastName: String,
   username: String,
   password: String,
+  secretUuid: { type: String, default: uuid.v4() },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

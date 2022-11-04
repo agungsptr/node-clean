@@ -35,7 +35,12 @@ baseDataAccess.update = async (id, payload) => {
 const findUserCredential = async (username) => {
   try {
     return Users.findOne(queriesBuilder({ username })).then((user) => {
-      if (user) return { ...serialize(user), password: user.password };
+      if (user)
+        return {
+          ...serialize(user),
+          password: user.password,
+          secretUuid: user.secretUuid,
+        };
     });
   } catch (e) {
     throw repackageError(e);

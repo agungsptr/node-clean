@@ -6,6 +6,7 @@ const userBuilder = (validator) => {
     lastName,
     username,
     password,
+    secretUuid,
     createdAt,
     updatedAt,
   }) => {
@@ -14,6 +15,7 @@ const userBuilder = (validator) => {
       lastName,
       username,
       password,
+      secretUuid,
       createdAt,
       updatedAt,
     });
