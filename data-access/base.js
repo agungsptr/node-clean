@@ -50,7 +50,7 @@ const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
         `Data with id: ${id} in ${modelName} is not found`
       );
       const dataToUpdate = modelBuilder({ ...data, ...payload });
-      await model.updateOne({ id }, dataToUpdate);
+      await model.findByIdAndUpdate(id, dataToUpdate);
       return { id, ...dataToUpdate };
     } catch (e) {
       throw repackageError(e);

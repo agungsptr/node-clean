@@ -23,7 +23,7 @@ baseDataAccess.update = async (id, payload) => {
     }
 
     const dataToUpdate = userBuilder({ ...data, ...payload });
-    await Users.updateOne({ id }, dataToUpdate).then(
+    await Users.findByIdAndUpdate(id, dataToUpdate).then(
       delete dataToUpdate.password
     );
     return { id, ...dataToUpdate };
