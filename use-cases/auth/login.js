@@ -28,12 +28,13 @@ const create = async (req, res, next) => {
       return next();
     }
 
-    const user = await usersDa.findUserCredential(username);
+    const user = await usersDa.findUserCredential({ username });
     if (!isEmpty(user)) {
       if (comparePassword(password, user.password)) {
         const payload = { ...user };
         delete payload.password;
-        const token = issueJwt(payload);
+        delete payload.secretUuid;
+        const token = issueJwt(payload, user.secretUuid);
 
         res.status(StatusCode.OK).send(
           responseBuilder({

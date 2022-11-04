@@ -46,32 +46,31 @@ const comparePassword = (password, hash) => {
   return bcrypt.compareSync(password, hash);
 };
 
-const issueJwt = (payload) => {
-  return jwt.sign(payload, config.jwt.secretKey, {
+const issueJwt = (payload, userSecretUuid = "") => {
+  return jwt.sign(payload, `${config.jwt.secretKey}${userSecretUuid}`, {
     expiresIn: config.jwt.expired,
   });
 };
 
-const verifyJwt = (token, cb) => {
-  const tokenSplitted = token.split(" ");
-  if (!token || (tokenSplitted && tokenSplitted.length !== 2)) {
-    return cb(null, "invalid-token");
+const tokenSplitter = (token) => {
+  const splitted = token.split(" ");
+  if (!token || (splitted && splitted.length !== 2)) {
+    return false;
   }
+  return splitted;
+};
 
-  return jwt.verify(
-    tokenSplitted[1],
-    config.jwt.secretKey,
-    {},
-    (err, decoded) => {
-      if (err) {
-        if (err.message.includes("invalid signature")) {
-          return cb(null, err.message.replace(" ", "-"));
-        }
-        return cb(null, "invalid-token");
+const verifyJwt = (token, userSecretUuid, cb) => {
+  const secretKey = `${config.jwt.secretKey}${userSecretUuid}`;
+  return jwt.verify(token, secretKey, {}, (err, decoded) => {
+    if (err) {
+      if (err.message.includes("invalid signature")) {
+        return cb(null, err.message.replace(" ", "-"));
       }
-      return cb(decoded);
+      return cb(null, "invalid-token");
     }
-  );
+    return cb(decoded);
+  });
 };
 
 const objHierarchyMapper = (obj, childs, value, i = 0) => {
@@ -101,4 +100,5 @@ module.exports = {
   verifyJwt,
   objHierarchyMapper,
   payloadSanitizer,
+  tokenSplitter,
 };

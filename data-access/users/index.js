@@ -32,9 +32,9 @@ baseDataAccess.update = async (id, payload) => {
   }
 };
 
-const findUserCredential = async (username) => {
+const findUserCredential = async (queries) => {
   try {
-    return Users.findOne(queriesBuilder({ username })).then((user) => {
+    return Users.findOne(queriesBuilder(queries)).then((user) => {
       if (user)
         return {
           ...serialize(user),

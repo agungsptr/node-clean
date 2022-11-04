@@ -16,7 +16,7 @@ module.exports = {
   },
   jwt: {
     secretKey: process.env.JWT_SECRET_KEY,
-    expired: process.env.JWT_EXPIRED,
+    expired: process.env.JWT_EXPIRED || "24h",
   },
   isDevelopment: process.env.NODE_ENV === "development",
   isProduction: process.env.NODE_ENV === "production",
