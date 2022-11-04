@@ -110,7 +110,9 @@ Before you dig in to this project it very nice if you understand clean architect
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Try login using this curl
+### Web Service
+
+* Login
 ```sh
   curl --location --request POST 'localhost:7000/api/auth/login' \
   --header 'Content-Type: application/json' \
@@ -118,9 +120,25 @@ Try login using this curl
       "username": "agungsptr",
       "password": "24434"
   }'
+```
 
+* Get All Users
+```sh
+  curl --location --request GET 'localhost:7000/api/users' \
+  --header 'Authorization: Bearer <AuthToken>'
 ```
 For more request example please use this postman collection [Postman](./NodeClean.postman_collection.json).
+
+### Unit Test
+
+```sh
+  yarn test
+```
+### Coverage Test
+
+```sh
+  yarn coverage
+```
 
 
 
