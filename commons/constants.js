@@ -32,6 +32,7 @@ const ResponseMessage = {
   FailUpdated: "Data failed to updated",
   FailRemoved: "Data failed to removed",
   FailAuth: "Failed to authenticate",
+  LoggedOut: "Successfully logged out",
 };
 
 module.exports = {

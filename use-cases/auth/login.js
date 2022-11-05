@@ -10,7 +10,7 @@ const {
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
 
-const create = async (req, res, next) => {
+const login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
@@ -63,4 +63,4 @@ const create = async (req, res, next) => {
   }
 };
 
-module.exports = create;
+module.exports = login;
