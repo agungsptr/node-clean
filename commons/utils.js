@@ -42,8 +42,8 @@ const hashPassword = (password) => {
   return hash;
 };
 
-const comparePassword = (password, hash) => {
-  return bcrypt.compareSync(password, hash);
+const comparePassword = async (password, hash) => {
+  return bcrypt.compare(password, hash);
 };
 
 const issueJwt = (payload, userSecretUuid = "") => {
