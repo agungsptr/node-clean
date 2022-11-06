@@ -31,9 +31,7 @@ const login = async (req, res, next) => {
     const user = await usersDa.findUserCredential({ username });
     if (!isEmpty(user)) {
       if (await comparePassword(password, user.password)) {
-        const payload = { ...user };
-        delete payload.password;
-        delete payload.secretUuid;
+        const payload = { id: user.id, username: user.username };
         const token = issueJwt(payload, user.secretUuid);
 
         res.status(StatusCode.OK).send(

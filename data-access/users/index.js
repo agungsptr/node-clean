@@ -1,9 +1,14 @@
-const { isEmpty, ifEmptyThrowError } = require("../../commons/checks");
 const { repackageError } = require("../../commons/errors");
 const { hashPassword, queriesBuilder } = require("../../commons/utils");
 const Users = require("../../db/models/users.model");
 const userBuilder = require("../../models/users");
 const serialize = require("./serializer");
+const {
+  isEmpty,
+  ifEmptyThrowError,
+  ifFalseThrowError,
+  isValidObjId,
+} = require("../../commons/checks");
 const baseDataAccess = require("../base")({
   model: Users,
   modelName: "Users",
@@ -34,6 +39,9 @@ baseDataAccess.update = async (id, payload) => {
 
 const findUserCredential = async (queries) => {
   try {
+    if ("_id" in queries) {
+      ifFalseThrowError(isValidObjId(queries._id), "id is not valid");
+    }
     return Users.findOne(queriesBuilder(queries)).then((user) => {
       if (user)
         return {

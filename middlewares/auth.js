@@ -34,13 +34,11 @@ const auth = async (req, res, next) => {
         user.secretUuid,
         async (decodedToken, errorToken) => {
           if (errorToken) return unAuthRes();
-          if (decodedToken) {
-            req.user = {
-              userId: `${user.id}`,
-              username: user.username,
-            };
-            return next();
-          }
+          req.user = {
+            userId: `${user.id}`,
+            username: user.username,
+          };
+          return next();
         }
       );
     }
