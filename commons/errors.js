@@ -1,8 +1,19 @@
 const config = require("../config");
 const { StatusCode, ErrorMessage } = require("./constants");
 const CustomError = require("./customError");
-const helper = require("./helper");
 const { responseBuilder } = require("./utils");
+const logger = require("./logger");
+
+const appName = `${config.NODE_ENV}`.toLowerCase();
+
+const logError = (err) => {
+  if (appName.includes("test") || appName.includes("development")) {
+    console.log(err);
+  } else {
+    const log = logger.createLogger();
+    log.error(err);
+  }
+};
 
 const repackageError = (err) => {
   if (err instanceof CustomError) {
@@ -28,7 +39,7 @@ const responseWithError = (
       })
     );
   } else {
-    helper.logError(err.stack);
+    logError(err.stack);
     return res.status(500).send(ErrorMessage.SomethingWentWrong);
   }
 };
