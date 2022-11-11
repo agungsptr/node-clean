@@ -125,7 +125,7 @@ Before you dig in to this project it very nice if you understand clean architect
   curl --location --request GET 'localhost:7000/api/users' \
   --header 'Authorization: Bearer <AuthToken>'
 ```
-For more request example please use this postman collection [Postman](./NodeClean.postman_collection.json).
+For more request example please use this postman collection [here](./NodeClean.postman_collection.json).
 
 ### Unit Test
 ```sh
