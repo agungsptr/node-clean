@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h2 align="center" style="font-size:10vw;">Node Clean</h2>
+  <h2 align="center" style="font-size:8vw;">Node Clean</h2>
 
   <p align="center">
     A Node.js project template with clean architecture implementation
@@ -20,7 +20,6 @@
     </a>
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -50,7 +49,6 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This project aim to used as base backend project which implement clean architecture. 
@@ -58,24 +56,24 @@ I create this project to help me build backend application more faster as a temp
 Fell free to use this project as your base appliaction.
 I am very happy if you are helped by using this template.
 
-
+### Features
+* Authentication using middleware
+* CRUDS Users
+* CRUDS Students
+* Login/Logout
 
 ### Built With
-
 * [![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.dev)
 * [![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express)](https://expressjs.com)
 * [![Mongodb](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com)
 * [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
-
 Lets start this project...
 
 ### Prerequisites
-
 Before you dig in to this project it very nice if you understand clean architecture concept. I recommend you to read about the clean architecture first.
 
 * Basic javascript
@@ -85,7 +83,6 @@ Before you dig in to this project it very nice if you understand clean architect
 * Docker
 
 ### Installation
-
 1. Clone the repo
    ```sh
    git clone https://github.com/agungsptr/node-clean.git
@@ -109,11 +106,9 @@ Before you dig in to this project it very nice if you understand clean architect
    ```
 
 
-
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-### Web Service
+### Web Services
 
 * Login
 ```sh
@@ -133,53 +128,48 @@ Before you dig in to this project it very nice if you understand clean architect
 For more request example please use this postman collection [Postman](./NodeClean.postman_collection.json).
 
 ### Unit Test
-
 ```sh
   yarn test
 ```
-### Coverage Test
+The tests carried out includes :
+* Data Access
+* Model
+* Route
 
+### Coverage Test
 ```sh
   yarn coverage
 ```
 
 
-
 <!-- CONTRIBUTING -->
 ## Contributing
-
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch ( `git checkout -b feature/magic` )
+3. Commit your Changes ( `git commit -m 'feature/magic: Add some magic` )
+4. Push to the Branch ( `git push origin feature/magic` )
 5. Open a Pull Request
-
 
 
 <!-- LICENSE -->
 ## License
-
 Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
-
 
 
 <!-- CONTACT -->
 ## Contact
-
 Agung Saputra - agung.e.sptr@gmail.com
 
 Project Link: [here](https://github.com/agungsptr/node-clean)
 
 
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
 Resources that help me to build this project.
 
 * [Clean Architecture Node.js - Build a REST API](https://mannhowie.com/clean-architecture-node)
@@ -189,7 +179,6 @@ Resources that help me to build this project.
 * [Express.js](https://expressjs.com)
 * [MongoDB Documentation](https://www.mongodb.com/docs)
 * [Mongoose Documentation](https://mongoosejs.com/docs)
-
 
 
 <!-- SUPPORT ME -->
