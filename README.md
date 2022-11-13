@@ -88,6 +88,7 @@ Before you dig in to this project it very nice if you understand clean architect
 * VS Code (Recommend)
 * Node
 * Yarn
+* GNU Make
 * Docker
 
 ### Installation
@@ -95,7 +96,7 @@ Before you dig in to this project it very nice if you understand clean architect
    ```sh
    git clone https://github.com/agungsptr/node-clean.git
    ```
-2. Install YARN packages
+2. Install Yarn packages
    ```sh
    yarn install
    ```
@@ -109,6 +110,36 @@ Before you dig in to this project it very nice if you understand clean architect
    make seed
    ```
 6. Now you can run this project, this project running on port 7000 in your local
+   ```sh
+   yarn dev
+   ```
+
+### Alternative Installation
+Follow this instructure if you not use `docker` or in `Windows` or you having trouble with the installation above.
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/agungsptr/node-clean.git
+   ```
+2. Make sure that you have installed `Node`, `Yarn`, and `Mongodb` in your local
+3. Install Yarn packages
+   ```sh
+   yarn install
+   ```
+4. Copy `.env.example` to `.env`
+5. Setup `Mongodb`, for this you need to match your `Mongodb` to `.env` file. To doing that, please update this followings variable
+   ```
+   - MONGO_HOST (your mongodb host, ex. localhost if using your local machine)
+   - MONGO_PORT (your mongodb port)
+   - MONGO_DBNAME (database name, you need to create it firs in mongodb)
+   - MONGO_USER (username to access your mongodb)
+   - MONGO_PW (password for the user)
+   ```
+6. Seed database
+   ```sh
+   yarn seed
+   ```
+7. Now you can run this project, this project running on port 7000 in your local
    ```sh
    yarn dev
    ```
