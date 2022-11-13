@@ -115,7 +115,7 @@ Before you dig in to this project it very nice if you understand clean architect
    ```
 
 ### Alternative Installation
-Follow this instructure if you not use `docker` or in `Windows` or you having trouble with the installation above.
+Follow this instruction if you not use `docker` or in `Windows` or you having trouble with the installation above.
 
 1. Clone the repo
    ```sh
