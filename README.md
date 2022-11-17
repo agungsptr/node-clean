@@ -83,7 +83,7 @@ I am very happy if you are helped by using this template.
 Lets start this project...
 
 ### Prerequisites
-Before you dig in to this project it very nice if you understand clean architecture concept. I recommend you to read about the clean architecture first.
+Before you dig in to this project it very nice if you understand clean architecture concept. I recommend you to read about the **Clean Architecture** first.
 
 * Basic javascript
 * VS Code (Recommend)
