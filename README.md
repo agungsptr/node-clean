@@ -60,9 +60,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This project aim to used as base backend project which implement clean architecture. 
-I create this project to help me build backend application more faster as a template project.
-Fell free to use this project as your base appliaction.
+This project aims to be used as a base backend project which implements clean architecture. 
+I create this project to help me build a backend application faster as a template project.
+Feel free to use this project as your base application.
 I am very happy if you are helped by using this template.
 
 ### Features
@@ -80,10 +80,10 @@ I am very happy if you are helped by using this template.
 
 <!-- GETTING STARTED -->
 ## Getting Started
-Lets start this project...
+Let's start this project...
 
 ### Prerequisites
-Before you dig in to this project it very nice if you understand clean architecture concept. I recommend you to read about the **Clean Architecture** first.
+Before you dig into this project it very nice if you understand the clean architecture concept. I recommend you to read about the **Clean Architecture** first.
 
 * Basic javascript
 * VS Code (Recommend)
@@ -102,7 +102,7 @@ Before you dig in to this project it very nice if you understand clean architect
    yarn install
    ```
 3. Copy `.env.example` to `.env`
-4. Setup `mongodb` container
+4. Setup `MongoDB` container
    ```sh
    make infra
    ```
@@ -116,7 +116,7 @@ Before you dig in to this project it very nice if you understand clean architect
    ```
 
 ### Alternative Installation
-Follow this instruction if you not use `docker` or in `Windows` or you having trouble with the installation above.
+Follow this instruction if you do not use `docker` or in `Windows` or if you having trouble with the installation above.
 
 1. Clone the repo
    ```sh
@@ -128,12 +128,12 @@ Follow this instruction if you not use `docker` or in `Windows` or you having tr
    yarn install
    ```
 4. Copy `.env.example` to `.env`
-5. Setup `Mongodb`, for this you need to match your `Mongodb` to `.env` file. To doing that, please update this followings variable
+5. Setup `Mongodb`, for this you need to match your `Mongodb` to the `.env` file. To do that, please update the followings variable
    ```
-   - MONGO_HOST (your mongodb host, ex. localhost if using your local machine)
-   - MONGO_PORT (your mongodb port)
-   - MONGO_DBNAME (database name, you need to create it firs in mongodb)
-   - MONGO_USER (username to access your mongodb)
+   - MONGO_HOST (your MongoDB host, ex. localhost if using your local machine)
+   - MONGO_PORT (your MongoDB port)
+   - MONGO_DBNAME (database name, you need to create it first in MongoDB)
+   - MONGO_USER (username to access your MongoDB)
    - MONGO_PW (password for the user)
    ```
 6. Seed database
@@ -165,13 +165,13 @@ Follow this instruction if you not use `docker` or in `Windows` or you having tr
   curl --location --request GET 'localhost:7000/api/users' \
   --header 'Authorization: Bearer <AuthToken>'
 ```
-For more request example please use this postman collection [here](./NodeClean.postman_collection.json).
+For more request examples please use this postman collection [here](./NodeClean.postman_collection.json).
 
 ### Unit Test
 ```sh
   yarn test
 ```
-The tests carried out includes :
+The tests carried out include:
 * Data Access
 * Model
 * Route
@@ -184,7 +184,7 @@ The tests carried out includes :
 
 <!-- CONTRIBUTING -->
 ## Contributing
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
