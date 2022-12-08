@@ -9,7 +9,7 @@
     "seed": "node ./db/seeds/index.js",
     "lint": "eslint .",
     "test": "NODE_ENV=test mocha --exclude ./node_modules/**/*.spec.js --exit ./**/*.spec.js",
-    "coverage": "NODE_ENV=test nyc --reporter=text npm run test",
+    "coverage-test": "NODE_ENV=test nyc --reporter=text npm run test",
     "load-test": "NODE_ENV=test artillery run --dotenv ./.env --output ./test/output/loadTest.json ./test/loadTest.yml",
     "load-test_result": "artillery report --output ./test/output/report.html ./test/output/loadTest.json"
   },
