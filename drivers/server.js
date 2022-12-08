@@ -37,14 +37,16 @@ app.use(sanitize.middleware);
 app.use(compression());
 
 /** Set rate limit */
-app.use(
-  rateLimit({
-    windowMs: config.rateLimit * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-  })
-);
+if (config.isProduction) {
+  app.use(
+    rateLimit({
+      windowMs: config.rateLimit * 60 * 1000,
+      max: 100,
+      standardHeaders: true,
+      legacyHeaders: false,
+    })
+  );
+}
 
 /** Set all routes */
 app.use("/api", routes);

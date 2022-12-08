@@ -29,4 +29,9 @@ seed:
 	@NODE_ENV=test node ./db/seeds/index.js
 	@echo "Seed done."
 
+load-test:
+	@echo "Testing performance..."
+	@yarn load-test
+	@yarn load-test_result
+
 .PHONY: all build test

@@ -1,0 +1,23 @@
+config:
+  target: "http://localhost:{{ $processEnvironment.APP_PORT }}/api"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+      name: "Warming up"
+    # - duration: 240
+    #   arrivalRate: 20
+    #   rampTo: 100
+    #   name: "Ramping up"
+    # - duration: 500
+    #   arrivalRate: 100
+    #   name: "Sustained load"
+
+scenarios:
+  - name: "Sign up flow"
+    flow:
+      - post:
+          url: "/auth/login"
+          json:
+            username: "agungsptr"
+            password: "24434"
+      - think: 1
