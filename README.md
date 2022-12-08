@@ -87,7 +87,7 @@ Before you dig into this project it very nice if you understand the clean archit
 
 * Basic javascript
 * VS Code (Recommend)
-* Node
+* Node >= v16.15.0
 * Yarn
 * GNU Make
 * Docker
