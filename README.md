@@ -112,7 +112,7 @@ Before you dig into this project it very nice if you understand the clean archit
    ```
 6. Now you can run this project, this project running on port 7000 in your local
    ```sh
-   yarn dev
+   make dev
    ```
 
 ### Alternative Installation
@@ -169,7 +169,7 @@ For more request examples please use this postman collection [here](./NodeClean.
 
 ### Unit Test
 ```sh
-  yarn test
+  make test
 ```
 The tests carried out include:
 * Data Access
@@ -178,7 +178,12 @@ The tests carried out include:
 
 ### Coverage Test
 ```sh
-  yarn coverage
+  make coverage-test
+```
+
+### Stress Test
+```sh
+  make load-test
 ```
 
 
