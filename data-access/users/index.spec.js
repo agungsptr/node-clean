@@ -57,7 +57,7 @@ describe("data-access/users", () => {
     expect(result.firstName).to.eql("edited-fistname");
   });
 
-  it("deletes a student", async () => {
+  it("delete a user", async () => {
     await usersDa.remove(user.id);
     const users = await usersDa.findAll();
     expect(users.length).to.equal(0);
