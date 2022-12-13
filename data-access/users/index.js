@@ -1,7 +1,7 @@
 const { repackageError } = require("../../commons/errors");
 const { hashPassword, queriesBuilder } = require("../../commons/utils");
 const Users = require("../../db/models/users.model");
-const userBuilder = require("../../models/users");
+const userBuilder = require("../../models/user");
 const serialize = require("./serializer");
 const {
   isEmpty,
