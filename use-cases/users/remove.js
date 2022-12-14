@@ -1,25 +1,7 @@
-const usersDa = require("../../data-access/users");
-const { responseWithError } = require("../../commons/errors");
-const { StatusCode, ResponseMessage } = require("../../commons/constants");
-const { responseBuilder } = require("../../commons/utils");
-const { ifEmptyThrowError } = require("../../commons/checks");
+const users = require("../../data-access/users");
 
-const remove = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    ifEmptyThrowError(id, "id is required");
-    const data = await usersDa.remove(id);
-    res.status(StatusCode.OK).send(
-      responseBuilder({
-        statusCode: StatusCode.OK,
-        data,
-        message: ResponseMessage.Removed,
-      })
-    );
-    return next();
-  } catch (e) {
-    return responseWithError(res, e, StatusCode.BadRequest);
-  }
+const remove = async (id) => {
+  return users.remove(id);
 };
 
 module.exports = remove;

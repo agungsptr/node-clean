@@ -1,13 +1,12 @@
-const { repackageError } = require("../../commons/errors");
+const { repackageError, CustomError } = require("../../commons/errors");
 const { hashPassword, queriesBuilder } = require("../../commons/utils");
 const Users = require("../../db/models/users.model");
 const userBuilder = require("../../models/user");
 const serialize = require("./serializer");
 const {
-  isEmpty,
-  ifEmptyThrowError,
   ifFalseThrowError,
   isValidObjId,
+  ifEmptyThrowError,
 } = require("../../commons/checks");
 const baseDataAccess = require("../base")({
   model: Users,
@@ -18,20 +17,26 @@ const baseDataAccess = require("../base")({
 
 baseDataAccess.update = async (id, payload) => {
   try {
+    ifEmptyThrowError(id, "id is required");
     const data = await Users.findById(id).then((user) => {
-      if (user) return { ...serialize(user), password: user.password };
+      if (user) {
+        return { ...serialize(user), password: user.password };
+      } else {
+        throw new CustomError(`Data with id: ${id} in Users is not found`);
+      }
     });
-    ifEmptyThrowError(data, `Data with id: ${id} in Users is not found`);
-    if (!isEmpty(payload.password)) {
+
+    if (payload.password) {
       data.password = hashPassword(payload.password);
       delete payload.password;
     }
 
     const dataToUpdate = userBuilder({ ...data, ...payload });
-    await Users.findByIdAndUpdate(id, dataToUpdate).then(
-      delete dataToUpdate.password
-    );
-    return { id, ...dataToUpdate };
+    await Users.findByIdAndUpdate(id, dataToUpdate);
+    delete dataToUpdate.password;
+    dataToUpdate.id = id;
+
+    return dataToUpdate;
   } catch (e) {
     throw repackageError(e);
   }
@@ -43,12 +48,15 @@ const findUserCredential = async (queries) => {
       ifFalseThrowError(isValidObjId(queries._id), "id is not valid");
     }
     return Users.findOne(queriesBuilder(queries)).then((user) => {
-      if (user)
+      if (user) {
         return {
           ...serialize(user),
           password: user.password,
           secretUuid: user.secretUuid,
         };
+      } else {
+        throw new CustomError("Users is not found");
+      }
     });
   } catch (e) {
     throw repackageError(e);

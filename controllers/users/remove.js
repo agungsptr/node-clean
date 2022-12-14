@@ -1,20 +1,17 @@
-const usersDa = require("../../data-access/users");
+const users = require("../../use-cases/users");
 const { responseWithError } = require("../../commons/errors");
 const { StatusCode, ResponseMessage } = require("../../commons/constants");
 const { responseBuilder } = require("../../commons/utils");
-const uuid = require("uuid");
 
-const logout = async (req, res, next) => {
+const remove = async (req, res, next) => {
   try {
-    const user = await usersDa.findUserCredential({ _id: req.user.userId });
-    if (user) {
-      await usersDa.update(user.id, { secretUuid: uuid.v4() });
-    }
+    const { id } = req.params;
+    const data = await users.remove(id);
     res.status(StatusCode.OK).send(
       responseBuilder({
         statusCode: StatusCode.OK,
-        data: null,
-        message: ResponseMessage.LoggedOut,
+        message: ResponseMessage.Removed,
+        data,
       })
     );
     return next();
@@ -23,4 +20,4 @@ const logout = async (req, res, next) => {
   }
 };
 
-module.exports = logout;
+module.exports = remove;

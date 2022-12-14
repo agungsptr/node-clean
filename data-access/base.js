@@ -17,6 +17,7 @@ const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
 
   const findOne = async (id) => {
     try {
+      ifEmptyThrowError(id, "id is required");
       ifFalseThrowError(isValidObjId(id), "id is not valid");
       return model.findById(id).then(serialize);
     } catch (e) {
@@ -43,6 +44,7 @@ const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
 
   const update = async (id, payload) => {
     try {
+      ifEmptyThrowError(id, "id is required");
       ifFalseThrowError(isValidObjId(id), "id is not valid");
       const data = await model.findById(id).then(serialize);
       ifEmptyThrowError(
@@ -59,6 +61,7 @@ const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
 
   const remove = async (id) => {
     try {
+      ifEmptyThrowError(id, "id is required");
       ifFalseThrowError(isValidObjId(id), "id is not valid");
       const data = await model.findById(id).then(serialize);
       ifEmptyThrowError(

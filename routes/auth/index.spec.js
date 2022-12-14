@@ -83,7 +83,7 @@ describe("routes/auth", () => {
       .post(`${API_URL}/logout`)
       .set("Authorization", auth.token)
       .send();
-    expect(req.statusCode).to.eql(401);
+    expect(req.statusCode).to.eql(400);
   });
 
   it("LOGOUT without token", async () => {
