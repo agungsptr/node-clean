@@ -1,25 +1,7 @@
-const studentsDa = require("../../data-access/students");
-const { responseWithError } = require("../../commons/errors");
-const { responseBuilder, payloadSanitizer } = require("../../commons/utils");
-const { StatusCode, ResponseMessage } = require("../../commons/constants");
+const students = require("../../data-access/students");
 
-const create = async (req, res, next) => {
-  try {
-    const data = await studentsDa.create({
-      ...payloadSanitizer(req.body),
-      createdBy: req.user,
-    });
-    res.status(StatusCode.OK).send(
-      responseBuilder({
-        statusCode: StatusCode.OK,
-        data,
-        message: ResponseMessage.Added,
-      })
-    );
-    return next();
-  } catch (e) {
-    return responseWithError(res, e, StatusCode.BadRequest);
-  }
+const create = async (payload) => {
+  return students.create(payload);
 };
 
 module.exports = create;
