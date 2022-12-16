@@ -8,4 +8,4 @@ const baseDataAccess = require("../base")({
   serialize,
 });
 
-module.exports = { ...baseDataAccess };
+module.exports = baseDataAccess;
