@@ -6,23 +6,27 @@ const {
   responseBuilder,
   comparePassword,
   issueJwt,
+  validatorSchema,
 } = require("../../commons/utils");
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
+const Joi = require("joi");
 
 const login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
-    const errors = [];
-    if (isEmpty(username)) errors.push("\"username\" is required");
-    if (isEmpty(password)) errors.push("\"password\" is required");
-    if (errors.length > 0) {
+    const schema = Joi.object({
+      username: Joi.string().required(),
+      password: Joi.string().required(),
+    });
+    const { error } = validatorSchema(schema)(req.body);
+    if (error.length > 0) {
       res.status(StatusCode.BadRequest).send(
         responseBuilder({
           statusCode: StatusCode.BadRequest,
           data: null,
-          message: errors,
+          message: error,
         })
       );
       return next();

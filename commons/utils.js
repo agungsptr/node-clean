@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const { StatusCode } = require("./constants");
+const { isEmpty } = require("./checks");
 
 const responseBuilder = ({ statusCode, message, data = null }) => {
   const status = statusCode === StatusCode.OK ? "Success" : "Failed";
@@ -73,21 +74,20 @@ const verifyJwt = (token, userSecretUuid, cb) => {
   });
 };
 
-const objHierarchyMapper = (obj, childs, value, i = 0) => {
-  if (i === childs.length - 1) {
-    obj[childs[i]] = value;
-  } else {
-    obj[childs[i]] = {};
-    obj = objHierarchyMapper(obj[childs[i]], childs, value, i + 1);
-  }
-  return obj;
-};
-
 const sanitizerPayload = (payload) => {
   delete payload.createdBy;
   delete payload.createdAt;
   delete payload.updatedAt;
   return payload;
+};
+
+const validatorSchema = (schema) => (payload) => {
+  const { error, value } = schema.validate(payload, { abortEarly: false });
+  const messages = !isEmpty(error) ? error.details.map((el) => el.message) : [];
+  return {
+    error: messages,
+    value,
+  };
 };
 
 module.exports = {
@@ -98,7 +98,7 @@ module.exports = {
   comparePassword,
   issueJwt,
   verifyJwt,
-  objHierarchyMapper,
-  sanitizerPayload,
   tokenSplitter,
+  sanitizerPayload,
+  validatorSchema,
 };
