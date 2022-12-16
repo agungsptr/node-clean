@@ -7,9 +7,7 @@ const setup = require("../../test/setup");
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
-let app;
-let user;
-let auth;
+let app, user, auth;
 const API_URL = "/api/user";
 
 describe("routes/users", () => {
