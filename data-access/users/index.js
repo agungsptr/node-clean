@@ -42,7 +42,7 @@ baseDataAccess.update = async (id, payload) => {
   }
 };
 
-baseDataAccess.findUserCredential = async (queries) => {
+const findUserCredential = async (queries) => {
   try {
     if ("_id" in queries) {
       ifFalseThrowError(isValidObjId(queries._id), "id is not valid");
@@ -63,4 +63,4 @@ baseDataAccess.findUserCredential = async (queries) => {
   }
 };
 
-module.exports = baseDataAccess;
+module.exports = { ...baseDataAccess, findUserCredential };

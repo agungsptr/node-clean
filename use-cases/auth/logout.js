@@ -1,26 +1,13 @@
-const usersDa = require("../../data-access/users");
-const { responseWithError } = require("../../commons/errors");
-const { StatusCode, ResponseMessage } = require("../../commons/constants");
-const { responseBuilder } = require("../../commons/utils");
+const users = require("../../data-access/users");
 const uuid = require("uuid");
 
-const logout = async (req, res, next) => {
-  try {
-    const user = await usersDa.findUserCredential({ _id: req.user.userId });
-    if (user) {
-      await usersDa.update(user.id, { secretUuid: uuid.v4() });
-    }
-    res.status(StatusCode.OK).send(
-      responseBuilder({
-        statusCode: StatusCode.OK,
-        data: null,
-        message: ResponseMessage.LoggedOut,
-      })
-    );
-    return next();
-  } catch (e) {
-    return responseWithError(res, e, StatusCode.BadRequest);
+const logout = async (payload) => {
+  const user = await users.findUserCredential({ _id: payload.userId });
+  if (user) {
+    await users.update(user.id, { secretUuid: uuid.v4() });
+    return true;
   }
+  return false;
 };
 
 module.exports = logout;
