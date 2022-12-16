@@ -5,11 +5,13 @@ const { StatusCode, ResponseMessage } = require("../../commons/constants");
 
 const create = async (req, res, next) => {
   try {
-    const data = await users.create({ ...payloadSanitizer(req.body) });
+    const payload = payloadSanitizer(req.body);
+    const data = await users.create(payload);
+
     res.status(StatusCode.OK).send(
       responseBuilder({
         statusCode: StatusCode.OK,
-        message: ResponseMessage.Loaded,
+        message: ResponseMessage.Added,
         data,
       })
     );

@@ -6,7 +6,9 @@ const { StatusCode, ResponseMessage } = require("../../commons/constants");
 const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const data = await users.update(id, payloadSanitizer(req.body));
+    const payload = payloadSanitizer(req.body);
+    const data = await users.update(id, payload);
+    
     res.status(StatusCode.OK).send(
       responseBuilder({
         statusCode: StatusCode.OK,
