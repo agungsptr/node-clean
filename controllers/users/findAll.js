@@ -6,6 +6,7 @@ const { StatusCode, ResponseMessage } = require("../../commons/constants");
 const findAll = async (req, res, next) => {
   try {
     const data = await users.findAll(req.query);
+    
     res.status(StatusCode.OK).send(
       responseBuilder({
         statusCode: StatusCode.OK,

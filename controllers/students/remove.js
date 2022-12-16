@@ -7,6 +7,7 @@ const remove = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = await students.remove(id);
+    
     res.status(StatusCode.OK).send(
       responseBuilder({
         statusCode: StatusCode.OK,

@@ -7,6 +7,7 @@ const findOne = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = await users.findOne(id);
+    
     res.status(StatusCode.OK).send(
       responseBuilder({
         statusCode: StatusCode.OK,
