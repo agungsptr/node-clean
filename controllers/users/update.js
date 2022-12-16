@@ -1,12 +1,12 @@
 const users = require("../../use-cases/users");
 const { responseWithError } = require("../../commons/errors");
-const { responseBuilder, payloadSanitizer } = require("../../commons/utils");
+const { responseBuilder, sanitizerPayload } = require("../../commons/utils");
 const { StatusCode, ResponseMessage } = require("../../commons/constants");
 
 const update = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const payload = payloadSanitizer(req.body);
+    const payload = sanitizerPayload(req.body);
     const data = await users.update(id, payload);
     
     res.status(StatusCode.OK).send(

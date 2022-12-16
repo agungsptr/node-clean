@@ -1,11 +1,11 @@
 const students = require("../../use-cases/students");
 const { responseWithError } = require("../../commons/errors");
-const { responseBuilder, payloadSanitizer } = require("../../commons/utils");
+const { responseBuilder, sanitizerPayload } = require("../../commons/utils");
 const { StatusCode, ResponseMessage } = require("../../commons/constants");
 
 const create = async (req, res, next) => {
   try {
-    const payload = payloadSanitizer(req.body);
+    const payload = sanitizerPayload(req.body);
     payload.createdBy = req.user;
     const data = await students.create(payload);
 
