@@ -70,7 +70,7 @@ const verifyJwt = (token, userSecretUuid, cb) => {
       }
       return cb(null, "invalid-token");
     }
-    return cb(decoded);
+    return cb(decoded, null);
   });
 };
 
