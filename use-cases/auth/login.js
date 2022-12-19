@@ -1,5 +1,4 @@
 const users = require("../../data-access/users");
-const { CustomError } = require("../../commons/errors");
 const {
   comparePassword,
   issueJwt,
@@ -8,6 +7,7 @@ const {
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
 const Joi = require("joi");
+const CustomError = require("../../commons/customError");
 
 const login = async (payload) => {
   const { username, password } = payload;

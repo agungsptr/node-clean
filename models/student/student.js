@@ -1,4 +1,4 @@
-const { CustomError } = require("../../commons/errors");
+const CustomError = require("../../commons/customError");
 
 const studentBuilder = (validator) => {
   return ({

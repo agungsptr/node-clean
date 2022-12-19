@@ -1,4 +1,4 @@
-const { repackageError, CustomError } = require("../../commons/errors");
+const { repackageError } = require("../../commons/errors");
 const { hashPassword, queriesBuilder } = require("../../commons/utils");
 const Users = require("../../db/models/users.model");
 const userBuilder = require("../../models/user");
@@ -8,6 +8,7 @@ const {
   isValidObjId,
   ifEmptyThrowError,
 } = require("../../commons/checks");
+const CustomError = require("../../commons/customError");
 const baseDataAccess = require("../base")({
   model: Users,
   modelName: "Users",

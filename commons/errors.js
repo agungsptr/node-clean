@@ -45,7 +45,7 @@ const responseWithError = (
 };
 
 module.exports = {
-  CustomError,
   repackageError,
   responseWithError,
+  logError,
 };
