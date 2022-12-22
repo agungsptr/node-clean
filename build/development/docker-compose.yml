@@ -8,7 +8,8 @@ services:
   db:
     container_name: node_clean-db
     image: mongo:latest
-    restart: always
+    env_file:
+      - ../../.env
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PW}
@@ -22,10 +23,11 @@ services:
 
   app:
     container_name: node_clean-app
-    image: agungsptr/node-clean:main
-    restart: always
+    image: agungsptr/node-clean:${TAG}
     depends_on:
       - db
+    env_file:
+      - ../../.env
     environment:
       NODE_ENV: ${NODE_ENV}
       APP_PORT: ${APP_PORT}
@@ -38,6 +40,7 @@ services:
       BYCRYPT_SALT: ${BYCRYPT_SALT}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       JWT_EXPIRED: ${JWT_EXPIRED}
+      RATE_LIMIT: ${RATE_LIMIT}
     command: >
       sh -c "npm run seed &&
              npm run dev"
