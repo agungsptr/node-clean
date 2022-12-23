@@ -15,13 +15,13 @@ if (fs.existsSync(path)) {
 fs.writeFileSync(
   path,
   `db.createUser({
-  user: "${config.mongo.MONGO_USER}",
-  pwd: "${config.mongo.MONGO_PW}",
-  roles: [
-    {
-      role: "readWrite",
-      db: "${config.mongo.MONGO_DBNAME}",
-    },
-  ],
-});`
+    user: "${config.mongo.MONGO_USER}",
+    pwd: "${config.mongo.MONGO_PW}",
+    roles: [
+      {
+        role: "readWrite",
+        db: "${config.mongo.MONGO_DBNAME}",
+      },
+    ],
+  });`
 );
