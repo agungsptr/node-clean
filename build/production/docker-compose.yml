@@ -23,7 +23,7 @@ services:
 
   app:
     container_name: node_clean-app
-    image: agungsptr/node-clean:main
+    image: agungsptr/node-clean:${TAG}
     depends_on:
       - db
     env_file:
