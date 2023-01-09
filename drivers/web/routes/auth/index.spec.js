@@ -1,8 +1,8 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
 const request = require("supertest");
-const usersDa = require("../../data-access/users");
-const setup = require("../../test/setup");
+const usersDa = require("../../../../data-access/users");
+const setup = require("../../../../test/setup");
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
