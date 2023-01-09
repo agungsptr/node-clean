@@ -1,7 +1,10 @@
-const auth = require("../../use-cases/auth");
-const { responseWithError } = require("../../commons/errors");
-const { StatusCode, ResponseMessage } = require("../../commons/constants");
-const { responseBuilder } = require("../../commons/utils");
+const auth = require("../../../../use-cases/auth");
+const { responseWithError } = require("../../../../commons/errors");
+const {
+  StatusCode,
+  ResponseMessage,
+} = require("../../../../commons/constants");
+const { responseBuilder } = require("../../../../commons/utils");
 
 const logout = async (req, res, next) => {
   try {

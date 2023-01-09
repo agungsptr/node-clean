@@ -1,7 +1,13 @@
-const students = require("../../use-cases/students");
-const { responseWithError } = require("../../commons/errors");
-const { responseBuilder, sanitizerPayload } = require("../../commons/utils");
-const { StatusCode, ResponseMessage } = require("../../commons/constants");
+const students = require("../../../../use-cases/students");
+const { responseWithError } = require("../../../../commons/errors");
+const {
+  responseBuilder,
+  sanitizerPayload,
+} = require("../../../../commons/utils");
+const {
+  StatusCode,
+  ResponseMessage,
+} = require("../../../../commons/constants");
 
 const create = async (req, res, next) => {
   try {
