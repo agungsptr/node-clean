@@ -13,6 +13,5 @@ yarn-error.log*
 .nyc_output/
 test/output/*
 .env
-yarn.lock
 package-lock.json
 mongo-init.js
