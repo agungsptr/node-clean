@@ -42,6 +42,7 @@
       <a href="#usage">Usage</a>
       <ul>
         <li><a href="#web-services">Web Services</a></li>
+        <li><a href="#grpc">gRPC</a></li>
         <li><a href="#unit-test">Unit Test</a></li>
         <li><a href="#coverage-test">Coverage Test</a></li>
       </ul>
