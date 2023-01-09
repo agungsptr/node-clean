@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service AppServices {
+  rpc UserCreate (User) returns (User) {};
+}
+
+message User {
+  string id=1;
+  string firstName=2;
+  string lastName=3;
+  string username=4;
+  string password=5;
+  string createdAt=6;
+  string updatedAt=7;
+}
+
+

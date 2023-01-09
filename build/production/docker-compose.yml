@@ -45,6 +45,35 @@ services:
       sh -c "npm run seed &&
              npm start"
     ports:
-      - ${APP_PORT}:7000
+      - ${APP_PORT}:${APP_PORT}
+    networks:
+      - node_clean-network
+
+  app_grpc:
+    container_name: node_clean-app_grpc
+    image: agungsptr/node-clean:${TAG}
+    depends_on:
+      - db
+    env_file:
+      - ../../.env
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      APP_PORT: ${APP_PORT}
+      APP_NAME: ${APP_NAME}
+      MONGO_USER: ${MONGO_USER}
+      MONGO_PW: ${MONGO_PW}
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_DBNAME: ${MONGO_DBNAME}
+      MONGO_HOST: node_clean-db
+      BYCRYPT_SALT: ${BYCRYPT_SALT}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_EXPIRED: ${JWT_EXPIRED}
+      RATE_LIMIT: ${RATE_LIMIT}
+      GRPC_PORT: ${GRPC_PORT}
+    command: >
+      sh -c "npm run seed &&
+             npm run start-grpc"
+    ports:
+      - ${GRPC_PORT}:${GRPC_PORT}
     networks:
       - node_clean-network

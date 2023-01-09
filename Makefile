@@ -33,6 +33,9 @@ start:
 dev:
 	@yarn dev
 
+start-grpc:
+	@yarn start-grpc
+
 # Database
 seed:
 	@echo "Seeding database..."

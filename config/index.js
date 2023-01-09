@@ -22,4 +22,5 @@ module.exports = {
   isProduction: process.env.NODE_ENV === "production",
   isTest: process.env.NODE_ENV === "test",
   rateLimit: parseInt(process.env.RATE_LIMIT) || 15,
+  GRPC_PORT: process.env.GRPC_PORT,
 };

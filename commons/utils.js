@@ -78,6 +78,8 @@ const sanitizerPayload = (payload) => {
   delete payload.createdBy;
   delete payload.createdAt;
   delete payload.updatedAt;
+  delete payload.id;
+  delete payload._id;
   return payload;
 };
 
