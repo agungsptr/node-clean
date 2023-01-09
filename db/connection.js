@@ -8,6 +8,7 @@ const port = config.mongo.MONGO_PORT;
 const host = config.mongo.MONGO_HOST;
 const uri = `mongodb://${username}:${password}@${host}:${port}/${dbName}`;
 mongoose.connect(uri);
+mongoose.set("strictQuery", false);
 
 /** Signal connection */
 mongoose.connection
