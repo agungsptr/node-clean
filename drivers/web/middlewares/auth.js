@@ -1,12 +1,12 @@
-const { ifEmptyThrowError, isEmpty } = require("../commons/checks");
-const { StatusCode, ResponseMessage } = require("../commons/constants");
-const { responseWithError } = require("../commons/errors");
+const { ifEmptyThrowError, isEmpty } = require("../../../commons/checks");
+const { StatusCode, ResponseMessage } = require("../../../commons/constants");
+const { responseWithError } = require("../../../commons/errors");
 const {
   verifyJwt,
   responseBuilder,
   tokenSplitter,
-} = require("../commons/utils");
-const userDa = require("../data-access/users");
+} = require("../../../commons/utils");
+const userDa = require("../../../data-access/users");
 const jwt = require("jsonwebtoken");
 
 const unAuthRes = (res) => {
