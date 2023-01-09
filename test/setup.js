@@ -1,6 +1,6 @@
 const { urlencoded, json } = require("body-parser");
 const express = require("express");
-const routes = require("../routes");
+const routes = require("../drivers/web/routes");
 
 const beforeAction = async () => {
   const app = express();
