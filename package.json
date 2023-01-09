@@ -7,6 +7,7 @@
     "start": "NODE_ENV=production node ./drivers/web",
     "dev": "nodemon ./drivers/web",
     "start-grpc": "NODE_ENV=production node ./drivers/grpc",
+    "grpc-client": "NODE_ENV=test node ./drivers/grpc/client.example.js",
     "seed": "node ./db/seeds",
     "lint": "eslint .",
     "test": "NODE_ENV=test mocha --exclude ./node_modules/**/*.spec.js --exit ./**/*.spec.js",
