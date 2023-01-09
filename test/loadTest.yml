@@ -20,4 +20,12 @@ scenarios:
           json:
             username: "agungsptr"
             password: "24434"
+          capture:
+            - json: "$.data.token"
+              as: "token"
       - think: 1
+      - get:
+          url: "/users"
+          headers: 
+            Authorization: "{{ token }}"
+
