@@ -5,9 +5,7 @@ const config = require("../../config");
 
 const getServer = () => {
   const server = new grpc.Server();
-  server.addService(protoLoader.AppServices.service, {
-    userCreate: controllers.users.create,
-  });
+  server.addService(protoLoader.AppServices.service, controllers);
   return server;
 };
 

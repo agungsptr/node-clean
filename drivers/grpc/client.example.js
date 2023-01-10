@@ -20,3 +20,22 @@ client.userCreate(
     });
   }
 );
+
+client.studentCreate(
+  {
+    name: "fulanah",
+    age: 21,
+    grade: 1,
+    perfect: true,
+    createdBy: {
+      userId: "63bcea3635550f2cdc920c49",
+      username: "agungsptr",
+    },
+  },
+  (err, res) => {
+    console.log({
+      error: err,
+      result: res,
+    });
+  }
+);

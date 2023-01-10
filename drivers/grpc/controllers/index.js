@@ -1,5 +1,7 @@
 const users = require("./users");
+const students = require("./students");
 
 module.exports = {
-  users,
+  ...users,
+  ...students,
 };

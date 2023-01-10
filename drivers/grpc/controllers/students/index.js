@@ -1,9 +1,9 @@
-const users = require("../../../../use-cases/users");
+const students = require("../../../../use-cases/students");
 const serializer = require("./serializer");
 
 const create = async (call, callback) => {
   const payload = serializer(call);
-  await users
+  await students
     .create(payload)
     .then((res) => {
       callback(null, res);
@@ -14,9 +14,9 @@ const create = async (call, callback) => {
 };
 
 /**
- * name of object ex: "userCreate" bellow 
+ * name of object ex: "studentCreate" bellow 
  * must follow service name in proto file
  */
 module.exports = {
-  userCreate: create,
+  studentCreate: create,
 };

@@ -1,7 +1,11 @@
 syntax = "proto3";
 
 service AppServices {
+  // Users
   rpc UserCreate (User) returns (User) {};
+
+  // Students
+  rpc StudentCreate (Student) returns (Student) {};
 }
 
 message User {
@@ -14,4 +18,20 @@ message User {
   string updatedAt=7;
 }
 
+message Student {
+  string id=1;
+  string name=2;
+  string age=3;
+  int32 grade=4;
+  bool perfect=5;
+
+  message CreatedBy {
+    string userId=1;
+    string username=2;
+  }
+  CreatedBy createdBy=6;
+  
+  string createdAt=7;
+  string updatedAt=8;
+}
 

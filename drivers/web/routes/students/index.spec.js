@@ -29,7 +29,7 @@ describe("routes/students", () => {
       name: "howie",
       age: 12,
       grade: 3,
-      prefect: true,
+      perfect: true,
       createdBy: {
         userId: `${user.id}`,
         username: user.username,
@@ -39,7 +39,7 @@ describe("routes/students", () => {
       name: "bill",
       age: 13,
       grade: 3,
-      prefect: false,
+      perfect: false,
       createdBy: {
         userId: `${user.id}`,
         username: user.username,
@@ -90,7 +90,7 @@ describe("routes/students", () => {
       grade: 1,
       name: "agungsptr",
       age: 17,
-      prefect: true,
+      perfect: true,
       createdBy: {
         userId: `${user.id}`,
         username: user.username,
@@ -115,7 +115,7 @@ describe("routes/students", () => {
       grade: 2,
       name: "agungsptr-edit",
       age: 18,
-      prefect: false,
+      perfect: false,
     };
     const req = await request(app)
       .patch(`${API_URL}/${list[0].id}`)
