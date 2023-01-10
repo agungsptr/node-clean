@@ -65,7 +65,7 @@ I am very happy if you are helped by using this template.
 
 ### Features
 
-* REST Api
+* RESTful
 * gRPC
 * Authentication using middleware
 * CRUDS Users
