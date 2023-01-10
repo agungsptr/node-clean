@@ -9,7 +9,7 @@ describe("models/student", () => {
       studentBuilder({
         grade: "twelve",
         age: "twleve",
-        prefect: 12,
+        perfect: 12,
         createdBy: {
           userId: "63587db7dc752a40e09721d7",
           username: "user-editor",
@@ -59,7 +59,7 @@ describe("models/student", () => {
     expect(input).to.equal(actual);
   });
 
-  it("sets prefect to false by default", () => {
+  it("sets perfect to false by default", () => {
     const student = studentBuilder({
       name: "howie",
       createdBy: {
@@ -67,7 +67,7 @@ describe("models/student", () => {
         username: "user-editor",
       },
     });
-    const input = student.prefect;
+    const input = student.perfect;
     const actual = false;
     expect(input).to.equal(actual);
   });

@@ -9,7 +9,7 @@ const seedDatabase = async () => {
       name: "agung1",
       age: 17,
       grade: 3,
-      prefect: true,
+      perfect: true,
       createdBy: {
         userId: user.id,
         username: user.username,

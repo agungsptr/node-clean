@@ -5,7 +5,7 @@ const StudentsSchema = new Schema({
   name: String,
   age: Number,
   grade: Number,
-  prefect: { type: Boolean, default: false },
+  perfect: { type: Boolean, default: false },
   createdBy: Object,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

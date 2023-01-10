@@ -4,7 +4,7 @@ module.exports = Joi.object().keys({
   name: Joi.string().required(),
   age: Joi.number(),
   grade: Joi.number(),
-  prefect: Joi.boolean(),
+  perfect: Joi.boolean(),
   createdBy: Joi.object({
     userId: Joi.string().required(),
     username: Joi.string().required(),

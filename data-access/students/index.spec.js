@@ -21,7 +21,7 @@ describe("data-access/students", () => {
       name: "howie",
       age: 12,
       grade: 3,
-      prefect: true,
+      perfect: true,
       createdBy: {
         userId: `${user.id}`,
         username: user.username,
@@ -31,7 +31,7 @@ describe("data-access/students", () => {
       name: "bill",
       age: 13,
       grade: 3,
-      prefect: false,
+      perfect: false,
       createdBy: {
         userId: `${user.id}`,
         username: user.username,
@@ -86,7 +86,7 @@ describe("data-access/students", () => {
       name: "felix",
       grade: 2,
       age: 6,
-      prefect: false,
+      perfect: false,
       createdBy: {
         userId: `${user.id}`,
         username: user.username,
