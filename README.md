@@ -55,7 +55,6 @@
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 This project aims to be used as a base backend project which implements clean architecture.
