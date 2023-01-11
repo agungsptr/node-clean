@@ -66,10 +66,11 @@ I am very happy if you are helped by using this template.
 
 * RESTful
 * gRPC
-* Authentication using middleware
-* CRUDS Users
-* CRUDS Students
-* Login/Logout
+* Authentication using JWT
+* CRUDS Resources
+* Unit Test
+* Coverage Test
+* Load Test
 
 ### Built With
 
@@ -217,9 +218,9 @@ After running the gRPC server, you can run example gRPC client, using this comma
 
 The tests carried out include:
 
-* Data Access
-* Model
-* Route
+* Data Access (./data-access)
+* Models (./models)
+* Routes (./drivers/web/routes)
 
 ### Coverage Test
 
