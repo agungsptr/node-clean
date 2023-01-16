@@ -15,7 +15,7 @@ if (require.main === module) {
     `0.0.0.0:${config.GRPC_PORT}`,
     grpc.ServerCredentials.createInsecure(),
     (error, port) => {
-      console.log(`Server running at http://0.0.0.0:${config.GRPC_PORT}`);
+      console.log(`gRPC running at 0.0.0.0:${config.GRPC_PORT}`);
       server.start();
     }
   );

@@ -1,8 +1,9 @@
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("./protoLoader");
+const config = require("../../config");
 
 const client = new protoLoader.AppServices(
-  "localhost:50051",
+  `localhost:${config.GRPC_PORT}`,
   grpc.credentials.createInsecure()
 );
 
