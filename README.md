@@ -199,7 +199,7 @@ For more request examples please use this postman collection [here](./NodeClean.
 * Start gRPC Server
 
 ```sh
-  make start-grpc
+  make grpc
 ```
 
 After running the gRPC server, you can run example gRPC client, using this command
@@ -207,7 +207,7 @@ After running the gRPC server, you can run example gRPC client, using this comma
 * Start gRPC Client
 
 ```sh
-  yarn grpc-client
+  make grpc_client
 ```
 
 ### Unit Test
@@ -225,13 +225,13 @@ The tests carried out include:
 ### Coverage Test
 
 ```sh
-  make coverage-test
+  make coverage_test
 ```
 
 ### Load Test
 
 ```sh
-  make load-test
+  make load_test
 ```
 
 ## Contributing

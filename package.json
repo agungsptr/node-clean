@@ -7,14 +7,14 @@
   "scripts": {
     "start": "NODE_ENV=production node ./drivers/web",
     "dev": "nodemon ./drivers/web",
-    "start-grpc": "NODE_ENV=production node ./drivers/grpc",
+    "grpc": "NODE_ENV=production node ./drivers/grpc",
     "grpc_client": "NODE_ENV=test node ./drivers/grpc/client.example.js",
     "seed": "node ./db/seeds",
     "lint": "eslint .",
     "test": "NODE_ENV=test mocha --exclude ./node_modules/**/*.spec.js --exit ./**/*.spec.js",
-    "coverage-test": "NODE_ENV=test nyc --reporter=text npm run test",
-    "load-test": "NODE_ENV=test artillery run --dotenv ./.env --output ./test/output/loadTest.json ./test/loadTest.yml",
-    "load-test_result": "artillery report --output ./test/output/report.html ./test/output/loadTest.json"
+    "coverage_test": "NODE_ENV=test nyc --reporter=text npm run test",
+    "load_test": "NODE_ENV=test artillery run --dotenv ./.env --output ./test/output/loadTest.json ./test/loadTest.yml",
+    "load_test-result": "artillery report --output ./test/output/report.html ./test/output/loadTest.json"
   },
   "keywords": [
     "nodejs",

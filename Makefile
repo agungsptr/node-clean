@@ -33,10 +33,10 @@ start:
 dev:
 	@yarn dev
 
-start-grpc:
-	@yarn start-grpc
+grpc:
+	@yarn grpc
 
-start-grpc_client:
+grpc_client:
 	@yarn grpc_client
 
 # Database
@@ -50,14 +50,14 @@ test:
 	@echo "Unit Testing"
 	@yarn test
 
-coverage-test:
+coverage_test:
 	@echo "Coverage Testing"
-	@yarn coverage-test
+	@yarn coverage_test
 
-load-test:
+load_test:
 	@echo "Testing performance"
 	@echo "Make sure that you have run the app before!"
-	@yarn load-test
-	@yarn load-test_result
+	@yarn load_test
+	@yarn load_test-result
 
 .PHONY: all build test
