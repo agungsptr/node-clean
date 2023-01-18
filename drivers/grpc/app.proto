@@ -1,4 +1,5 @@
 syntax = "proto3";
+package app;
 
 service AppServices {
   // Users
@@ -10,12 +11,12 @@ service AppServices {
 
 message User {
   string id=1;
-  string firstName=2;
-  string lastName=3;
+  string first_name=2;
+  string last_name=3;
   string username=4;
   string password=5;
-  string createdAt=6;
-  string updatedAt=7;
+  string created_at=6;
+  string updated_at=7;
 }
 
 message Student {
@@ -26,12 +27,12 @@ message Student {
   bool perfect=5;
 
   message CreatedBy {
-    string userId=1;
+    string user_id=1;
     string username=2;
   }
-  CreatedBy createdBy=6;
+  CreatedBy created_by=6;
   
-  string createdAt=7;
-  string updatedAt=8;
+  string created_at=7;
+  string updated_at=8;
 }
 

@@ -2,19 +2,19 @@ const students = require("../../../../use-cases/students");
 const serializer = require("./serializer");
 
 const create = async (call, callback) => {
-  const payload = serializer(call);
+  const payload = serializer.fromGrpc(call);
   await students
     .create(payload)
     .then((res) => {
-      callback(null, res);
+      callback(null, serializer.toGrpc(res));
     })
     .catch((err) => {
-      callback(null, err);
+      callback(err, null);
     });
 };
 
 /**
- * name of object ex: "studentCreate" bellow 
+ * name of object ex: "studentCreate" bellow
  * must follow service name in proto file
  */
 module.exports = {

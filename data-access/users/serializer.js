@@ -1,13 +1,14 @@
 const { serializer } = require("../../commons/utils");
+const moment = require("moment");
 
-const _serializeSingle = (user) => {
+const _serializeSingle = (data) => {
   return {
-    id: user._id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    username: user.username,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
+    id: data._id,
+    firstName: data.firstName,
+    lastName: data.lastName,
+    username: data.username,
+    createdAt: moment(data.createdAt).toISOString(),
+    updatedAt: moment(data.updatedAt).toISOString(),
   };
 };
 

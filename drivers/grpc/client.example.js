@@ -9,14 +9,14 @@ const client = new protoLoader.AppServices(
 
 client.userCreate(
   {
-    firstName: "fulan",
-    lastName: "bin fulan",
-    username: "sifulan",
+    first_name: "",
+    last_name: "bin fulan",
+    username: "",
     password: "123456",
   },
   (err, res) => {
     console.log({
-      error: err,
+      error: JSON.stringify(err),
       result: res,
     });
   }
@@ -28,14 +28,14 @@ client.studentCreate(
     age: 21,
     grade: 1,
     perfect: true,
-    createdBy: {
-      userId: "63bcea3635550f2cdc920c49",
+    created_by: {
+      user_id: "63bcea3635550f2cdc920c49",
       username: "agungsptr",
     },
   },
   (err, res) => {
     console.log({
-      error: err,
+      error: JSON.stringify(err),
       result: res,
     });
   }
