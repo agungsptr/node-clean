@@ -2,16 +2,16 @@ const grpc = require("@grpc/grpc-js");
 const protoLoader = require("./protoLoader");
 const config = require("../../config");
 
-const client = new protoLoader.AppServices(
+const client = new protoLoader.App(
   `localhost:${config.GRPC_PORT}`,
   grpc.credentials.createInsecure()
 );
 
 client.userCreate(
   {
-    first_name: "",
+    first_name: "fulan",
     last_name: "bin fulan",
-    username: "",
+    username: "sifulan",
     password: "123456",
   },
   (err, res) => {

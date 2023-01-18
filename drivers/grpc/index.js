@@ -5,7 +5,7 @@ const config = require("../../config");
 
 const getServer = () => {
   const server = new grpc.Server();
-  server.addService(protoLoader.AppServices.service, controllers);
+  server.addService(protoLoader.App.service, controllers);
   return server;
 };
 
