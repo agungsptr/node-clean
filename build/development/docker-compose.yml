@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 networks:
   node_clean-network:
@@ -21,8 +21,8 @@ services:
     networks:
       - node_clean-network
 
-  app:
-    container_name: node_clean-app
+  webservice:
+    container_name: node_clean-webservice
     image: agungsptr/node-clean:${TAG}
     depends_on:
       - db
@@ -48,9 +48,9 @@ services:
       - ${APP_PORT}:${APP_PORT}
     networks:
       - node_clean-network
-  
-  app_grpc:
-    container_name: node_clean-app_grpc
+
+  grpc:
+    container_name: node_clean-grpc
     image: agungsptr/node-clean:${TAG}
     depends_on:
       - db
@@ -71,8 +71,7 @@ services:
       RATE_LIMIT: ${RATE_LIMIT}
       GRPC_PORT: ${GRPC_PORT}
     command: >
-      sh -c "npm run seed &&
-             npm run start-grpc"
+      sh -c "npm run grpc"
     ports:
       - ${GRPC_PORT}:${GRPC_PORT}
     networks:
