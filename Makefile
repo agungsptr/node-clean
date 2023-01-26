@@ -3,6 +3,13 @@ include .env
 TAG ?= $(shell git tag --sort=creatordate | tail -1)
 COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml
 
+# Full auto
+auto:
+	@echo "Building docker"
+	docker build -q -t agungsptr/node-clean:$(TAG) .
+	@make compose-up
+	@scripts/wait-for-it.sh 0.0.0.0:$(MONGO_PORT) -- echo "Database is ready"
+	@scripts/wait-for-it.sh 0.0.0.0:$(APP_PORT) -- echo "App is ready"
 
 # Infrastructure
 build:

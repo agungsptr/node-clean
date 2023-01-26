@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 
 module.exports = {
   APP_NAME: process.env.APP_NAME,
@@ -23,4 +24,5 @@ module.exports = {
   isTest: process.env.NODE_ENV === "test",
   rateLimit: parseInt(process.env.RATE_LIMIT) || 15,
   GRPC_PORT: process.env.GRPC_PORT,
+  rootPath: path.resolve(__dirname, ".."),
 };

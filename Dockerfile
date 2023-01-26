@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM keymetrics/pm2:18-alpine
 
 WORKDIR /app
 
@@ -25,9 +25,15 @@ COPY models /app/models
 COPY test /app/test
 COPY use-cases /app/use-cases
 COPY package.json /app
+COPY scripts/start.sh /app
+COPY scripts/start.dev.sh /app
+COPY scripts/wait-for-it.sh /app
 
-RUN npm install && \
-    npm i -g nodemon
+RUN chmod +x wait-for-it.sh
+RUN chmod +x start.dev.sh
+RUN chmod +x start.sh
+
+RUN npm install
 
 RUN apk add --no-cache \
     curl \

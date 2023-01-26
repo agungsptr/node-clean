@@ -21,36 +21,8 @@ services:
     networks:
       - node_clean-network
 
-  webservice:
-    container_name: node_clean-webservice
-    image: agungsptr/node-clean:${TAG}
-    depends_on:
-      - db
-    env_file:
-      - ../../.env
-    environment:
-      NODE_ENV: ${NODE_ENV}
-      APP_PORT: ${APP_PORT}
-      APP_NAME: ${APP_NAME}
-      MONGO_USER: ${MONGO_USER}
-      MONGO_PW: ${MONGO_PW}
-      MONGO_PORT: ${MONGO_PORT}
-      MONGO_DBNAME: ${MONGO_DBNAME}
-      MONGO_HOST: node_clean-db
-      BYCRYPT_SALT: ${BYCRYPT_SALT}
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
-      JWT_EXPIRED: ${JWT_EXPIRED}
-      RATE_LIMIT: ${RATE_LIMIT}
-    command: >
-      sh -c "npm run seed &&
-             npm run dev"
-    ports:
-      - ${APP_PORT}:${APP_PORT}
-    networks:
-      - node_clean-network
-
-  grpc:
-    container_name: node_clean-grpc
+  app:
+    container_name: node_clean-app
     image: agungsptr/node-clean:${TAG}
     depends_on:
       - db
@@ -71,8 +43,9 @@ services:
       RATE_LIMIT: ${RATE_LIMIT}
       GRPC_PORT: ${GRPC_PORT}
     command: >
-      sh -c "npm run grpc"
+      sh -c "./start.dev.sh"
     ports:
+      - ${APP_PORT}:${APP_PORT}
       - ${GRPC_PORT}:${GRPC_PORT}
     networks:
       - node_clean-network
