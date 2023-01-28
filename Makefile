@@ -1,4 +1,4 @@
-TAG ?= $(shell git tag --sort=creatordate | tail -1)
+TAG := $(shell git tag --sort=creatordate | tail -1)
 COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml
 
 
@@ -10,12 +10,12 @@ compose-up:
 	@echo "RUNNING ON [$(NODE_ENV)] MODE"
 	@node db/dbConfigGenerator.js $(NODE_ENV)
 	@echo "Starting services..."
-	@TAG=$(TAG) $(COMPOSE) down -v  || true
+	@TAG=$(TAG) $(COMPOSE) down -v || true
 	@TAG=$(TAG) $(COMPOSE) up -d --force-recreate
 
 compose-down: 
 	@echo "RUNNING ON [$(NODE_ENV)] MODE"
-	@$(COMPOSE) down -v  || true
+	@TAG=$(TAG) $(COMPOSE) down -v || true
 
 infra:
 	@echo "RUNNING ON [$(NODE_ENV)] MODE"
@@ -25,12 +25,13 @@ infra:
 	@TAG=$(TAG) $(COMPOSE) up -d --force-recreate db
 
 auto:
+	@echo "Turning off all containers"
+	@make compose-down
 	@echo "Building docker"
 	docker build -q -t agungsptr/node-clean:$(TAG) .
 	@make compose-up
 	@scripts/wait-for-it.sh 0.0.0.0:$(MONGO_PORT) -- echo "Database is ready"
 	@scripts/wait-for-it.sh 0.0.0.0:$(APP_PORT) -- echo "App is ready"
-
 
 # Application
 start:
@@ -65,3 +66,5 @@ load_test:
 	@echo "Make sure that you have run the app before!"
 	@yarn load_test
 	@yarn load_test-result
+
+.PHONY: build test
