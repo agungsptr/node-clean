@@ -17,7 +17,7 @@ const createLogger = () => {
     transports: [
       new winston.transports.File({
         level: "silly",
-        filename: `logs/${moment().format("YYYY/MM/DD")}.log`,
+        filename: `logs/app/${moment().format("YYYY/MM/DD")}.log`,
       }),
     ],
   });

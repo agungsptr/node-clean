@@ -1,15 +1,6 @@
-include .env
-
 TAG ?= $(shell git tag --sort=creatordate | tail -1)
 COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml
 
-# Full auto
-auto:
-	@echo "Building docker"
-	docker build -q -t agungsptr/node-clean:$(TAG) .
-	@make compose-up
-	@scripts/wait-for-it.sh 0.0.0.0:$(MONGO_PORT) -- echo "Database is ready"
-	@scripts/wait-for-it.sh 0.0.0.0:$(APP_PORT) -- echo "App is ready"
 
 # Infrastructure
 build:
@@ -32,6 +23,14 @@ infra:
 	@echo "Starting DB service..."
 	@TAG=$(TAG) $(COMPOSE) down -v  || true
 	@TAG=$(TAG) $(COMPOSE) up -d --force-recreate db
+
+auto:
+	@echo "Building docker"
+	docker build -q -t agungsptr/node-clean:$(TAG) .
+	@make compose-up
+	@scripts/wait-for-it.sh 0.0.0.0:$(MONGO_PORT) -- echo "Database is ready"
+	@scripts/wait-for-it.sh 0.0.0.0:$(APP_PORT) -- echo "App is ready"
+
 
 # Application
 start:
@@ -66,5 +65,3 @@ load_test:
 	@echo "Make sure that you have run the app before!"
 	@yarn load_test
 	@yarn load_test-result
-
-.PHONY: all build test
