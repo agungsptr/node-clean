@@ -1,37 +1,44 @@
 TAG := $(shell git tag --sort=creatordate | tail -1)
-COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml
+COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml --log-level ERROR
 
 
 # Infrastructure
 build:
 	docker build -t agungsptr/node-clean:$(TAG) .
 
-compose-up: 
-	@echo "RUNNING ON [$(NODE_ENV)] MODE"
+compose-up:
 	@node db/dbConfigGenerator.js $(NODE_ENV)
 	@echo "Starting services..."
 	@TAG=$(TAG) $(COMPOSE) down -v || true
 	@TAG=$(TAG) $(COMPOSE) up -d --force-recreate
 
-compose-down: 
-	@echo "RUNNING ON [$(NODE_ENV)] MODE"
+compose-down:
 	@TAG=$(TAG) $(COMPOSE) down -v || true
 
 infra:
-	@echo "RUNNING ON [$(NODE_ENV)] MODE"
 	@node db/dbConfigGenerator.js $(NODE_ENV)
 	@echo "Starting DB service..."
-	@TAG=$(TAG) $(COMPOSE) down -v  || true
+	@TAG=$(TAG) $(COMPOSE) down -v || true
 	@TAG=$(TAG) $(COMPOSE) up -d --force-recreate db
 
 auto:
-	@echo "Turning off all containers"
-	@make compose-down
-	@echo "Building docker"
+	@echo "Turning off all containers..."
+	@make -s compose-down
+	@echo "Building docker..."
 	docker build -q -t agungsptr/node-clean:$(TAG) .
-	@make compose-up
-	@scripts/wait-for-it.sh 0.0.0.0:$(MONGO_PORT) -- echo "Database is ready"
-	@scripts/wait-for-it.sh 0.0.0.0:$(APP_PORT) -- echo "App is ready"
+	@make -s compose-up
+	@make -s wait-db
+	@make -s wait-app
+
+wait-db:
+	@echo "Checking database is ready..."
+	@scripts/wait-for-it.sh 0.0.0.0:$(MONGO_PORT)
+	@echo "Database is ready"
+
+wait-app:
+	@echo "Checking app  ready..."
+	@scripts/wait-for-it.sh 0.0.0.0:$(APP_PORT) 
+	@echo "App is ready"
 
 # Application
 start:
@@ -52,18 +59,20 @@ seed:
 	@NODE_ENV=test node ./db/seeds/index.js
 	@echo "Seed done."
 
-# Unit Test
+# Test
 test:
-	@echo "Unit Testing"
+	@make -s wait-db
+	@echo "Starting unit test..."
 	@yarn test
 
 coverage_test:
-	@echo "Coverage Testing"
+	@echo "Starting coverage test..."
 	@yarn coverage_test
 
 load_test:
-	@echo "Testing performance"
-	@echo "Make sure that you have run the app before!"
+	@make -s wait-db
+	@make -s wait-app
+	@echo "Starting performance test..."
 	@yarn load_test
 	@yarn load_test-result
 
