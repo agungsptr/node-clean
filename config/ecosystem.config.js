@@ -1,30 +1,30 @@
-const config = require("./index");
-
 module.exports = {
   apps: [
     {
       name: "webservice",
-      script: `${config.rootPath}/drivers/web`,
+      script: "drivers/web",
       instances: 1,
       autorestart: true,
       watch: true,
-      ignore_watch: [`${config.rootPath}/logs`],
+      ignore_watch: ["logs"],
       watch_options: {
         followSymlinks: false,
       },
-      log_file: `${config.rootPath}/logs/pm2/webservice.log`,
+      out_file: "logs/pm2/webservice-out.log",
+      error_file: "logs/pm2/webservice-error.log",
     },
     {
       name: "grpc",
-      script: `${config.rootPath}/drivers/grpc`,
+      script: "drivers/grpc",
       instances: 1,
       autorestart: true,
       watch: true,
-      ignore_watch: [`${config.rootPath}/logs`],
+      ignore_watch: ["logs"],
       watch_options: {
         followSymlinks: false,
       },
-      log_file: `${config.rootPath}/logs/pm2/grpc.log`,
+      out_file: "logs/pm2/grpc-out.log",
+      error_file: "logs/pm2/grpc-error.log",
     },
   ],
 };
