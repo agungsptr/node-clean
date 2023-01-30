@@ -3,10 +3,10 @@ module.exports = {
     {
       name: "webservice",
       script: "drivers/web",
-      instances: 1,
+      instances: 2,
       autorestart: true,
       watch: true,
-      ignore_watch: ["logs"],
+      ignore_watch: ["logs", "node_modules"],
       watch_options: {
         followSymlinks: false,
       },
@@ -19,7 +19,7 @@ module.exports = {
       instances: 1,
       autorestart: true,
       watch: true,
-      ignore_watch: ["logs"],
+      ignore_watch: ["logs", "node_modules"],
       watch_options: {
         followSymlinks: false,
       },
