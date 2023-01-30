@@ -27,17 +27,17 @@ describe("data-access/users", () => {
     expect(result.length).to.equal(0);
   });
 
-  it("lists users", async () => {
+  it("list users", async () => {
     const result = await usersDa.findAll();
     expect(result.length).to.equal(1);
   });
 
-  it("find single user by id", async () => {
+  it("find a user by id", async () => {
     const result = await usersDa.findOne(user.id);
     expect(result.id).to.eql(user.id);
   });
 
-  it("insert a user", async () => {
+  it("insert user", async () => {
     const userData = {
       firstName: "first",
       lastName: "last",
@@ -49,6 +49,14 @@ describe("data-access/users", () => {
       lastName: newUser.lastName,
       username: newUser.username,
     }).to.eql(userData);
+  });
+
+  it("throw error if insert user with invalid payload", async () => {
+    const invalid = {
+      firstName: "abd",
+      lastName: "rahman",
+    };
+    expect(usersDa.create(invalid)).to.eventually.be.rejected;
   });
 
   it("update user", async () => {

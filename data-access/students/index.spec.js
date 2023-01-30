@@ -5,7 +5,7 @@ const usersDa = require("../users");
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
-let user;
+let user, student;
 
 describe("data-access/students", () => {
   beforeEach(async () => {
@@ -17,7 +17,7 @@ describe("data-access/students", () => {
       username: "agungsptr",
       password: "24434",
     });
-    await studentsDa.create({
+    student = await studentsDa.create({
       name: "howie",
       age: 12,
       grade: 3,
@@ -51,13 +51,13 @@ describe("data-access/students", () => {
     expect(input).to.equal(actual);
   });
 
-  it("lists students", async () => {
+  it("list students", async () => {
     const input = await studentsDa.findAll();
     const actual = 2;
     expect(input.length).to.equal(actual);
   });
 
-  it("find single student by id", async () => {
+  it("find student by id", async () => {
     const students = await studentsDa.findAll();
     const id = students[0].id;
 
@@ -67,7 +67,7 @@ describe("data-access/students", () => {
     expect(input).to.eql(actual);
   });
 
-  it("inserts a student", async () => {
+  it("insert student", async () => {
     const felix = {
       name: "felix",
       grade: 2,
@@ -95,7 +95,7 @@ describe("data-access/students", () => {
     expect(obj).to.eql(actual);
   });
 
-  it("throws error if inserts a student with invalid payload", async () => {
+  it("throw error if insert student with invalid payload", async () => {
     const invalid = {
       name: "bill",
       grade: "INSERT POISON INTO THIS",
@@ -103,7 +103,13 @@ describe("data-access/students", () => {
     expect(studentsDa.create(invalid)).to.eventually.be.rejected;
   });
 
-  it("deletes a student", async () => {
+  it("update student", async () => {
+    await studentsDa.update(student.id, { name: "updated name" });
+    const result = await studentsDa.findOne(student.id);
+    expect(result.name).to.eql("updated name");
+  });
+
+  it("delete student", async () => {
     const students = await studentsDa.findAll();
     const id = students[0].id.toString();
     const validInput = await studentsDa.remove(id);
