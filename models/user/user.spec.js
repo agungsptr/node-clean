@@ -1,20 +1,11 @@
 const chai = require("chai");
 const expect = chai.expect;
-const userBuilder = require("./index");
+const builder = require("./index");
 
 describe("models/user", () => {
-  it("throws error if invalid payload", () => {
+  it("throw error if firstName not found", () => {
     expect(() => {
-      userBuilder({
-        firstName: "abd",
-        lastName: "rahman",
-      });
-    }).to.throw("\"username\" is required,\"password\" is required");
-  });
-
-  it("must have firstName", () => {
-    expect(() => {
-      userBuilder({
+      builder({
         lastName: "rahman",
         username: "abdr",
         password: "24434",
@@ -22,9 +13,9 @@ describe("models/user", () => {
     }).to.throw("\"firstName\" is required");
   });
 
-  it("must have lastName", () => {
+  it("throw error if lastName not found", () => {
     expect(() => {
-      userBuilder({
+      builder({
         firstName: "abd",
         username: "abdr",
         password: "24434",
@@ -32,9 +23,9 @@ describe("models/user", () => {
     }).to.throw("\"lastName\" is required");
   });
 
-  it("must have username", () => {
+  it("throw error if username not found", () => {
     expect(() => {
-      userBuilder({
+      builder({
         firstName: "abd",
         lastName: "rahman",
         password: "24434",
@@ -42,9 +33,9 @@ describe("models/user", () => {
     }).to.throw("\"username\" is required");
   });
 
-  it("must have password", () => {
+  it("throw error if password not found", () => {
     expect(() => {
-      userBuilder({
+      builder({
         firstName: "abd",
         lastName: "rahman",
         username: "abdr",

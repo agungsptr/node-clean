@@ -1,66 +1,69 @@
 const chai = require("chai");
 const expect = chai.expect;
-const studentBuilder = require("./index");
+const builder = require("./index");
 
 describe("models/student", () => {
-  it("throws error if invalid payload", () => {
-    const errorMessage = "\"name\" is required,\"age\" must be a number,";
+  it("throw error if name not found", () => {
     expect(() => {
-      studentBuilder({
-        grade: "twelve",
-        age: "twleve",
-        perfect: 12,
+      builder({
+        grade: 1,
+        age: 21,
+        perfect: true,
         createdBy: {
           userId: "63587db7dc752a40e09721d7",
-          username: "user-editor",
+          username: "user",
         },
       });
-    }).to.throw(errorMessage);
+    }).to.throw("\"name\" is required");
   });
 
-  it("must have name", () => {
-    const student = studentBuilder({
-      name: "howie",
-      createdBy: {
-        userId: "63587db7dc752a40e09721d7",
-        username: "user-editor",
-      },
-    });
-    const input = student.name;
-    const actual = "howie";
-    expect(input).to.equal(actual);
+  it("throw error if grade wrong data type", () => {
+    expect(() => {
+      builder({
+        name: "Fulan",
+        grade: "One",
+        age: 21,
+        perfect: true,
+        createdBy: {
+          userId: "63587db7dc752a40e09721d7",
+          username: "user",
+        },
+      });
+    }).to.throw("\"grade\" must be a number");
   });
 
-  it("can have grade", () => {
-    const student = studentBuilder({
-      name: "howie",
-      grade: 2,
-      createdBy: {
-        userId: "63587db7dc752a40e09721d7",
-        username: "user-editor",
-      },
-    });
-    const input = student.grade;
-    const actual = 2;
-    expect(input).to.equal(actual);
+  it("throw error if age wrong data type", () => {
+    expect(() => {
+      builder({
+        name: "Fulan",
+        grade: 1,
+        age: "TwentyOne",
+        perfect: true,
+        createdBy: {
+          userId: "63587db7dc752a40e09721d7",
+          username: "user",
+        },
+      });
+    }).to.throw("\"age\" must be a number");
   });
 
-  it("can have age", () => {
-    const student = studentBuilder({
-      name: "howie",
-      age: 12,
-      createdBy: {
-        userId: "63587db7dc752a40e09721d7",
-        username: "user-editor",
-      },
-    });
-    const input = student.age;
-    const actual = 12;
-    expect(input).to.equal(actual);
+  it("throw error if perfect wrong data type", () => {
+    expect(() => {
+      builder({
+        name: "Fulan",
+        grade: 1,
+        age: 21,
+        perfect: "trueFalse",
+        createdBy: {
+          userId: "63587db7dc752a40e09721d7",
+          username: "user",
+        },
+      });
+    }).to.throw("\"perfect\" must be a boolean");
   });
 
   it("sets perfect to false by default", () => {
-    const student = studentBuilder({
+    const student = builder({
       name: "howie",
       createdBy: {
         userId: "63587db7dc752a40e09721d7",
