@@ -26,7 +26,7 @@ infra:
 auto:
 	@echo "Turning off all containers..."
 	@make -s compose-down
-	@echo "Building docker..."
+	@echo "Building docker image..."
 	docker build -q -t agungsptr/node-clean:$(TAG) .
 	@make -s compose-up
 	@make -s wait-db
