@@ -20,6 +20,8 @@ infra:
 	@echo "Starting DB service..."
 	@TAG=$(TAG) $(COMPOSE) down -v || true
 	@TAG=$(TAG) $(COMPOSE) up -d --force-recreate db
+	@sleep 2
+	@make -s wait-db
 
 auto:
 	@echo "Turning off all containers..."
@@ -28,6 +30,7 @@ auto:
 	docker build -q -t agungsptr/node-clean:$(TAG) .
 	@make -s compose-up
 	@make -s wait-db
+	@sleep 2
 	@make -s wait-app
 
 wait-db:
