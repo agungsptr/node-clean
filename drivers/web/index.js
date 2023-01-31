@@ -40,8 +40,8 @@ app.use(compression());
 if (config.isProduction) {
   app.use(
     rateLimit({
-      windowMs: config.rateLimit * 60 * 1000,
-      max: 100,
+      windowMs: config.rateLimit.minute * 60 * 1000,
+      max: config.rateLimit.max,
       standardHeaders: true,
       legacyHeaders: false,
     })

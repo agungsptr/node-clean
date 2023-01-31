@@ -5,6 +5,10 @@ module.exports = {
   APP_NAME: process.env.APP_NAME,
   APP_PORT: process.env.APP_PORT,
   NODE_ENV: process.env.NODE_ENV,
+  isDevelopment: process.env.NODE_ENV === "development",
+  isProduction: process.env.NODE_ENV === "production",
+  isTest: process.env.NODE_ENV === "test",
+  rootPath: path.resolve(__dirname, ".."),
   mongo: {
     MONGO_USER: process.env.MONGO_USER,
     MONGO_PW: process.env.MONGO_PW,
@@ -19,10 +23,9 @@ module.exports = {
     secretKey: process.env.JWT_SECRET_KEY,
     expired: process.env.JWT_EXPIRED || "24h",
   },
-  isDevelopment: process.env.NODE_ENV === "development",
-  isProduction: process.env.NODE_ENV === "production",
-  isTest: process.env.NODE_ENV === "test",
-  rateLimit: parseInt(process.env.RATE_LIMIT) || 15,
+  rateLimit: {
+    minute: parseInt(process.env.RATE_LIMIT_MINUTE) || 15,
+    max: parseInt(process.env.RATE_LIMIT_MAX) || 100,
+  },
   GRPC_PORT: process.env.GRPC_PORT,
-  rootPath: path.resolve(__dirname, ".."),
 };
