@@ -234,6 +234,106 @@ The tests carried out include:
   make load_test
 ```
 
+### Available Make Commands
+
+Infrastructure commands
+
+* Run only db container
+
+  ```sh
+  make infra
+  ```
+
+* Build image
+
+  ```sh
+  make build
+  ```
+
+* Run all container including db and app
+
+  ```sh
+  make compose-up
+  ```
+
+* Stop all containers
+
+  ```sh
+  make compose-down
+  ```
+
+* Auto command, to build image and run all containers
+
+  ```sh
+  make auto
+  ```
+
+* Check db is ready
+
+  ```sh
+  make wait-db
+  ```
+
+* Check app is ready
+
+  ```sh
+  make wait-app
+  ```
+
+Application commands
+
+* Run webservice
+
+  ```sh
+  make start
+  ```
+
+* Run webservice in dev mode, it will automatically restart app if there are ane changes.
+
+  ```sh
+  make dev
+  ```
+
+* Run gRPC
+
+  ```sh
+  make grpc
+  ```
+
+* Run example gRPC client
+
+  ```sh
+  make grpc_client
+  ```
+
+Database commands
+
+* Seeding database
+
+  ```sh
+  make seed
+  ```
+
+Testing commands
+
+* Unit testing
+
+  ```sh
+  make test
+  ```
+
+* Coverage testing
+
+  ```sh
+  make coverage_test
+  ```
+
+* Load testing, to testing the app performace
+
+  ```sh
+  make load_test
+  ```
+
 ## Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
