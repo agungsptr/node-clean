@@ -40,7 +40,8 @@ services:
       BYCRYPT_SALT: ${BYCRYPT_SALT}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       JWT_EXPIRED: ${JWT_EXPIRED}
-      RATE_LIMIT: ${RATE_LIMIT}
+      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX}
+      RATE_LIMIT_MINUTE: ${RATE_LIMIT_MINUTE}
       GRPC_PORT: ${GRPC_PORT}
     command: >
       sh -c "./start.dev.sh"
