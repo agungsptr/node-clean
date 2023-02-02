@@ -1,6 +1,6 @@
 const CustomError = require("../../commons/customError");
 
-const studentBuilder = (validator) => {
+const builder = (validator) => {
   return ({
     name,
     age,
@@ -24,4 +24,4 @@ const studentBuilder = (validator) => {
   };
 };
 
-module.exports = studentBuilder;
+module.exports = builder;

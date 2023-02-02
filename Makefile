@@ -1,5 +1,5 @@
 TAG := $(shell git tag --sort=creatordate | tail -1)
-COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml
+COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml --log-level ERROR
 
 
 # Infrastructure
