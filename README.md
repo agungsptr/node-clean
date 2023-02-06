@@ -216,6 +216,12 @@ After running the gRPC server, you can run example gRPC client, using this comma
   make test
 ```
 
+Screenshots result
+
+![Unit Test 1](.github/resources/images/unit-test1.png)
+
+![Unit Test 2](.github/resources/images/unit-test2.png)
+
 The tests carried out include:
 
 * Data Access (./data-access)
@@ -228,11 +234,23 @@ The tests carried out include:
   make coverage_test
 ```
 
+Screenshots result
+
+![Coverage Test](.github/resources/images/coverage-test.png)
+
 ### Load Test
 
 ```sh
   make load_test
 ```
+
+After you run load test command above you can see the test result in graphic, for that please open html file in `test/output/report.html`.
+
+Screenshots result
+
+![Load Test 1](.github/resources/images/load-test1.png)
+
+![Load Test 2](.github/resources/images/load-test2.png)
 
 ### Available Make Commands
 
