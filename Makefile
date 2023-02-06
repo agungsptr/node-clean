@@ -1,10 +1,11 @@
 TAG := $(shell git tag --sort=creatordate | tail -1)
+IMAGE := agungsptr/node-clean
 COMPOSE := docker-compose -f build/$(NODE_ENV)/docker-compose.yml --log-level ERROR
 
 
 # Infrastructure
 build:
-	docker build -t agungsptr/node-clean:$(TAG) .
+	docker build -t $(IMAGE):$(TAG) .
 
 compose-up:
 	@node db/dbConfigGenerator.js $(NODE_ENV)
@@ -26,8 +27,14 @@ infra:
 auto:
 	@echo "Turning off all containers..."
 	@make -s compose-down
+	@echo "Checking all code..."
+	@make -s infra
+	@sleep 3
+	@echo "Starting unit test..."
+	@yarn test
+	@echo "Finished checking\n"
 	@echo "Building docker image..."
-	docker build -q -t agungsptr/node-clean:$(TAG) .
+	docker build -q -t $(IMAGE):$(TAG) .
 	@make -s compose-up
 	@make -s wait-db
 	@sleep 2
