@@ -1,32 +1,14 @@
 const moment = require("moment");
+const { sanitizerPayload } = require("../../../../commons/utils");
 
 const fromGrpc = (call) => {
-  return {
-    name: call.request.name,
-    age: call.request.age,
-    grade: call.request.grade,
-    perfect: call.request.perfect,
-    createdBy: {
-      userId: call.request.created_by.user_id,
-      username: call.request.created_by.username,
-    },
-  };
+  return sanitizerPayload(call.request);
 };
 
 const toGrpc = (data) => {
-  return {
-    id: data.id,
-    name: data.name,
-    age: data.age,
-    grade: data.grade,
-    perfect: data.perfect,
-    created_by: {
-      user_id: data.createdBy.userId,
-      username: data.createdBy.username,
-    },
-    created_at: moment(data.createdAt).toISOString(),
-    updated_at: moment(data.updatedAt).toISOString(),
-  };
+  data.createdAt = moment(data.createdAt).toISOString();
+  data.updatedAt = moment(data.updatedAt).toISOString();
+  return data;
 };
 
 module.exports = {

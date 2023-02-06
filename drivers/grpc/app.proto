@@ -1,38 +1,73 @@
 syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/empty.proto";
+
 package app;
 
 service App {
-  // Users
+  /** Users */
   rpc UserCreate (User) returns (User) {};
+  rpc UserFindOne (Id) returns (User) {};
+  rpc UserFindAll (google.protobuf.Struct) returns (Users) {};
+  rpc UserUpdate (User) returns (User) {};
+  rpc UserRemove (Id) returns (google.protobuf.Empty) {};
 
-  // Students
+  /** Students */
   rpc StudentCreate (Student) returns (Student) {};
+  rpc StudentFindOne (Id) returns (Student) {};
+  rpc StudentFindAll (google.protobuf.Struct) returns (Students) {};
+  rpc StudentUpdate (Student) returns (Student) {};
+  rpc StudentRemove (Id) returns (google.protobuf.Empty) {};
+}
+
+message Id {
+  string id=1;
+}
+
+message Page {
+  string prevPage=1;
+  string page=2;
+  string nextPage=3;
+  int32 limit=4;
+  int32 pageCount=5;
+  int32 total=6;
 }
 
 message User {
   string id=1;
-  string first_name=2;
-  string last_name=3;
+  string firstName=2;
+  string lastName=3;
   string username=4;
   string password=5;
-  string created_at=6;
-  string updated_at=7;
+  string createdAt=6;
+  string updatedAt=7;
+}
+
+message Users {
+  repeated User data=1;
+  Page page=2;
 }
 
 message Student {
   string id=1;
   string name=2;
-  string age=3;
+  int32 age=3;
   int32 grade=4;
   bool perfect=5;
 
   message CreatedBy {
-    string user_id=1;
+    string userId=1;
     string username=2;
   }
-  CreatedBy created_by=6;
+  CreatedBy createdBy=6;
   
-  string created_at=7;
-  string updated_at=8;
+  string createdAt=7;
+  string updatedAt=8;
+}
+
+message Students {
+  repeated Student data=1;
+  Page page=2;
 }
 

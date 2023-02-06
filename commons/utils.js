@@ -125,6 +125,16 @@ const paginationBuilder = async (limit, page, loader = async (skip) => {}) => {
   };
 };
 
+const objBuilder = (data) => {
+  /** Use to make object with only have attribute not null */
+  const obj = {};
+  if (isEmpty(data)) return obj;
+  for (const [key, val] of Object.entries(data)) {
+    if (!isEmpty(val)) obj[key] = val;
+  }
+  return obj;
+};
+
 module.exports = {
   responseBuilder,
   queriesBuilder,
@@ -137,4 +147,5 @@ module.exports = {
   sanitizerPayload,
   validatorSchema,
   paginationBuilder,
+  objBuilder
 };
