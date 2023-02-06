@@ -4,13 +4,13 @@ config:
     - duration: 60
       arrivalRate: 20
       name: "Warming up"
-    # - duration: 240
-    #   arrivalRate: 20
-    #   rampTo: 100
-    #   name: "Ramping up"
-    # - duration: 500
-    #   arrivalRate: 100
-    #   name: "Sustained load"
+    - duration: 240
+      arrivalRate: 20
+      rampTo: 100
+      name: "Ramping up"
+    - duration: 500
+      arrivalRate: 100
+      name: "Sustained load"
 
 scenarios:
   - name: "Sign up flow"
@@ -26,6 +26,5 @@ scenarios:
       - think: 1
       - get:
           url: "/users"
-          headers: 
+          headers:
             Authorization: "{{ token }}"
-
