@@ -8,13 +8,14 @@ const {
 
 const findAll = async (req, res, next) => {
   try {
-    const data = await users.findAll(req.query);
+    const { limit, page, ...q } = req.query;
+    const result = await users.findAll(q, limit, page);
 
     res.status(StatusCode.OK).send(
       responseBuilder({
         statusCode: StatusCode.OK,
         message: ResponseMessage.Loaded,
-        data,
+        ...result,
       })
     );
     return next();

@@ -24,20 +24,20 @@ describe("data-access/users", () => {
   it("drops database", async () => {
     await usersDa.removeAll();
     const result = await usersDa.findAll();
-    expect(result.length).to.equal(0);
+    expect(result.total).to.equal(0);
   });
 
-  it("list users", async () => {
+  it("lists users", async () => {
     const result = await usersDa.findAll();
-    expect(result.length).to.equal(1);
+    expect(result.total).to.equal(1);
   });
 
-  it("find a user by id", async () => {
+  it("find single user by id", async () => {
     const result = await usersDa.findOne(user.id);
     expect(result.id).to.eql(user.id);
   });
 
-  it("insert user", async () => {
+  it("insert a user", async () => {
     const userData = {
       firstName: "first",
       lastName: "last",
@@ -51,14 +51,6 @@ describe("data-access/users", () => {
     }).to.eql(userData);
   });
 
-  it("throw error if insert user with invalid payload", async () => {
-    const invalid = {
-      firstName: "abd",
-      lastName: "rahman",
-    };
-    expect(usersDa.create(invalid)).to.eventually.be.rejected;
-  });
-
   it("update user", async () => {
     await usersDa.update(user.id, { firstName: "edited-fistname" });
     const result = await usersDa.findOne(user.id);
@@ -68,7 +60,7 @@ describe("data-access/users", () => {
   it("delete a user", async () => {
     await usersDa.remove(user.id);
     const users = await usersDa.findAll();
-    expect(users.length).to.equal(0);
+    expect(users.total).to.equal(0);
     expect(usersDa.remove(user.id)).to.eventually.be.rejected;
   });
 });

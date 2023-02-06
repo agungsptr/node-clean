@@ -66,13 +66,13 @@ describe("routes/students", () => {
       .send();
 
     expect(req.statusCode).to.eql(200);
-    expect(req.body.data.length).to.eql(2);
+    expect(req.body.page.total).to.eql(2);
   });
 
   it(`GET ${API_URL}/:id`, async () => {
     const list = await studentsDa.findAll();
     const req = await request(app)
-      .get(`${API_URL}/${list[0].id}`)
+      .get(`${API_URL}/${list.data[0].id}`)
       .set("Authorization", auth.token)
       .send();
     const expectVal = {
@@ -82,7 +82,10 @@ describe("routes/students", () => {
     };
 
     expect(req.statusCode).to.eql(200);
-    expect(expectVal).to.eql({ ...list[0], id: list[0].id.valueOf() });
+    expect(expectVal).to.eql({
+      ...list.data[0],
+      id: list.data[0].id.valueOf(),
+    });
   });
 
   it(`POST ${API_URL}`, async () => {
@@ -118,7 +121,7 @@ describe("routes/students", () => {
       perfect: false,
     };
     const req = await request(app)
-      .patch(`${API_URL}/${list[0].id}`)
+      .patch(`${API_URL}/${list.data[0].id}`)
       .set("Authorization", auth.token)
       .send(dataToUpdate);
     const result = req.body.data;
@@ -130,12 +133,12 @@ describe("routes/students", () => {
   it(`DELETE ${API_URL}/:id`, async () => {
     const list = await studentsDa.findAll();
     const req = await request(app)
-      .delete(`${API_URL}/${list[0].id}`)
+      .delete(`${API_URL}/${list.data[0].id}`)
       .set("Authorization", auth.token)
       .send();
     const updatedList = await studentsDa.findAll();
 
     expect(req.statusCode).to.eql(200);
-    expect(updatedList.length).to.eql(1);
+    expect(updatedList.total).to.eql(1);
   });
 });

@@ -45,26 +45,18 @@ describe("data-access/students", () => {
 
   it("drops database", async () => {
     await studentsDa.removeAll();
-    const students = await studentsDa.findAll();
-    const input = students.length;
-    const actual = 0;
-    expect(input).to.equal(actual);
+    const list = await studentsDa.findAll();
+    expect(list.total).to.equal(0);
   });
 
   it("list students", async () => {
-    const input = await studentsDa.findAll();
-    const actual = 2;
-    expect(input.length).to.equal(actual);
+    const list = await studentsDa.findAll();
+    expect(list.total).to.equal(2);
   });
 
   it("find student by id", async () => {
-    const students = await studentsDa.findAll();
-    const id = students[0].id;
-
-    const student = await studentsDa.findOne(id);
-    const input = student.id;
-    const actual = id;
-    expect(input).to.eql(actual);
+    const data = await studentsDa.findOne(student.id);
+    expect(data.id).to.eql(student.id);
   });
 
   it("insert student", async () => {
@@ -77,8 +69,8 @@ describe("data-access/students", () => {
         username: user.username,
       },
     };
-    const newStudent = await studentsDa.create(felix);
-    const obj = newStudent;
+    const data = await studentsDa.create(felix);
+    const obj = data;
     delete obj.id;
     delete obj.createdAt;
     delete obj.updatedAt;
@@ -105,20 +97,16 @@ describe("data-access/students", () => {
 
   it("update student", async () => {
     await studentsDa.update(student.id, { name: "updated name" });
-    const result = await studentsDa.findOne(student.id);
-    expect(result.name).to.eql("updated name");
+    const data = await studentsDa.findOne(student.id);
+    expect(data.name).to.eql("updated name");
   });
 
   it("delete student", async () => {
-    const students = await studentsDa.findAll();
-    const id = students[0].id.toString();
-    const validInput = await studentsDa.remove(id);
-    expect(validInput).to.eql(null);
+    const data = await studentsDa.remove(student.id);
+    expect(data).to.eql(null);
 
-    const newStudents = await studentsDa.findAll();
-    const inputLength = newStudents.length;
-    const actualLength = 1;
-    expect(inputLength).to.equal(actualLength);
+    const list = await studentsDa.findAll();
+    expect(list.total).to.equal(1);
     expect(studentsDa.remove(42)).to.eventually.be.rejected;
   });
 });

@@ -2,14 +2,28 @@ const {
   ifEmptyThrowError,
   ifFalseThrowError,
   isValidObjId,
+  isEmpty,
 } = require("../commons/checks");
 const { queriesBuilder } = require("../commons/utils");
 const { repackageError } = require("../commons/errors");
 
 const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
-  const findAll = async (queries = {}) => {
+  const findAll = async (
+    queries = { like: {}, eq: {} },
+    options = { orderBy: { createdAt: 1 }, limit: 10, skip: 0 }
+  ) => {
     try {
-      return model.find(queriesBuilder(queries, "LIKE")).then(serialize);
+      const data = await model
+        .find(queriesBuilder(queries.like, "LIKE"))
+        .find(queriesBuilder(queries.eq, "EQ"))
+        .sort(options.orderBy)
+        .limit(options.limit)
+        .skip(options.skip)
+        .then(serialize);
+      const total = await model
+        .count(queriesBuilder(queries.like, "LIKE"))
+        .count(queriesBuilder(queries.eq, "EQ"));
+      return { data, total };
     } catch (e) {
       throw repackageError(e);
     }
@@ -17,17 +31,23 @@ const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
 
   const findOne = async (id) => {
     try {
-      ifEmptyThrowError(id, "id is required");
-      ifFalseThrowError(isValidObjId(id), "id is not valid");
+      ifFalseThrowError(!isEmpty(id) && isValidObjId(id), "id is not valid");
       return model.findById(id).then(serialize);
     } catch (e) {
       throw repackageError(e);
     }
   };
 
-  const findOneBy = async (queries = {}) => {
+  const findOneBy = async (
+    queries = { like: {}, eq: {} },
+    options = { orderBy: { createdAt: 1 } }
+  ) => {
     try {
-      return model.findOne(queriesBuilder(queries, "EQ")).then(serialize);
+      return model
+        .findOne(queriesBuilder(queries.eq, "EQ"))
+        .findOne(queriesBuilder(queries.like, "LIKE"))
+        .sort(options.orderBy)
+        .then(serialize);
     } catch (e) {
       throw repackageError(e);
     }
@@ -44,8 +64,7 @@ const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
 
   const update = async (id, payload) => {
     try {
-      ifEmptyThrowError(id, "id is required");
-      ifFalseThrowError(isValidObjId(id), "id is not valid");
+      ifFalseThrowError(!isEmpty(id) && isValidObjId(id), "id is not valid");
       const data = await model.findById(id).then(serialize);
       ifEmptyThrowError(
         data,
@@ -61,8 +80,7 @@ const baseDataAccess = ({ model, modelName, modelBuilder, serialize }) => {
 
   const remove = async (id) => {
     try {
-      ifEmptyThrowError(id, "id is required");
-      ifFalseThrowError(isValidObjId(id), "id is not valid");
+      ifFalseThrowError(!isEmpty(id) && isValidObjId(id), "id is not valid");
       const data = await model.findById(id).then(serialize);
       ifEmptyThrowError(
         data,

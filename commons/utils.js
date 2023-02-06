@@ -4,18 +4,21 @@ const config = require("../config");
 const { StatusCode } = require("./constants");
 const { isEmpty } = require("./checks");
 
-const responseBuilder = ({ statusCode, message, data = null }) => {
+const responseBuilder = ({ statusCode, message, data = null, page = null }) => {
   const status = statusCode === StatusCode.OK ? "Success" : "Failed";
-  return {
+  const result = {
     statusCode,
     status,
     message,
     data,
   };
+  if (page) result.page = page;
+  return result;
 };
 
 const queriesBuilder = (queries, eqlType = "EQ") => {
   const obj = {};
+  if (isEmpty(queries)) return obj;
   for (const [key, val] of Object.entries(queries)) {
     if (eqlType === "EQ") {
       obj[key] = { $eq: val };
@@ -92,6 +95,36 @@ const validatorSchema = (schema) => (payload) => {
   };
 };
 
+const paginationBuilder = async (limit, page, loader = async (skip) => {}) => {
+  limit = parseInt(limit, 10) || 10;
+  page = parseInt(page, 10) || 1;
+  page = page > 0 ? page : 1;
+  const skip = limit * (page - 1);
+
+  /** Load data callback */
+  const { data, total } = await loader(skip);
+  const pageCount = Math.ceil(total / limit);
+
+  let nextPage = null;
+  let prevPage = null;
+  if (page <= pageCount) {
+    nextPage = page + 1 <= pageCount ? page + 1 : null;
+    prevPage = page - 1 > 0 ? page - 1 : null;
+  }
+
+  return {
+    page: {
+      prevPage,
+      page,
+      nextPage,
+      limit,
+      pageCount,
+      total,
+    },
+    data,
+  };
+};
+
 module.exports = {
   responseBuilder,
   queriesBuilder,
@@ -103,4 +136,5 @@ module.exports = {
   tokenSplitter,
   sanitizerPayload,
   validatorSchema,
+  paginationBuilder,
 };

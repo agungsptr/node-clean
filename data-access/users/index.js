@@ -6,7 +6,7 @@ const serialize = require("./serializer");
 const {
   ifFalseThrowError,
   isValidObjId,
-  ifEmptyThrowError,
+  isEmpty,
 } = require("../../commons/checks");
 const CustomError = require("../../commons/customError");
 const baseDataAccess = require("../base")({
@@ -18,7 +18,7 @@ const baseDataAccess = require("../base")({
 
 baseDataAccess.update = async (id, payload) => {
   try {
-    ifEmptyThrowError(id, "id is required");
+    ifFalseThrowError(!isEmpty(id) && isValidObjId(id), "id is not valid");
     const data = await Users.findById(id).then((user) => {
       if (user) {
         return { ...serialize(user), password: user.password };
