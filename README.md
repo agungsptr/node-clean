@@ -216,17 +216,17 @@ After running the gRPC server, you can run example gRPC client, using this comma
   make test
 ```
 
-Screenshots result
-
-![Unit Test 1](.github/resources/images/unit-test1.png)
-
-![Unit Test 2](.github/resources/images/unit-test2.png)
-
 The tests carried out include:
 
 * Data Access (./data-access)
 * Models (./models)
 * Routes (./drivers/web/routes)
+
+Screenshots result
+
+![Unit Test 1](.github/resources/images/unit-test1.png)
+
+![Unit Test 2](.github/resources/images/unit-test2.png)
 
 ### Coverage Test
 
