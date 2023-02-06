@@ -15,6 +15,7 @@ compose-up:
 
 compose-down:
 	@TAG=$(TAG) $(COMPOSE) down -v || true
+	@docker image rm $(IMAGE):$(TAG) || true
 
 infra:
 	@node db/dbConfigGenerator.js $(NODE_ENV)
