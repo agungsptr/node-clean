@@ -15,6 +15,9 @@ compose-up:
 
 compose-down:
 	@TAG=$(TAG) $(COMPOSE) down -v || true
+
+purge:
+	@make -s compose-down
 	@docker image rm $(IMAGE):$(TAG) || true
 
 infra:
