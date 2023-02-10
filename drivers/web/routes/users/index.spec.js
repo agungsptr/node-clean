@@ -98,7 +98,7 @@ describe("routes/users", () => {
     const result = req.body.data;
 
     expect(req.statusCode).to.eql(200);
-    expect(result.name).to.eql(dataToUpdate.name);
+    expect(result.firstName).to.eql(dataToUpdate.firstName);
   });
 
   it(`DELETE ${API_URL}/:id`, async () => {
