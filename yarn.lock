@@ -1639,10 +1639,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@grpc/grpc-js@^1.8.7":
-  version "1.8.8"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.8.8.tgz#a7c6765d0302f47ba67c0ce3cb79718d6b028248"
-  integrity sha512-4gfDqMLXTrorvYTKA1jL22zLvVwiHJ73t6Re1OHwdCFRjdGTDOVtSJuaWhtHaivyeDGg0LeCkmU77MTKoV3wPA==
+"@grpc/grpc-js@^1.8.12":
+  version "1.8.12"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.8.12.tgz#bc0120859e8b153db764b473cc019ddf6bb2b414"
+  integrity sha512-MbUMvpVvakeKhdYux6gbSIPJaFMLNSY8jw4PqLI+FFztGrQRrYYAnHlR94+ncBQQewkpXQaW449m3tpH/B/ZnQ==
   dependencies:
     "@grpc/proto-loader" "^0.7.0"
     "@types/node" ">=12.12.47"
