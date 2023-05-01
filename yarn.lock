@@ -2450,10 +2450,10 @@ artillery-plugin-publish-metrics@latest:
     semver "^7.3.5"
     uuid "^8.3.2"
 
-artillery@^2.0.0-27:
-  version "2.0.0-30"
-  resolved "https://registry.yarnpkg.com/artillery/-/artillery-2.0.0-30.tgz#55e9d132a90ab2498d5ab614f99ca76729c0da09"
-  integrity sha512-qOr7IuVlL0NhkVCGU0F9sC5XMwCXmcHbAJTcCJTl09N8OIIH7SidQF3ou3ntq21cozGz65Thjttp85qbTO6ROg==
+artillery@^2.0.0-31:
+  version "2.0.0-31"
+  resolved "https://registry.yarnpkg.com/artillery/-/artillery-2.0.0-31.tgz#3646e5c0c320768c6b8cd960a25af3252e08c8eb"
+  integrity sha512-Hbs0KBnKYMLT5IqyWDfKRqGPJA6Fp4Y/Iaqm6IXxFdUGgyZ9Qv7h9AOADCxY95mXj9OQ7QL0HMv+8eYHkXGpJA==
   dependencies:
     "@artilleryio/int-commons" latest
     "@artilleryio/int-core" latest
@@ -2468,10 +2468,11 @@ artillery@^2.0.0-27:
     artillery-plugin-metrics-by-endpoint latest
     artillery-plugin-publish-metrics latest
     async "^2.6.4"
-    aws-sdk "^2.1172.0"
+    aws-sdk "^2.1334.0"
     chalk "^2.4.2"
     ci-info "^2.0.0"
     cli-table3 "^0.6.2"
+    cross-spawn "^7.0.3"
     csv-parse "^4.16.3"
     debug "^4.3.1"
     dotenv "^16.0.1"
@@ -2482,9 +2483,10 @@ artillery@^2.0.0-27:
     js-yaml "^3.13.1"
     lodash "^4.17.19"
     moment "^2.29.4"
+    nanoid "^3.3.4"
     ora "^4.0.4"
     posthog-node "^2.2.3"
-    sqs-consumer "^5.7.0"
+    sqs-consumer "5.8.0"
     temp "^0.9.4"
     tmp "0.2.1"
     try-require "1.2.1"
@@ -2570,10 +2572,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@^2.1172.0, aws-sdk@^2.1271.0:
-  version "2.1313.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1313.0.tgz#e6dad914670fb3f4d5cd95c58413fca5ea5c6c86"
-  integrity sha512-8GMdtV2Uch3HL2c6+P3lNZFTcg/fqq9L3EWYRLb6ljCZvWKTssjdkjSJFDyTReNgeiKV224YRPYQbKpOEz4flQ==
+aws-sdk@^2.1271.0, aws-sdk@^2.1334.0:
+  version "2.1368.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1368.0.tgz#8c7a4c899f3a983bfee25e485545c657ce53aad3"
+  integrity sha512-Yc3s8PqdcYG4wyCOpDj4TwXacGZGDgZBJ/XAtzMLKW2wN2c4uu7GwSosLxZ8ejzbAbcqjf080odPuD8P0819tw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2584,7 +2586,7 @@ aws-sdk@^2.1172.0, aws-sdk@^2.1271.0:
     url "0.10.3"
     util "^0.12.4"
     uuid "8.0.0"
-    xml2js "0.4.19"
+    xml2js "0.5.0"
 
 aws-sign2@~0.7.0:
   version "0.7.0"
@@ -5551,6 +5553,11 @@ nanoid@3.3.3:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.3.tgz#fd8e8b7aa761fe807dba2d1b98fb7241bb724a25"
   integrity sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==
 
+nanoid@^3.3.4:
+  version "3.3.6"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
+  integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==
+
 nanotimer@0.3.14:
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/nanotimer/-/nanotimer-0.3.14.tgz#10d811f8d064788180096ce1f96c70846fd5a2ba"
@@ -6755,7 +6762,7 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
-sqs-consumer@^5.7.0:
+sqs-consumer@5.8.0:
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/sqs-consumer/-/sqs-consumer-5.8.0.tgz#eb2796bf17e4f703dd93e534bf949f15e7b1fef9"
   integrity sha512-pJReMEtDM9/xzQTffb7dxMD5MKagBfOW65m+ITsbpNk0oZmJ38tTC4LPmj0/7ZcKSOqi2LrpA1b0qGYOwxlHJg==
@@ -7540,18 +7547,18 @@ ws@~8.11.0:
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.11.0.tgz#6a0d36b8edfd9f96d8b25683db2f8d7de6e8e143"
   integrity sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==
 
-xml2js@0.4.19:
-  version "0.4.19"
-  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
-  integrity sha512-esZnJZJOiJR9wWKMyuvSE1y6Dq5LCuJanqhxslH2bxM6duahNZ+HMpCLhBQGZkbX6xRf8x1Y2eJlgt2q3qo49Q==
+xml2js@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.5.0.tgz#d9440631fbb2ed800203fad106f2724f62c493b7"
+  integrity sha512-drPFnkQJik/O+uPKpqSgr22mpuFHqKdbS835iAQrUC73L2F5WkboIRd63ai/2Yg6I1jzifPFKH2NTK+cfglkIA==
   dependencies:
     sax ">=0.6.0"
-    xmlbuilder "~9.0.1"
+    xmlbuilder "~11.0.0"
 
-xmlbuilder@~9.0.1:
-  version "9.0.7"
-  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
-  integrity sha512-7YXTQc3P2l9+0rjaUbLwMKRhtmwg1M1eDf6nag7urC7pIPYLD9W/jmzQ4ptRSUbodw5S0jfoGTflLemQibSpeQ==
+xmlbuilder@~11.0.0:
+  version "11.0.1"
+  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-11.0.1.tgz#be9bae1c8a046e76b31127726347d0ad7002beb3"
+  integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
 
 xmlhttprequest-ssl@~2.0.0:
   version "2.0.0"
