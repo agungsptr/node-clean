@@ -48,7 +48,7 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
-    "artillery": "^2.0.0-27",
+    "artillery": "^2.0.0-32",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "eslint": "^8.39.0",
