@@ -2922,7 +2922,7 @@ browserslist@^4.21.3:
     node-releases "^2.0.8"
     update-browserslist-db "^1.0.10"
 
-bson@^5.3.0:
+bson@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/bson/-/bson-5.4.0.tgz#0eea77276d490953ad8616b483298dbff07384c6"
   integrity sha512-WRZ5SQI5GfUuKnPTNmAYPiKIof3ORXAF4IRU5UcgmivNIon01rWQlw5RUH954dpu8yGL8T59YShVddIPaU/gFA==
@@ -6072,25 +6072,25 @@ mongodb-connection-string-url@^2.6.0:
     "@types/whatwg-url" "^8.2.1"
     whatwg-url "^11.0.0"
 
-mongodb@5.6.0:
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-5.6.0.tgz#caff5278341bfc0f1ef6f394bb403d207de03d1e"
-  integrity sha512-z8qVs9NfobHJm6uzK56XBZF8XwM9H294iRnB7wNjF0SnY93si5HPziIJn+qqvUR5QOff/4L0gCD6SShdR/GtVQ==
+mongodb@5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-5.7.0.tgz#e16d2fcdfd9f8503ec2d88288392dc3235bb3ecc"
+  integrity sha512-zm82Bq33QbqtxDf58fLWBwTjARK3NSvKYjyz997KSy6hpat0prjeX/kxjbPVyZY60XYPDNETaHkHJI2UCzSLuw==
   dependencies:
-    bson "^5.3.0"
+    bson "^5.4.0"
     mongodb-connection-string-url "^2.6.0"
     socks "^2.7.1"
   optionalDependencies:
     saslprep "^1.0.3"
 
-mongoose@^7.3.4:
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-7.3.4.tgz#d26934d62575cc01c8cbb70252c14dc8cc30ef49"
-  integrity sha512-luvv4PKFiFYaHNn5wGIRrMML3Vvoa8lkdhcLE1S/6gY9s9CUOdEu9olbDrkhvnwRQ20j1SrQFO5JEApW0xwL3w==
+mongoose@^7.4.3:
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-7.4.3.tgz#4f7b26e5a1924e06238083fb64fb7b006d0b438c"
+  integrity sha512-eok0lW6mZJHK2vVSWyJb9tUfPMUuRF3h7YC4pU2K2/YSZBlNDUwvKsHgftMOANbokP2Ry+4ylvzAdW4KjkRFjw==
   dependencies:
-    bson "^5.3.0"
+    bson "^5.4.0"
     kareem "2.5.1"
-    mongodb "5.6.0"
+    mongodb "5.7.0"
     mpath "0.9.0"
     mquery "5.0.0"
     ms "2.1.3"
@@ -7303,12 +7303,7 @@ semver@5.5.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
   integrity sha512-4SJ3dm0WAwWy/NVeioZh5AntkdJoWKxHxcmyP622fOkgHa4z3R0TdBJICINyaSDE6uNwVc8gZr+ZinwZAH4xIA==
 
-semver@^5.5.0:
-  version "5.7.2"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.2.tgz#48d55db737c3287cd4835e17fa13feace1c41ef8"
-  integrity sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==
-
-semver@^5.6.0:
+semver@^5.5.0, semver@^5.6.0:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.2.tgz#48d55db737c3287cd4835e17fa13feace1c41ef8"
   integrity sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==
@@ -8612,8 +8607,8 @@ yargs-unparser@2.0.0:
     decamelize "^4.0.0"
     flat "^5.0.2"
     is-plain-obj "^2.1.0"
-    
-yargs@16.2.0, yargs@^16.0.0, yargs@^16.2.0:
+
+yargs@16.2.0, yargs@^16.0.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-16.2.0.tgz#1c82bf0f6b6a66eafce7ef30e376f49a12477f66"
   integrity sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==
@@ -8643,7 +8638,7 @@ yargs@^15.0.2:
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
 
-yargs@^17.6.2:
+yargs@^17.6.2, yargs@^17.7.2:
   version "17.7.2"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.7.2.tgz#991df39aca675a192b816e1e0363f9d75d2aa269"
   integrity sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==
